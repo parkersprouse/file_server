@@ -1,0 +1,29 @@
+<ul id='list-view'>
+  {{#if previous_url}}
+    <li>
+      <a href='{{root_url}}' title='Top Directory'>
+        <i class='ri-arrow-up-s-line'></i>
+      </a>
+    </li>
+    <li>
+      <a href='{{previous_url}}' title='Parent Directory'>
+        <i class='ri-arrow-left-s-line'></i>
+      </a>
+    </li>
+  {{/if}}
+  {{#each files}}
+    <li>
+      {{#if this.external_url}}
+      <a href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer'>
+      {{else}}
+      <a href='/{{{this.path}}}'>
+      {{/if}}
+        <span><i class='{{this.icon}}'></i></span>
+        <span>{{this.name}}</span>
+        {{#if this.duration}}
+          <span class='list-duration'>({{this.duration}})</span>
+        {{/if}}
+      </a>
+    </li>
+  {{/each}}
+</ul>

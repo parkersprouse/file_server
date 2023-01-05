@@ -1,0 +1,37 @@
+<div id='grid-view'>
+  {{#if previous_url}}
+    <a href='{{root_url}}' title='Top Directory'>
+      <div>
+        <i class='ri-arrow-up-s-line'></i>
+      </div>
+    </a>
+    <a href='{{previous_url}}' title='Parent Directory'>
+      <div>
+        <i class='ri-arrow-left-s-line'></i>
+      </div>
+    </a>
+  {{/if}}
+  {{#each files}}
+    {{#if this.external_url}}
+      <a href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
+    {{else}}
+      <a href='/{{{this.path}}}' title='{{this.name}}'>
+    {{/if}}
+        <div>
+          {{#if this.src}}
+            <img src='{{this.src}}'>
+          {{else}}
+            {{#if this.thumbnail}}
+              <img src='{{this.thumbnail}}' class='thumbnail'>
+            {{else}}
+              <div><i class='{{this.icon}}'></i></div>
+            {{/if}}
+            <div>{{this.name}}</div>
+            {{#if this.duration}}
+              <div class='grid-duration'>({{this.duration}})</div>
+            {{/if}}
+          {{/if}}
+        </div>
+      </a>
+  {{/each}}
+</div>

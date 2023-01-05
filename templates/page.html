@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>File Server</title>
+    <link href='https://unpkg.com/sanitize.css' rel='stylesheet' type='text/css'>
+    <link href='https://unpkg.com/sanitize.css/typography.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/styles.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/remixicon.css' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav>
+      <a href='{{list_view_url}}'{{#unless show_grid}}class='active'{{/unless}}>
+        <i class='ri-list-unordered'></i>
+      </a>
+      <a href='{{grid_view_url}}'{{#if show_grid}}class='active'{{/if}}>
+        <i class='ri-layout-grid-line'></i>
+      </a>
+
+      <a href='{{name_sort_url}}'{{#unless sort_by_duration}}class='active'{{/unless}} style='margin-left: 2rem;'>
+        <i class='ri-price-tag-3-line'></i>
+      </a>
+      <a href='{{duration_sort_url}}'{{#if sort_by_duration}}class='active'{{/if}}>
+        <i class='ri-timer-line'></i>
+      </a>
+    </nav>
+    {{#if show_grid}}
+      {{> grid_view}}
+    {{else}}
+      {{> list_view}}
+    {{/if}}
+  </body>
+</html>
