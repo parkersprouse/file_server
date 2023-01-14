@@ -76,11 +76,11 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
   const root_url = `/?${qs.stringify(request.query)}`;
   const previous_url = request.path === '/' ? null : `${path.join(req_path, '..')}?${qs.stringify(request.query)}`;
   return h.view('page', {
-    sort_by_duration,
     files: parsed,
     previous_url,
     root_url,
     show_grid,
+    sort_by_duration,
     list_view_url: generateUrl(req_path, request.query, 'view', 'list'),
     grid_view_url: generateUrl(req_path, request.query, 'view', 'grid'),
     duration_sort_url: generateUrl(req_path, request.query, 'sort', 'duration'),
