@@ -7,10 +7,6 @@
   "scripts": {
     "start": "node index.js"
   },
-  "devDependencies": {
-    "concurrently": "^7.6.0",
-    "serve": "^14.1.2"
-  },
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^1.4.1",
     "@hapi/hapi": "^21.1.0",
