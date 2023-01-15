@@ -57,7 +57,13 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
 
         const thumbnail_file = f.name.replace(path.extname(f.name), '.png');
         const thumbnail_path = path.join(root_path, '.thumbnails', req_path, thumbnail_file);
-        if (fs.existsSync(thumbnail_path)) output.thumbnail = path.join('/.thumbnails', req_path, thumbnail_file);
+        if (fs.existsSync(thumbnail_path)) {
+          output.thumbnail = path.join(
+            '/.thumbnails',
+            req_path,
+            encodeURIComponent(f.name.replace(path.extname(f.name), '.png')),
+          );
+        }
       }
 
       if (file_path.toLowerCase().endsWith('.url')) {
