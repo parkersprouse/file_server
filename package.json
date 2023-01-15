@@ -4,6 +4,10 @@
   "description": "",
   "exports": "./index.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.12.1",
+    "npm": ">=8.19.2"
+  },
   "scripts": {
     "start": "node index.js"
   },
