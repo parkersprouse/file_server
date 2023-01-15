@@ -1,7 +1,12 @@
 {
   "name": "file_server",
   "version": "1.0.0",
-  "description": "",
+  "author": "Parker Sprouse (https://parkersprouse.me)",
+  "description": "A basic file server for serving a local directory through a minimalist, easy-to-use browser interface",
+  "homepage": "https://github.com/parkersprouse/file_server",
+  "repository": "https://github.com/parkersprouse/file_server",
+  "license": "Unlicense",
+  "private": true,
   "exports": "./index.js",
   "type": "module",
   "engines": {
