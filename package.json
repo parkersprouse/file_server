@@ -22,7 +22,7 @@
     "@hapi/inert": "^7.0.0",
     "@hapi/vision": "^7.0.0",
     "dotenv": "^16.0.3",
-    "execa": "^6.1.0",
+    "execa": "^7.0.0",
     "file-type": "^18.0.0",
     "handlebars": "^4.7.7",
     "lodash-es": "^4.17.21",
