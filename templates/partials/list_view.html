@@ -2,12 +2,14 @@
   {{#if previous_url}}
     <li>
       <a href='{{root_url}}' title='Top Directory'>
-        <i class='ri-arrow-up-s-line'></i>
+        <span><i class='ri-arrow-up-s-line'></i></span>
+        <span>Top Directory</span>
       </a>
     </li>
     <li>
       <a href='{{previous_url}}' title='Parent Directory'>
-        <i class='ri-arrow-left-s-line'></i>
+        <span><i class='ri-arrow-left-s-line'></i></span>
+        <span>Parent Directory</span>
       </a>
     </li>
   {{/if}}
@@ -21,8 +23,9 @@
         <span><i class='{{this.icon}}'></i></span>
         <span>{{this.name}}</span>
         {{#if this.duration}}
-          <span class='list-duration'>({{this.duration}})</span>
+          <span class='meta'>({{this.duration}})</span>
         {{/if}}
+        <span class='meta'>({{this.last_updated}})</span>
       </a>
     </li>
   {{/each}}

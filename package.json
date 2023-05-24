@@ -11,21 +11,24 @@
   "type": "module",
   "engines": {
     "node": ">=18.12.1",
-    "npm": ">=8.19.2"
+    "pnpm": ">=8.5.1"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "pnpm run server",
+    "server": "sass assets/styles.scss assets/styles.css && node index.js"
+
   },
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^1.4.1",
-    "@hapi/hapi": "^21.1.0",
-    "@hapi/inert": "^7.0.0",
-    "@hapi/vision": "^7.0.0",
+    "@hapi/hapi": "^21.3.2",
+    "@hapi/inert": "^7.1.0",
+    "@hapi/vision": "^7.0.1",
     "dotenv": "^16.0.3",
     "execa": "^6.1.0",
-    "file-type": "^18.0.0",
+    "file-type": "^18.4.0",
     "handlebars": "^4.7.7",
     "lodash-es": "^4.17.21",
-    "qs": "^6.11.0"
+    "qs": "^6.11.2",
+    "sass": "^1.62.1"
   }
 }

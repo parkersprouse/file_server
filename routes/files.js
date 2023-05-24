@@ -3,7 +3,10 @@ import path from 'node:path';
 import { fileTypeFromFile } from 'file-type';
 import { cloneDeep, orderBy } from 'lodash-es';
 import qs from 'qs';
-import { formatDuration, getVideoDuration } from '../lib/index.js';
+import { formatDuration, formatLastUpdated, getLastUpdated, getDuration } from '../lib/index.js';
+
+const valid_views = Object.freeze(['list', 'grid']);
+const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
 
 /**
  * @param {RequestObject} request - The request object sent to the server.
@@ -14,8 +17,9 @@ import { formatDuration, getVideoDuration } from '../lib/index.js';
  * @returns {ResponseObject}
  */
 async function handleDirectory(request, h, root_path, local_path, req_path) {
-  const show_grid = request.query.view === 'grid';
-  const sort_by_duration = request.query.sort === 'duration';
+  const view_param = valid_views.includes(request.query.view?.toLowerCase()) ? request.query.view.toLowerCase() : 'list';
+  const sort_param = valid_sorts.includes(request.query.sort?.toLowerCase()) ? request.query.sort.toLowerCase() : 'name';
+
   const files = fs.readdirSync(local_path, { withFileTypes: true });
 
   // We don't want to serve any directories under our thumbnail folder
@@ -32,26 +36,30 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     const encoded_name = encodeURIComponent(f.name);
     const encoded_local_path = path.join(local_path, encoded_name);
     const encoded_root_path = path.relative(root_path, encoded_local_path);
+
+    const file_path = path.join(local_path, f.name);
+    const last_updated = getLastUpdated(file_path);
     const output = {
       name: f.name,
       path: `${encoded_root_path}?${qs.stringify(request.query)}`,
       icon: dir ? 'ri-folder-line' : 'ri-file-line',
       type: dir ? 'folder' : 'file',
+
+      last_updated: formatLastUpdated(last_updated),
+      raw_last_updated: last_updated,
     };
 
     if (!dir) {
-      const file_path = path.join(local_path, f.name);
-
       const determined_type = await fileTypeFromFile(file_path);
       if (determined_type?.mime?.startsWith('image')) {
         output.icon = 'ri-image-2-line';
         output.type = 'image';
-        if (show_grid) output.src = path.join(req_path, f.name);
+        if (view_param === 'grid') output.src = path.join(req_path, f.name);
       } else if (determined_type?.mime?.startsWith('video')) {
-        output.icon = 'ri-vidicon-line';
+        output.icon = 'ri-film-line';
         output.type = 'video';
 
-        const dur = await getVideoDuration(file_path);
+        const dur = await getDuration(file_path);
         output.duration = formatDuration(dur);
         output.raw_duration = dur;
 
@@ -64,6 +72,13 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
             encodeURIComponent(f.name.replace(path.extname(f.name), '.png')),
           );
         }
+      } else if (determined_type?.mime?.startsWith('audio')) {
+        output.icon = 'ri-headphone-line';
+        output.type = 'audio';
+
+        const dur = await getDuration(file_path);
+        output.duration = formatDuration(dur);
+        output.raw_duration = dur;
       }
 
       if (file_path.toLowerCase().endsWith('.url')) {
@@ -77,20 +92,21 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     parsed.push(output);
   }
 
-  parsed = sortEntries(parsed, sort_by_duration);
+  parsed = sortEntries(parsed, sort_param);
 
   const root_url = `/?${qs.stringify(request.query)}`;
   const previous_url = request.path === '/' ? null : `${path.join(req_path, '..')}?${qs.stringify(request.query)}`;
   return h.view('page', {
+    duration_sort_url: generateUrl(req_path, request.query, 'sort', 'duration'),
     files: parsed,
+    grid_view_url: generateUrl(req_path, request.query, 'view', 'grid'),
+    last_updated_sort_url: generateUrl(req_path, request.query, 'sort', 'last_updated'),
+    list_view_url: generateUrl(req_path, request.query, 'view', 'list'),
+    name_sort_url: generateUrl(req_path, request.query, 'sort', 'name'),
     previous_url,
     root_url,
-    show_grid,
-    sort_by_duration,
-    list_view_url: generateUrl(req_path, request.query, 'view', 'list'),
-    grid_view_url: generateUrl(req_path, request.query, 'view', 'grid'),
-    duration_sort_url: generateUrl(req_path, request.query, 'sort', 'duration'),
-    name_sort_url: generateUrl(req_path, request.query, 'sort', 'name'),
+    sort_param,
+    view_param,
   });
 }
 
@@ -124,17 +140,27 @@ function generateUrl(path, query, attr, value) {
  * @param {Boolean} sort_by_duration - Whether we're sorting by duration or not.
  * @returns {Array} - The sorted array that will be used to build the front-end.
  */
-function sortEntries(arr, sort_by_duration) {
+function sortEntries(arr, sort_param) {
   const iteratees = [
     (i) => i.type === 'folder',
     (i) => i.name.match(/^\W+/) === null,
     (i) => i.name.toLowerCase(),
   ];
   const orders = ['desc', 'asc', 'asc'];
-  if (sort_by_duration) {
-    iteratees.splice(1, 0, (i) => i.raw_duration || 0);
-    orders.splice(1, 0, 'desc');
+
+  switch(sort_param) {
+    case 'duration':
+      iteratees.splice(1, 0, (i) => i.raw_duration || 0);
+      orders.splice(1, 0, 'desc');
+      break;
+    case 'last_updated':
+      iteratees.splice(1, 0, (i) => i.raw_last_updated || -1);
+      orders.splice(1, 0, 'desc');
+      break;
+    default:
+      break;
   }
+
   return orderBy(arr, iteratees, orders);
 }
 

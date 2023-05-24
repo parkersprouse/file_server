@@ -13,8 +13,13 @@ import not_found_route from './routes/not_found.js';
 async function init() {
   const root_path = config.file_source;
   if (!root_path) throw 'No file source path provided';
-  if (!fs.existsSync(root_path) || !fs.statSync(root_path).isDirectory())
+  if (!fs.existsSync(root_path) || !fs.statSync(root_path).isDirectory()) {
     throw 'Invalid file source path provided';
+  }
+
+  handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+  });
 
   const __dirname = path.resolve('.');
   const server = Hapi.server({

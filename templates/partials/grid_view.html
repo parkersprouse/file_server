@@ -1,34 +1,50 @@
 <div id='grid-view'>
   {{#if previous_url}}
-    <a href='{{root_url}}' title='Top Directory'>
+    <a class='nav-card' href='{{root_url}}' title='Top Directory'>
       <div>
-        <i class='ri-arrow-up-s-line'></i>
+        <div><i class='ri-arrow-up-s-line'></i></div>
+        <div>Top Directory</div>
       </div>
     </a>
-    <a href='{{previous_url}}' title='Parent Directory'>
+    <a class='nav-card' href='{{previous_url}}' title='Parent Directory'>
       <div>
-        <i class='ri-arrow-left-s-line'></i>
+        <div><i class='ri-arrow-left-s-line'></i></div>
+        <div>Parent Directory</div>
       </div>
     </a>
   {{/if}}
   {{#each files}}
     {{#if this.external_url}}
-      <a href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
+      <a class='content-card' href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
     {{else}}
-      <a href='/{{{this.path}}}' title='{{this.name}}'>
+      <a class='content-card' href='/{{{this.path}}}' title='{{this.name}}'>
     {{/if}}
         <div>
           {{#if this.src}}
-            <img src='{{this.src}}'>
+            <div class='thumbnail'>
+              <img src='{{this.src}}'>
+            </div>
+            {{#if this.duration}}
+              <div class='meta'>({{this.duration}})</div>
+            {{/if}}
+            {{#if this.last_updated}}
+              <div class='meta'>({{this.last_updated}})</div>
+            {{/if}}
+
           {{else}}
             {{#if this.thumbnail}}
-              <img src='{{this.thumbnail}}' class='thumbnail'>
+              <div class='thumbnail'>
+                <img src='{{this.thumbnail}}'>
+              </div>
             {{else}}
               <div><i class='{{this.icon}}'></i></div>
             {{/if}}
             <div>{{this.name}}</div>
             {{#if this.duration}}
-              <div class='grid-duration'>({{this.duration}})</div>
+              <div class='meta'>({{this.duration}})</div>
+            {{/if}}
+            {{#if this.last_updated}}
+              <div class='meta'>({{this.last_updated}})</div>
             {{/if}}
           {{/if}}
         </div>
