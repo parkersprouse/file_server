@@ -1,9 +1,16 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@ffprobe-installer/ffprobe':
     specifier: ^1.4.1
     version: 1.4.1
+  '@fontsource/inter':
+    specifier: ^5.0.8
+    version: 5.0.8
   '@hapi/hapi':
     specifier: ^21.3.2
     version: 21.3.2
@@ -31,6 +38,12 @@ dependencies:
   qs:
     specifier: ^6.11.2
     version: 6.11.2
+  remixicon:
+    specifier: ^3.5.0
+    version: 3.5.0
+  sanitize.css:
+    specifier: ^13.0.0
+    version: 13.0.0
   sass:
     specifier: ^1.62.1
     version: 1.62.1
@@ -113,6 +126,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@fontsource/inter@5.0.8:
+    resolution: {integrity: sha512-28knWH1BfOiRalfLs90U4sge5mpQ8ZH6FS0PTT+IZMKrZ7wNHDHRuKa1kQJg+uHcc6axBppnxll+HXM4c7zo/Q==}
+    dev: false
 
   /@hapi/accept@6.0.1:
     resolution: {integrity: sha512-aLkYj7zzgC3CSlEVOs84eBOEE3i9xZK2tdQEP+TOj2OFzMWCi9zjkRet82V3GGjecE//zFrCLKIykuaE0uM4bg==}
@@ -667,8 +684,16 @@ packages:
       picomatch: 2.3.1
     dev: false
 
+  /remixicon@3.5.0:
+    resolution: {integrity: sha512-wNzWGKf4frb3tEmgvP5shry0n1OdTjjEk9RHLuRuAhfA50bvEdpKH1XWNUYrHUSjAQQkkdyIm+lf4mOuysIKTQ==}
+    dev: false
+
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
+    dev: false
+
+  /sanitize.css@13.0.0:
+    resolution: {integrity: sha512-ZRwKbh/eQ6w9vmTjkuG0Ioi3HBwPFce0O+v//ve+aOq1oeCy7jMV2qzzAlpsNuqpqCBjjriM1lbtZbF/Q8jVyA==}
     dev: false
 
   /sass@1.62.1:

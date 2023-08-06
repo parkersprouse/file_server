@@ -20,12 +20,20 @@
       {{else}}
       <a href='/{{{this.path}}}'>
       {{/if}}
-        <span><i class='{{this.icon}}'></i></span>
-        <span>{{this.name}}</span>
-        {{#if this.duration}}
-          <span class='meta'>({{this.duration}})</span>
-        {{/if}}
-        <span class='meta'>({{this.last_updated}})</span>
+        <div class='list-main-wrapper'>
+          <span class='list-view-icon'><i class='{{this.icon}}'></i></span>
+          <span class='list-view-name'>{{this.name}}</span>
+        </div>
+        <div class='list-meta-wrapper'>
+          {{#if this.duration}}
+            <span class='list-view-duration meta'>
+              <i class='ri-timer-line'></i> {{this.duration}}
+            </span>
+          {{/if}}
+          <span class='list-view-last-updated meta'>
+            <i class='ri-history-line'></i> {{this.last_updated}}
+          </span>
+        </div>
       </a>
     </li>
   {{/each}}

@@ -2,21 +2,23 @@
 
 #####
 # Find all browser-friendly videos and let FFMPEG choose a frame from them to save as a
-# thumbnail to be displayed on the file browser.
+# thumbnail to be displayed in the file browser.
 #####
 
 envfile=".env"
 if test -f "$envfile"; then
-  export $(cat $envfile | xargs)
+  echo "Reading environment variables from '$envfile'"
 else
   envfile="$(cd ../ && pwd)/.env"
   if test -f "$envfile"; then
-    export $(cat $envfile | xargs)
+    echo "Reading environment variables from '$envfile'"
   else
     echo 'No .env file found to extract file paths from'
     exit 64
   fi
 fi
+
+set -a; source $envfile; set +a
 
 IFS=$(printf '\n.'); IFS=${IFS%.}; set -f
 

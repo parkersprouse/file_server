@@ -25,10 +25,14 @@
               <img src='{{this.src}}'>
             </div>
             {{#if this.duration}}
-              <div class='meta'>({{this.duration}})</div>
+              <div class='meta'>
+                <i class='ri-timer-line'></i> {{this.duration}}
+              </div>
             {{/if}}
             {{#if this.last_updated}}
-              <div class='meta'>({{this.last_updated}})</div>
+              <div class='meta'>
+                <i class='ri-history-line'></i> {{this.last_updated}}
+              </div>
             {{/if}}
 
           {{else}}
@@ -41,10 +45,14 @@
             {{/if}}
             <div>{{this.name}}</div>
             {{#if this.duration}}
-              <div class='meta'>({{this.duration}})</div>
+              <div class='meta'>
+                <i class='ri-timer-line'></i> {{this.duration}}
+              </div>
             {{/if}}
             {{#if this.last_updated}}
-              <div class='meta'>({{this.last_updated}})</div>
+              <div class='meta'>
+                <i class='ri-history-line'></i> {{this.last_updated}}
+              </div>
             {{/if}}
           {{/if}}
         </div>
