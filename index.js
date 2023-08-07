@@ -1,5 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
 import Hapi from '@hapi/hapi';
 import inert from '@hapi/inert';
 import vision from '@hapi/vision';
@@ -51,8 +51,8 @@ async function init() {
       html: handlebars,
     },
     relativeTo: __dirname,
-    path: path.join(__dirname, 'templates'),
-    partialsPath: path.join(__dirname, 'templates', 'partials'),
+    path: path.join(__dirname, 'server', 'templates'),
+    partialsPath: path.join(__dirname, 'server', 'templates', 'partials'),
   });
 
   // Respond with any requested assets
