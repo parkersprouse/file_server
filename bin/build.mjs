@@ -5,7 +5,7 @@ import path from 'path';
 await esbuild.build({
   bundle: true,
   entryNames: '[dir]/[name]',
-  entryPoints: ['index.js', 'assets/styles.scss'],
+  entryPoints: ['index.js', 'styles.scss'],
   external: [
     '@ffprobe-installer/ffprobe',
     '@hapi/hapi',

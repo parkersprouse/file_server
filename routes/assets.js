@@ -5,7 +5,7 @@ import path from 'path';
  */
 export default {
   method: 'GET',
-  path: '/assets/{any*}',
+  path: '/{any*}',
   handler: function (request, h) {
     try {
       return h.file(path.join(h.request.server.settings.app.__dirname, request.path), { confine: false });
