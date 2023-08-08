@@ -40,13 +40,12 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     const file_path = path.join(local_path, f.name);
     const last_updated = getLastUpdated(file_path);
     const output = {
-      name: f.name,
-      path: `${encoded_root_path}?${qs.stringify(request.query)}`,
       icon: dir ? 'ri-folder-line' : 'ri-file-line',
-      type: dir ? 'folder' : 'file',
-
       last_updated: formatLastUpdated(last_updated),
+      name: f.name,
+      path: `/f/${strip(encoded_root_path)}?${qs.stringify(request.query)}`,
       raw_last_updated: last_updated,
+      type: dir ? 'folder' : 'file',
     };
 
     if (!dir) {
@@ -54,7 +53,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
       if (determined_type?.mime?.startsWith('image')) {
         output.icon = 'ri-image-2-line';
         output.type = 'image';
-        if (view_param === 'grid') output.src = path.join(req_path, f.name);
+        if (view_param === 'grid') output.src = `/f/${strip(req_path)}/${f.name}`;
       } else if (determined_type?.mime?.startsWith('video')) {
         output.icon = 'ri-film-line';
         output.type = 'video';
@@ -66,11 +65,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
         const thumbnail_file = f.name.replace(path.extname(f.name), '.png');
         const thumbnail_path = path.join(root_path, '.thumbnails', req_path, thumbnail_file);
         if (fs.existsSync(thumbnail_path)) {
-          output.thumbnail = path.join(
-            '/.thumbnails',
-            req_path,
-            encodeURIComponent(f.name.replace(path.extname(f.name), '.png')),
-          );
+          output.thumbnail = `/f/.thumbnails/${strip(req_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
         }
       } else if (determined_type?.mime?.startsWith('audio')) {
         output.icon = 'ri-headphone-line';
@@ -95,7 +90,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
   parsed = sortEntries(parsed, sort_param);
 
   const root_url = `/?${qs.stringify(request.query)}`;
-  const previous_url = request.path === '/' ? null : `${path.join(req_path, '..')}?${qs.stringify(request.query)}`;
+  const previous_url = request.path === '/f' ? null : `/f/${strip(path.join(req_path, '..'))}?${qs.stringify(request.query)}`;
   return h.view('page', {
     duration_sort_url: generateUrl(req_path, request.query, 'sort', 'duration'),
     files: parsed,
@@ -129,7 +124,7 @@ function handleFile(h, local_path) {
 function generateUrl(path, query, attr, value) {
   const new_query = cloneDeep(query);
   new_query[attr] = value;
-  return `${path}?${qs.stringify(new_query)}`;
+  return `/f/${strip(path)}?${qs.stringify(new_query)}`;
 }
 
 /**
@@ -164,6 +159,11 @@ function sortEntries(arr, sort_param) {
   return orderBy(arr, iteratees, orders);
 }
 
+function strip(route) {
+  if (route.startsWith('/')) return route.substring(0);
+  return route;
+}
+
 /**
  * GET /*
  */
@@ -174,6 +174,7 @@ export default {
     try {
       const { root_path } = h.request.server.settings.app;
       const req_path = decodeURIComponent(request.path).replace(/^\/f/, '');
+      console.log(req_path);
       const local_path = path.join(root_path, req_path);
       const stats = fs.statSync(local_path);
       if (stats.isDirectory()) return handleDirectory(request, h, root_path, local_path, req_path);

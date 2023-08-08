@@ -17,7 +17,7 @@
     {{#if this.external_url}}
       <a class='content-card' href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
     {{else}}
-      <a class='content-card' href='/{{{this.path}}}' title='{{this.name}}'>
+      <a class='content-card' href='{{this.path}}' title='{{this.name}}'>
     {{/if}}
         <div>
           {{#if this.src}}

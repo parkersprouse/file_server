@@ -55,11 +55,16 @@ async function init() {
     partialsPath: path.join(__dirname, 'server', 'templates', 'partials'),
   });
 
-  // Respond with any requested assets
-  server.route(assets_route);
+  server.ext('onRequest', (request, h) => {
+    if (request.path === '/') request.setUrl('/f');
+    return h.continue;
+  });
 
   // Attempt to get the requested file from the file system
   server.route(files_route);
+
+  // Respond with any requested assets
+  server.route(assets_route);
 
   // Anything non-GET is immediately a 404
   server.route(not_found_route);
