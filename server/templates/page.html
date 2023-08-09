@@ -24,6 +24,17 @@
         <i class='ri-history-line'></i>
       </a>
     </nav>
+
+    <div id='breadcrumb'>
+      <ul>
+        {{#each breadcrumb}}
+        <li>
+          <a href='{{this.url}}'>{{this.label}}</a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
     {{#ifEquals view_param 'grid'}}
       {{> grid_view}}
     {{else}}

@@ -1,9 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import { fileTypeFromFile } from 'file-type';
-import { cloneDeep, orderBy } from 'lodash-es';
 import qs from 'qs';
-import { formatDuration, formatLastUpdated, getLastUpdated, getDuration } from '../lib/index.js';
+import {
+  formatDuration,
+  formatLastUpdated,
+  generateUrl,
+  getLastUpdated,
+  getDuration,
+  sortEntries,
+  strip
+} from '../lib/index.js';
 
 const valid_views = Object.freeze(['list', 'grid']);
 const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
@@ -112,56 +119,6 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
  */
 function handleFile(h, local_path) {
   return h.file(local_path, { confine: false, mode: 'inline', etagMethod: 'simple' }).code(200);
-}
-
-/**
- * @param {String} path - The URL path that will be the base of the generated URL.
- * @param {String} query - The existing query string that we'll use as a base to update.
- * @param {String} attr - The query string attribute we want to add / update.
- * @param {String} value - The value we want to give to the query string attribute.
- * @returns {String} - The newly-built URL path with query string.
- */
-function generateUrl(path, query, attr, value) {
-  const new_query = cloneDeep(query);
-  new_query[attr] = value;
-  return `/f/${strip(path)}?${qs.stringify(new_query)}`;
-}
-
-/**
- * Sorts the provided array by putting folders on top, followed by files with non-alphanumeric characters.
- * If `sort_by_duration` is true, then the remaining files will be sorted by duration (applies to videos).
- * If false, then do a standard alphabetical sort.
- * @param {Array} arr - The array of files we want to sort.
- * @param {Boolean} sort_by_duration - Whether we're sorting by duration or not.
- * @returns {Array} - The sorted array that will be used to build the front-end.
- */
-function sortEntries(arr, sort_param) {
-  const iteratees = [
-    (i) => i.type === 'folder',
-    (i) => i.name.match(/^\W+/) === null,
-    (i) => i.name.toLowerCase(),
-  ];
-  const orders = ['desc', 'asc', 'asc'];
-
-  switch(sort_param) {
-    case 'duration':
-      iteratees.splice(1, 0, (i) => i.raw_duration || 0);
-      orders.splice(1, 0, 'desc');
-      break;
-    case 'last_updated':
-      iteratees.splice(1, 0, (i) => i.raw_last_updated || -1);
-      orders.splice(1, 0, 'desc');
-      break;
-    default:
-      break;
-  }
-
-  return orderBy(arr, iteratees, orders);
-}
-
-function strip(route) {
-  if (route.startsWith('/')) return route.substring(0);
-  return route;
 }
 
 /**
