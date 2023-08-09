@@ -68,7 +68,12 @@ nav {
   text-align: center;
 
   a {
-    color: #bfbfbf;
+    // color: #bfbfbf;
+    color: rgba(0 0 0 / 25%);
+
+    &:hover {
+      color: rgba(0 0 0 / 50%);
+    }
 
     &.active {
       color: black;

@@ -130,8 +130,7 @@ export default {
   handler: function (request, h) {
     try {
       const { root_path } = h.request.server.settings.app;
-      const req_path = decodeURIComponent(request.path).replace(/^\/f/, '');
-      console.log(req_path);
+      const req_path = decodeURIComponent(request.path).replace(/^\/f/, '').replace(/\/+/g, '/');
       const local_path = path.join(root_path, req_path);
       const stats = fs.statSync(local_path);
       if (stats.isDirectory()) return handleDirectory(request, h, root_path, local_path, req_path);

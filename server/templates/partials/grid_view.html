@@ -15,47 +15,47 @@
   {{/if}}
   {{#each files}}
     {{#if this.external_url}}
-      <a class='content-card' href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
+    <a class='content-card' href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
     {{else}}
-      <a class='content-card' href='{{this.path}}' title='{{this.name}}'>
+    <a class='content-card' href='{{this.path}}' title='{{this.name}}'>
     {{/if}}
-        <div>
-          {{#if this.src}}
-            <div class='thumbnail'>
-              <img src='{{this.src}}'>
+      <div>
+        {{#if this.src}}
+          <div class='thumbnail'>
+            <img src='{{this.src}}'>
+          </div>
+          {{#if this.duration}}
+            <div class='meta'>
+              <i class='ri-timer-line'></i> {{this.duration}}
             </div>
-            {{#if this.duration}}
-              <div class='meta'>
-                <i class='ri-timer-line'></i> {{this.duration}}
-              </div>
-            {{/if}}
-            {{#if this.last_updated}}
-              <div class='meta'>
-                <i class='ri-history-line'></i> {{this.last_updated}}
-              </div>
-            {{/if}}
-
-          {{else}}
-            {{#if this.thumbnail}}
-              <div class='thumbnail'>
-                <img src='{{this.thumbnail}}'>
-              </div>
-            {{else}}
-              <div><i class='{{this.icon}}'></i></div>
-            {{/if}}
-            <div>{{this.name}}</div>
-            {{#if this.duration}}
-              <div class='meta'>
-                <i class='ri-timer-line'></i> {{this.duration}}
-              </div>
-            {{/if}}
-            {{#if this.last_updated}}
-              <div class='meta'>
-                <i class='ri-history-line'></i> {{this.last_updated}}
-              </div>
-            {{/if}}
           {{/if}}
-        </div>
-      </a>
+          {{#if this.last_updated}}
+            <div class='meta'>
+              <i class='ri-history-line'></i> {{this.last_updated}}
+            </div>
+          {{/if}}
+
+        {{else}}
+          {{#if this.thumbnail}}
+            <div class='thumbnail'>
+              <img src='{{this.thumbnail}}'>
+            </div>
+          {{else}}
+            <div><i class='{{this.icon}}'></i></div>
+          {{/if}}
+          <div>{{this.name}}</div>
+          {{#if this.duration}}
+            <div class='meta'>
+              <i class='ri-timer-line'></i> {{this.duration}}
+            </div>
+          {{/if}}
+          {{#if this.last_updated}}
+            <div class='meta'>
+              <i class='ri-history-line'></i> {{this.last_updated}}
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </a>
   {{/each}}
 </div>
