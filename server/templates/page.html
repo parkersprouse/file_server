@@ -25,15 +25,17 @@
       </a>
     </nav>
 
-    <div id='breadcrumb'>
-      <ul>
-        {{#each breadcrumb}}
-        <li>
-          <a href='{{this.url}}'>{{this.label}}</a>
-        </li>
-        {{/each}}
-      </ul>
-    </div>
+    {{#if breadcrumbs}}
+      <div id='breadcrumbs'>
+        <ul>
+          {{#each breadcrumbs}}
+          <li>
+            <a href='{{this.url}}'>{{this.label}}</a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
 
     {{#ifEquals view_param 'grid'}}
       {{> grid_view}}

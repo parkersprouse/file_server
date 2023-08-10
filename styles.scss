@@ -90,6 +90,24 @@ nav {
   }
 }
 
+#breadcrumbs {
+  background-color: #CCC;
+  display: block;
+
+  > ul {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: flex-start;
+    list-style-type: none;
+
+    > li {
+      display: inline;
+    }
+  }
+}
+
 .meta,
 .meta:hover {
   align-items: center;

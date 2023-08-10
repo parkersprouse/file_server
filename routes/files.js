@@ -9,7 +9,8 @@ import {
   getLastUpdated,
   getDuration,
   sortEntries,
-  strip
+  strip,
+  toBreadcrumbs,
 } from '../lib/index.js';
 
 const valid_views = Object.freeze(['list', 'grid']);
@@ -93,20 +94,21 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
 
     parsed.push(output);
   }
-
   parsed = sortEntries(parsed, sort_param);
 
-  const root_url = `/?${qs.stringify(request.query)}`;
-  const previous_url = request.path === '/f' ? null : `/f/${strip(path.join(req_path, '..'))}?${qs.stringify(request.query)}`;
+  const query = qs.stringify(request.query);
+  const breadcrumbs = toBreadcrumbs(req_path, query);
+
   return h.view('page', {
+    breadcrumbs,
     duration_sort_url: generateUrl(req_path, request.query, 'sort', 'duration'),
     files: parsed,
     grid_view_url: generateUrl(req_path, request.query, 'view', 'grid'),
     last_updated_sort_url: generateUrl(req_path, request.query, 'sort', 'last_updated'),
     list_view_url: generateUrl(req_path, request.query, 'view', 'list'),
     name_sort_url: generateUrl(req_path, request.query, 'sort', 'name'),
-    previous_url,
-    root_url,
+    previous_url: req_path === '/' ? null : `/${strip(breadcrumbs.at(-1).url)}`,
+    root_url: `/?${query}`,
     sort_param,
     view_param,
   });
@@ -130,7 +132,7 @@ export default {
   handler: function (request, h) {
     try {
       const { root_path } = h.request.server.settings.app;
-      const req_path = decodeURIComponent(request.path).replace(/^\/f/, '').replace(/\/+/g, '/');
+      const req_path = decodeURIComponent(request.path).replace(/^\/f/, '').replace(/\/+/g, '/') || '/';
       const local_path = path.join(root_path, req_path);
       const stats = fs.statSync(local_path);
       if (stats.isDirectory()) return handleDirectory(request, h, root_path, local_path, req_path);
