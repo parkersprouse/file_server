@@ -28,19 +28,30 @@
     {{#if breadcrumbs}}
       <div id='breadcrumbs'>
         <ul>
-          {{#each breadcrumbs}}
+        {{#each breadcrumbs}}
+          {{#if this.skip_link}}
+          <li id='current-location'>
+            <span>{{this.label}}</span>
+          </li>
+          {{else}}
           <li>
             <a href='{{this.url}}'>{{this.label}}</a>
           </li>
-          {{/each}}
+          <li class='bc-separator'>
+            <i class='ri-arrow-right-double-line'></i>
+          </li>
+          {{/if}}
+        {{/each}}
         </ul>
       </div>
     {{/if}}
 
-    {{#ifEquals view_param 'grid'}}
-      {{> grid_view}}
-    {{else}}
-      {{> list_view}}
-    {{/ifEquals}}
+    <main>
+      {{#ifEquals view_param 'grid'}}
+        {{> grid_view}}
+      {{else}}
+        {{> list_view}}
+      {{/ifEquals}}
+    </main>
   </body>
 </html>
