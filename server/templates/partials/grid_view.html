@@ -1,20 +1,4 @@
 <div id='grid-view'>
-  <!--
-  {{#if previous_url}}
-    <a class='nav-card' href='{{root_url}}' title='Top Directory'>
-      <div>
-        <div><i class='ri-arrow-up-s-line'></i></div>
-        <div>Top Directory</div>
-      </div>
-    </a>
-    <a class='nav-card' href='{{previous_url}}' title='Parent Directory'>
-      <div>
-        <div><i class='ri-arrow-left-s-line'></i></div>
-        <div>Parent Directory</div>
-      </div>
-    </a>
-  {{/if}}
-  -->
   {{#each files}}
     {{#if this.external_url}}
     <a class='content-card' href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>

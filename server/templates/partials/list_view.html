@@ -1,20 +1,4 @@
 <ul id='list-view'>
-  <!--
-  {{#if previous_url}}
-    <li>
-      <a href='{{root_url}}' title='Top Directory'>
-        <span><i class='ri-arrow-up-s-line'></i></span>
-        <span>Top Directory</span>
-      </a>
-    </li>
-    <li>
-      <a href='{{previous_url}}' title='Parent Directory'>
-        <span><i class='ri-arrow-left-s-line'></i></span>
-        <span>Parent Directory</span>
-      </a>
-    </li>
-  {{/if}}
-  -->
   {{#each files}}
     <li>
       {{#if this.external_url}}

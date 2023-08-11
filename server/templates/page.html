@@ -27,6 +27,9 @@
 
     {{#if breadcrumbs}}
       <div id='breadcrumbs'>
+        <a href='{{root_url}}' id='bc-icon'>
+          <i class='ri-folder-open-line'></i>
+        </a>
         <ul>
         {{#each breadcrumbs}}
           {{#if this.skip_link}}
@@ -37,9 +40,7 @@
           <li>
             <a href='{{this.url}}'>{{this.label}}</a>
           </li>
-          <li class='bc-separator'>
-            <i class='ri-arrow-right-double-line'></i>
-          </li>
+          <li class='bc-separator'></li>
           {{/if}}
         {{/each}}
         </ul>

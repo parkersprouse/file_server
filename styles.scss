@@ -39,12 +39,15 @@
 :root {
   --bg-color: #eceff3;
   --text-color: black;
-  --text-color-muted: rgba(0, 0, 0, 0.25);
+  --text-color-muted-hard: rgba(0, 0, 0, 0.25);
+  --text-color-muted: rgba(0, 0, 0, 0.5);
 }
 
 html.dark {
-  --text-color: #eceff3;
   --bg-color: black;
+  --text-color: #eceff3;
+  --text-color-muted-hard: rgb(236, 239, 243, 0.25);
+  --text-color-muted: rgb(236, 239, 243, 0.5);
 }
 
 /******************************************************/
@@ -85,14 +88,14 @@ nav {
   text-align: center;
 
   a {
-    opacity: 0.25;
+    color: var(--text-color-muted-hard);
 
     &:hover {
-      opacity: 0.5;
+      color: var(--text-color-muted);
     }
 
     &.active {
-      opacity: 1;
+      color: var(--text-color);
     }
 
     &:not(:first-of-type) {
@@ -107,10 +110,32 @@ nav {
 }
 
 #breadcrumbs {
+  align-items: center;
   border-bottom: 1px solid var(--text-color);
   border-top: 1px solid var(--text-color);
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  justify-content: flex-start;
   padding: 0.25rem 2rem;
+
+  #bc-icon {
+    align-items: center;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      color: var(--text-color);
+    }
+
+    [class^="ri-"],
+    [class*="ri-"] {
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+  }
 
   > ul {
     align-items: center;
@@ -125,23 +150,23 @@ nav {
     > li {
       display: inline;
 
-      &:not(.bc-separator) {
-        opacity: 0.5;
+      &.bc-separator {
+        &::after {
+          content: '/';
+          color: var(--text-color-muted-hard);
+        }
       }
 
-      &#current-location {
-        opacity: 1;
-      }
-
-      span {
-        padding-bottom: 4px;
+      > * {
+        border-bottom: 1px solid transparent;
+        // padding-bottom: 4px;
       }
 
       a {
-        padding-bottom: 4px;
+        color: var(--text-color-muted);
 
         &:hover {
-          border-bottom: 2px solid var(--text-color);
+          border-bottom-color: var(--text-color);
         }
       }
 
@@ -156,11 +181,10 @@ nav {
 .meta,
 .meta:hover {
   align-items: center;
-  color: var(--text-color);
+  color: var(--text-color-muted);
   display: inline-flex;
   font-size: 0.75rem !important;
   gap: 0.25rem;
-  opacity: 0.5;
   white-space: nowrap;
 
   [class^="ri-"],
@@ -189,7 +213,7 @@ nav {
       width: 100%;
 
       @include mobile() {
-        border: 1px solid var(--text-color-muted);
+        border: 1px solid var(--text-color-muted-hard);
         padding: 0.5rem;
       }
 
@@ -199,7 +223,7 @@ nav {
         }
 
         .meta {
-          opacity: 1;
+          color: var(--text-color);
         }
       }
 
@@ -280,7 +304,7 @@ nav {
   justify-content: flex-start;
 
   > a {
-    border: 1px solid var(--text-color-muted);
+    border: 1px solid var(--text-color-muted-hard);
     display: block;
     flex-basis: auto;
     height: 200px;
@@ -291,7 +315,7 @@ nav {
       border-color: var(--text-color);
 
       .meta {
-        opacity: 1;
+        color: var(--text-color);
       }
     }
 

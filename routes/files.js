@@ -8,6 +8,7 @@ import {
   generateUrl,
   getLastUpdated,
   getDuration,
+  toQuery,
   sortEntries,
   strip,
   toBreadcrumbs,
@@ -51,7 +52,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
       icon: dir ? 'ri-folder-line' : 'ri-file-line',
       last_updated: formatLastUpdated(last_updated),
       name: f.name,
-      path: `/f/${strip(encoded_root_path)}?${qs.stringify(request.query)}`,
+      path: `/f/${strip(encoded_root_path)}${toQuery(request.query)}`,
       raw_last_updated: last_updated,
       type: dir ? 'folder' : 'file',
     };
@@ -107,8 +108,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     last_updated_sort_url: generateUrl(req_path, request.query, 'sort', 'last_updated'),
     list_view_url: generateUrl(req_path, request.query, 'view', 'list'),
     name_sort_url: generateUrl(req_path, request.query, 'sort', 'name'),
-    previous_url: req_path === '/' ? null : `/${strip(breadcrumbs.at(-1).url)}`,
-    root_url: `/?${query}`,
+    root_url: `/f${toQuery(query)}`,
     sort_param,
     view_param,
   });
