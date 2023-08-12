@@ -122,6 +122,23 @@ a {
   font-size: 1.5rem;
 }
 
+#theme-toggle,
+#theme-toggle:hover {
+  $toggle-size: 20px;
+
+  color: var(--text-color);
+  height: $toggle-size;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: $toggle-size;
+
+  [class^="ri-"],
+  [class*="ri-"] {
+    font-size: $toggle-size;
+  }
+}
+
 #breadcrumbs {
   align-items: center;
   border-bottom: 1px solid var(--text-color);
@@ -430,6 +447,20 @@ a {
           font-size: 2rem;
         }
       }
+    }
+  }
+}
+
+
+html.dark {
+  #breadcrumbs {
+    border-bottom-color: var(--text-color-muted-hard);
+    border-top-color: var(--text-color-muted-hard);
+  }
+
+  #grid-view {
+    > a:hover {
+      border-color: var(--text-color-muted);
     }
   }
 }

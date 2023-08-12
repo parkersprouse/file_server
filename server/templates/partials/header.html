@@ -3,5 +3,21 @@
 <title>{{page_title}}</title>
 <link href='/styles.css' rel='stylesheet' type='text/css'>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const theme_toggle = document.getElementById('theme-toggle');
+  const theme_toggle_icon = theme_toggle.getElementsByTagName('i').item(0);
+  const html = document.getElementsByTagName('html').item(0);
 
+  theme_toggle.onclick = () => {
+    html.classList.toggle('dark');
+    const is_dark = html.classList.contains('dark');
+    window.localStorage.setItem('theme', is_dark ? 'dark' : 'light');
+    theme_toggle_icon.className = is_dark ? 'ri-sun-line' : 'ri-moon-line';
+  };
+
+  if (window.localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    theme_toggle_icon.className = 'ri-sun-line';
+  }
+});
 </script>
