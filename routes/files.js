@@ -3,6 +3,7 @@ import path from 'path';
 import { fileTypeFromFile } from 'file-type';
 import qs from 'qs';
 import {
+  atRoot,
   formatDuration,
   formatLastUpdated,
   generateUrl,
@@ -101,6 +102,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
   const breadcrumbs = toBreadcrumbs(req_path, query);
 
   return h.view('page', {
+    at_root: atRoot(req_path),
     breadcrumbs,
     duration_sort_url: generateUrl(req_path, request.query, 'sort', 'duration'),
     files: parsed,

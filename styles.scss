@@ -44,7 +44,7 @@
 }
 
 html.dark {
-  --bg-color: black;
+  --bg-color: #202225;
   --text-color: #eceff3;
   --text-color-muted-hard: rgb(236, 239, 243, 0.25);
   --text-color-muted: rgb(236, 239, 243, 0.5);
@@ -61,6 +61,45 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: 'Inter', sans-serif;
+}
+
+nav {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 32px;
+
+  > span {
+    &.nav-separator {
+      &::after {
+        color: var(--text-color-muted-hard);
+        content: '|';
+        font-size: 1rem;
+        margin: 0 0.5rem;
+        user-select: none;
+      }
+    }
+  }
+
+  > a {
+    color: var(--text-color-muted-hard);
+
+    &:hover {
+      color: var(--text-color-muted);
+    }
+
+    &.active {
+      color: var(--text-color);
+    }
+
+    [class^="ri-"],
+    [class*="ri-"] {
+      font-size: 2rem;
+    }
+  }
 }
 
 main {
@@ -81,32 +120,6 @@ a {
 [class^="ri-"],
 [class*="ri-"] {
   font-size: 1.5rem;
-}
-
-nav {
-  padding: 2rem;
-  text-align: center;
-
-  a {
-    color: var(--text-color-muted-hard);
-
-    &:hover {
-      color: var(--text-color-muted);
-    }
-
-    &.active {
-      color: var(--text-color);
-    }
-
-    &:not(:first-of-type) {
-      margin-left: 0.5rem;
-    }
-
-    [class^="ri-"],
-    [class*="ri-"] {
-      font-size: 2rem;
-    }
-  }
 }
 
 #breadcrumbs {
@@ -152,8 +165,9 @@ nav {
 
       &.bc-separator {
         &::after {
-          content: '/';
           color: var(--text-color-muted-hard);
+          content: '/';
+          user-select: none;
         }
       }
 

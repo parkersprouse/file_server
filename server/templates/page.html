@@ -5,6 +5,15 @@
   </head>
 
   <body>
+    <div>
+      <a href='#' id='toggle-dark'>
+        <i class='ri-lightbulb-line'></i>
+      </a>
+      <a href='#' id='toggle-light'>
+        <i class='ri-lightbulb-fill'></i>
+      </a>
+    </div>
+
     <nav>
       <a href='{{list_view_url}}' title='List View'{{#ifEquals view_param 'list'}} class='active'{{/ifEquals}}>
         <i class='ri-list-unordered'></i>
@@ -13,7 +22,9 @@
         <i class='ri-layout-grid-line'></i>
       </a>
 
-      <a href='{{name_sort_url}}' title='Sort By Name'{{#ifEquals sort_param 'name'}} class='active'{{/ifEquals}} style='margin-left: 2rem;'>
+      <span class='nav-separator'></span>
+
+      <a href='{{name_sort_url}}' title='Sort By Name'{{#ifEquals sort_param 'name'}} class='active'{{/ifEquals}}>
         <i class='ri-price-tag-3-line'></i>
       </a>
       <a href='{{duration_sort_url}}' title='Sort By Duration'{{#ifEquals sort_param 'duration'}} class='active'{{/ifEquals}}>
@@ -27,9 +38,16 @@
 
     {{#if breadcrumbs}}
       <div id='breadcrumbs'>
+        {{#if at_root}}
+        <span id='bc-icon'>
+          <i class='ri-folder-open-line'></i>
+        </span>
+        {{else}}
         <a href='{{root_url}}' id='bc-icon'>
           <i class='ri-folder-open-line'></i>
         </a>
+        {{/if}}
+
         <ul>
         {{#each breadcrumbs}}
           {{#if this.skip_link}}
