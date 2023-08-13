@@ -7,7 +7,7 @@
   "repository": "https://github.com/parkersprouse/file_server",
   "license": "Unlicense",
   "private": true,
-  "exports": "./server/index.js",
+  "exports": null,
   "type": "module",
   "engines": {
     "node": "^18",
