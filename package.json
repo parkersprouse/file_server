@@ -39,7 +39,7 @@
     "sass": "^1.65.1"
   },
   "devDependencies": {
-    "esbuild": "0.18.18",
+    "esbuild": "0.19.1",
     "esbuild-sass-plugin": "^2.10.0",
     "stylelint": "^15.10.2",
     "stylelint-config-clean-order": "^5.2.0",
