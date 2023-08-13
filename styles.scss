@@ -37,17 +37,17 @@
 /******************************************************/
 
 :root {
-  --bg-color: #eceff3;
-  --text-color: black;
+  --bg-color: #f3f5f8;
+  --text-color: #000000;
   --text-color-muted-hard: rgba(0, 0, 0, 0.25);
   --text-color-muted: rgba(0, 0, 0, 0.5);
 }
 
 html.dark {
-  --bg-color: #202225;
-  --text-color: #eceff3;
-  --text-color-muted-hard: rgb(236, 239, 243, 0.25);
-  --text-color-muted: rgb(236, 239, 243, 0.5);
+  --bg-color: #07090a;
+  --text-color: #f3f5f8; // #eceff3;
+  --text-color-muted-hard: rgb(243, 245, 248, 0.25); // rgb(236, 239, 243, 0.25);
+  --text-color-muted: rgb(243, 245, 248, 0.5); // rgb(236, 239, 243, 0.5);
 }
 
 /******************************************************/
