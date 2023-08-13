@@ -33,16 +33,6 @@
 
     {{#if breadcrumbs}}
       <div id='breadcrumbs'>
-        {{#if at_root}}
-        <span id='bc-icon'>
-          <i class='ri-folder-open-line'></i>
-        </span>
-        {{else}}
-        <a href='{{root_url}}' id='bc-icon'>
-          <i class='ri-folder-open-line'></i>
-        </a>
-        {{/if}}
-
         <ul>
         {{#each breadcrumbs}}
           {{#if this.skip_link}}
