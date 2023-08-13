@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^1.4.1",
+    "@floating-ui/dom": "^1.5.1",
     "@fontsource/inter": "^5.0.8",
     "@hapi/hapi": "^21.3.2",
     "@hapi/inert": "^7.1.0",

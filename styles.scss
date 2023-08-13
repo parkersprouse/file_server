@@ -77,7 +77,7 @@ nav {
       &::after {
         color: var(--text-color-muted-hard);
         content: '|';
-        font-size: 1rem;
+        font-size: 0.75rem;
         margin: 0 0.5rem;
         user-select: none;
       }
@@ -173,7 +173,6 @@ a {
 
       > * {
         border-bottom: 1px solid transparent;
-        // padding-bottom: 4px;
       }
 
       a {
@@ -297,6 +296,20 @@ a {
           flex: 1 0 100%;
           justify-content: space-evenly;
           width: 100%;
+
+          > .list-meta-separator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+
+            &::after {
+              color: var(--text-color-muted-hard);
+              content: '|';
+              font-size: 0.5rem;
+              user-select: none;
+            }
+          }
         }
       }
     }
