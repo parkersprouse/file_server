@@ -38,6 +38,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
   let parsed = [];
   for (let i = 0; i < files.length; i += 1) {
     const f = files[i];
+    if (f.isSymbolicLink()) continue; // TODO: List symbolic links as special, untraversable entries
     const dir = f.isDirectory();
 
     // We don't want the thumbnail folder to be listed
