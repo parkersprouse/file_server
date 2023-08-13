@@ -10,6 +10,7 @@ await esbuild.build({
     '@ffprobe-installer/ffprobe',
     '@hapi/hapi',
     '@hapi/inert',
+    '@hapi/log',
     '@hapi/vision',
     'dotenv',
     'execa',

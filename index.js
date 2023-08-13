@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Hapi from '@hapi/hapi';
 import inert from '@hapi/inert';
+import logger from '@hapi/log';
 import vision from '@hapi/vision';
 import handlebars from 'handlebars';
 import qs from 'qs';
@@ -44,7 +45,10 @@ async function init() {
   });
 
   await server.register(inert);
+  await server.register(logger);
   await server.register(vision);
+
+  server.plugins.log.setLevel('notice');
 
   server.views({
     engines: {
