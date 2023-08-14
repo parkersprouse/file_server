@@ -1,12 +1,24 @@
 import autoprefixer from 'autoprefixer';
 import * as esbuild from 'esbuild';
 import { readFileSync } from 'fs';
+import { dirname, join, resolve } from 'path';
 import postcss from 'postcss';
 import postcssPresetEnv from 'postcss-preset-env';
+import { fileURLToPath } from 'url';
 
-const css_contents = readFileSync('styles.css');
-const { css } = await postcss([autoprefixer, postcssPresetEnv()]).process(css_contents);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const __root_dir = resolve(__dirname, '..');
+const __output_dir = join(__root_dir, 'server');
 
+/**
+ * PostCSS
+ */
+const css_contents = readFileSync(join(__root_dir, 'styles.css'), 'utf8');
+const { css } = await postcss([autoprefixer, postcssPresetEnv()]).process(css_contents, { from: join(__root_dir, 'styles.css') });
+
+/**
+ * Esbuild - Shared Config Options
+ */
 const shared = {
   bundle: true,
   loader: {
@@ -17,33 +29,30 @@ const shared = {
     '.woff2': 'copy',
   },
   minify: true,
-  outdir: 'server',
   sourcemap: true,
 };
 
 /**
- * Build CSS
+ * Esbuild - CSS
  */
-
 await esbuild.build({
   ...shared,
+  outfile: join(__output_dir, 'styles.css'),
   stdin: {
     contents: css,
-    // These are all optional:
-    resolveDir: './server',
-    sourcefile: 'styles.css',
     loader: 'css',
+    resolveDir: __output_dir,
+    sourcefile: join(__root_dir, 'styles.css'),
   },
-  outfile: 'styles.css',
 });
 
 /**
- * Build JS
+ * Esbuild - JS
  */
 await esbuild.build({
   ...shared,
   entryNames: '[dir]/[name]',
-  entryPoints: ['index.js'],
+  entryPoints: [join(__root_dir, 'index.js')],
   external: [
     '@ffprobe-installer/ffprobe',
     '@hapi/hapi',
@@ -58,5 +67,6 @@ await esbuild.build({
     'qs',
   ],
   format: 'esm',
+  outdir: __output_dir,
   platform: 'node',
 });

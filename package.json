@@ -14,8 +14,8 @@
     "pnpm": "^8"
   },
   "scripts": {
-    "lint:css": "stylelint styles.scss",
-    "lint:css:fix": "stylelint --fix styles.scss",
+    "lint:css": "stylelint styles.css",
+    "lint:css:fix": "stylelint --fix styles.css",
     "build": "node ./bin/build.mjs",
     "start": "pnpm run server",
     "server": "pnpm run build && node server/index.js"
