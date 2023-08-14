@@ -1,11 +1,49 @@
+import autoprefixer from 'autoprefixer';
 import * as esbuild from 'esbuild';
-// import autoprefixer from 'autoprefixer';
-// import postcssPresetEnv from 'postcss-preset-env';
+import { readFileSync } from 'fs';
+import postcss from 'postcss';
+import postcssPresetEnv from 'postcss-preset-env';
+
+const css_contents = readFileSync('styles.css');
+const { css } = await postcss([autoprefixer, postcssPresetEnv()]).process(css_contents);
+
+const shared = {
+  bundle: true,
+  loader: {
+    '.eot': 'copy',
+    '.svg': 'copy',
+    '.ttf': 'copy',
+    '.woff': 'copy',
+    '.woff2': 'copy',
+  },
+  minify: true,
+  outdir: 'server',
+  sourcemap: true,
+};
+
+/**
+ * Build CSS
+ */
 
 await esbuild.build({
-  bundle: true,
+  ...shared,
+  stdin: {
+    contents: css,
+    // These are all optional:
+    resolveDir: './server',
+    sourcefile: 'styles.css',
+    loader: 'css',
+  },
+  outfile: 'styles.css',
+});
+
+/**
+ * Build JS
+ */
+await esbuild.build({
+  ...shared,
   entryNames: '[dir]/[name]',
-  entryPoints: ['index.js', 'styles.css'],
+  entryPoints: ['index.js'],
   external: [
     '@ffprobe-installer/ffprobe',
     '@hapi/hapi',
@@ -20,21 +58,5 @@ await esbuild.build({
     'qs',
   ],
   format: 'esm',
-  loader: {
-    '.eot': 'copy',
-    '.svg': 'copy',
-    '.ttf': 'copy',
-    '.woff': 'copy',
-    '.woff2': 'copy',
-  },
-  minify: true,
-  outdir: 'server',
   platform: 'node',
-  plugins: [
-    // async transform(source, resolveDir) {
-    //   const { css } = await postcss([autoprefixer, postcssPresetEnv()]).process(source);
-    //   return css;
-    // }
-  ],
-  sourcemap: true,
 });
