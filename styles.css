@@ -11,26 +11,16 @@
 /*
  * Example Usage:
  *
- * @include desktop() {
+ * @media (--desktop) {
  *   // styles that will only apply to desktop sizes
  * }
  *
- * @include mobile() {
+ * @media (--mobile) {
  *   // styles that will only apply to mobile sizes
  * }
  */
-
-@mixin mobile() {
-  @media screen and (width <= 767px) {
-    @content;
-  }
-}
-
-@mixin desktop() {
-  @media screen and (width >= 768px) {
-    @content;
-  }
-}
+@custom-media --mobile (width <= 767px);
+@custom-media --desktop (width >= 768px);
 
 :root {
   --bg-color: #f3f5f8;
@@ -221,7 +211,7 @@ nav {
     }
 
     > a {
-      @include desktop {
+      @media (--desktop) {
         flex-wrap: nowrap;
         gap: 1rem;
 
@@ -238,7 +228,7 @@ nav {
         }
       }
 
-      @include mobile {
+      @media (--mobile) {
         flex-wrap: wrap;
         padding: 0.5rem;
         border: 1px solid var(--text-color-muted-hard);
@@ -305,7 +295,7 @@ nav {
       height: fit-content;
 
       &:hover {
-        @include mobile {
+        @media (--mobile) {
           border-color: var(--text-color);
         }
 
@@ -410,7 +400,7 @@ nav {
   }
 }
 
-@include mobile {
+@media (--mobile) {
   div#grid-view {
     > a {
       flex: 0 0 calc(50% - 1rem);

@@ -1,11 +1,11 @@
 import * as esbuild from 'esbuild';
-import { sassPlugin } from 'esbuild-sass-plugin';
-import path from 'path';
+// import autoprefixer from 'autoprefixer';
+// import postcssPresetEnv from 'postcss-preset-env';
 
 await esbuild.build({
   bundle: true,
   entryNames: '[dir]/[name]',
-  entryPoints: ['index.js', 'styles.scss'],
+  entryPoints: ['index.js', 'styles.css'],
   external: [
     '@ffprobe-installer/ffprobe',
     '@hapi/hapi',
@@ -30,11 +30,11 @@ await esbuild.build({
   minify: true,
   outdir: 'server',
   platform: 'node',
-  plugins: [sassPlugin({
-    precompile(source, pathname) {
-      const basedir = path.dirname(pathname);
-      return source.replace(/(url\(['"]?)(\.\.?\/)([^'")]+['"]?\))/g, `$1${basedir}/$2$3`);
-    },
-  })],
+  plugins: [
+    // async transform(source, resolveDir) {
+    //   const { css } = await postcss([autoprefixer, postcssPresetEnv()]).process(source);
+    //   return css;
+    // }
+  ],
   sourcemap: true,
 });
