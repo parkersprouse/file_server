@@ -21,7 +21,7 @@
     "server": "pnpm run build && node server/index.js"
   },
   "dependencies": {
-    "@ffprobe-installer/ffprobe": "^1.4.1",
+    "@ffprobe-installer/ffprobe": "^2.1.1",
     "@floating-ui/dom": "^1.5.1",
     "@fontsource/inter": "^5.0.8",
     "@hapi/hapi": "^21.3.2",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "esbuild": "0.19.1",
-    "esbuild-sass-plugin": "^2.10.0",
+    "esbuild-sass-plugin": "^2.12.0",
     "stylelint": "^15.10.2",
     "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-standard-scss": "^10.0.0",
