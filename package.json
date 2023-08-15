@@ -35,8 +35,7 @@
     "lodash-es": "^4.17.21",
     "qs": "^6.11.2",
     "remixicon": "^3.5.0",
-    "sanitize.css": "^13.0.0",
-    "sass": "^1.65.1"
+    "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
