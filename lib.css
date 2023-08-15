@@ -1,0 +1,10 @@
+/**
+ * This file contains libraries that we don't want getting run through PurgeCSS
+ * and instead want to ensure stay intact as much as possible.
+ */
+@import url('sanitize.css/sanitize.css');
+@import url('sanitize.css/assets.css');
+@import url('sanitize.css/system-ui.css');
+@import url('sanitize.css/reduce-motion.css');
+@import url('sanitize.css/typography.css');
+@import url('sanitize.css/ui-monospace.css');

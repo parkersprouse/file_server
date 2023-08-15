@@ -1,6 +1,6 @@
 import autoprefixer from 'autoprefixer';
 import * as esbuild from 'esbuild';
-import { readFileSync } from 'fs';
+import { readdir, readFile, rm, writeFile } from 'fs/promises';
 import { dirname, join, resolve } from 'path';
 import postcss from 'postcss';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -11,13 +11,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const __root_dir = resolve(__dirname, '..');
 const __output_dir = join(__root_dir, 'server');
 
-/**
- * PostCSS
- */
-console.log('STEP 1 - POSTCSS');
-const css_contents = readFileSync(join(__root_dir, 'styles.css'), 'utf8');
-const css_processor = postcss([autoprefixer, postcssPresetEnv()]);
-const { css } = await css_processor.process(css_contents, { from: join(__root_dir, 'styles.css') });
+const source_styles = join(__root_dir, 'styles.css');
+const output_styles = join(__output_dir, 'styles.css');
 
 /* Esbuild - Shared Config Options */
 const shared = {
@@ -34,40 +29,69 @@ const shared = {
 };
 
 /**
- * Esbuild - CSS
+ * [Step 1] Clean Old Files
  */
-console.log('STEP 2 - ESBUILD CSS');
+console.log('[Step 1] Clean Old Files');
+const old_files = await readdir(__output_dir, { withFileTypes: true });
+for (let i = 0; i < old_files.length; i += 1) {
+  const f = old_files[i];
+  if (f.isDirectory() || f.isSymbolicLink()) continue;
+  const file_path = join(__output_dir, f.name);
+  console.log(`Cleaning ${file_path}`);
+  await rm(file_path, { force: true });
+}
+
+/**
+ * [Step 2] PostCSS
+ */
+console.log('[Step 2] PostCSS');
+const css_contents = await readFile(source_styles, 'utf8');
+const css_processor = postcss([autoprefixer, postcssPresetEnv()]);
+const { css } = await css_processor.process(css_contents, { from: source_styles });
+
+/**
+ * [Step 3] esbuild - CSS
+ */
+console.log('[Step 3] esbuild - CSS');
 await esbuild.build({
   ...shared,
-  outfile: join(__output_dir, 'styles.css'),
+  outfile: output_styles,
   stdin: {
     contents: css,
     loader: 'css',
     resolveDir: __output_dir,
-    sourcefile: join(__root_dir, 'styles.css'),
+    sourcefile: source_styles,
   },
   write: true,
 });
 
 /**
- * PurgeCSS
+ * [Step 4] PurgeCSS
  */
-console.log('STEP 3 - PURGECSS');
-const purged_css_results = await new PurgeCSS().purge({
-  content: [join(__root_dir, '**', '*.html')],
-  css: [join(__output_dir, 'styles.css')],
-  sourceMap: { to: join(__output_dir, 'styles.css.map') },
-});
-console.log(purged_css_results);
+console.log('[Step 4] PurgeCSS');
+const purged_css_results = (await new PurgeCSS().purge({
+  content: [
+    join(__root_dir, '**', '*.html'),
+    join(__root_dir, 'lib', '**', '*.js'),
+    join(__root_dir, 'routes', '**', '*.js'),
+  ],
+  css: [output_styles],
+  sourceMap: { to: output_styles },
+}))[0];
+await writeFile(purged_css_results.file, purged_css_results.css, { encoding: 'utf8', flag: 'w' });
+await writeFile(join(__output_dir, 'styles.css.map'), purged_css_results.sourceMap, { encoding: 'utf8', flag: 'w' });
 
 /**
- * Esbuild - JS
+ * [Step 5] esbuild - JS
  */
-console.log('STEP 4 - ESBUILD JS');
+console.log('[Step 5] esbuild - JS & additional CSS');
 await esbuild.build({
   ...shared,
   entryNames: '[dir]/[name]',
-  entryPoints: [join(__root_dir, 'index.js')],
+  entryPoints: [
+    join(__root_dir, 'index.js'),
+    join(__root_dir, 'lib.css'),
+  ],
   external: [
     '@ffprobe-installer/ffprobe',
     '@hapi/hapi',
@@ -84,4 +108,5 @@ await esbuild.build({
   format: 'esm',
   outdir: __output_dir,
   platform: 'node',
+  write: true,
 });
