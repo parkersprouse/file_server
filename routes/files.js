@@ -99,18 +99,18 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
   }
   parsed = sortEntries(parsed, sort_param);
 
-  const query = qs.stringify(request.query);
+  const { query } = request;
   const breadcrumbs = toBreadcrumbs(req_path, query);
 
   return h.view('page', {
     at_root: atRoot(req_path),
     breadcrumbs,
-    duration_sort_url: generateUrl(req_path, request.query, 'sort', 'duration'),
+    duration_sort_url: generateUrl(req_path, query, 'sort', 'duration'),
     files: parsed,
-    grid_view_url: generateUrl(req_path, request.query, 'view', 'grid'),
-    last_updated_sort_url: generateUrl(req_path, request.query, 'sort', 'last_updated'),
-    list_view_url: generateUrl(req_path, request.query, 'view', 'list'),
-    name_sort_url: generateUrl(req_path, request.query, 'sort', 'name'),
+    grid_view_url: generateUrl(req_path, query, 'view', 'grid'),
+    last_updated_sort_url: generateUrl(req_path, query, 'sort', 'last_updated'),
+    list_view_url: generateUrl(req_path, query, 'view', 'list'),
+    name_sort_url: generateUrl(req_path, query, 'sort', 'name'),
     root_url: `/f${toQuery(query)}`,
     sort_param,
     view_param,
