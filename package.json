@@ -42,7 +42,7 @@
     "esbuild": "0.19.2",
     "postcss": "^8.4.30",
     "postcss-cli": "^10.1.0",
-    "postcss-preset-env": "^9.1.1",
+    "postcss-preset-env": "^9.1.4",
     "purgecss": "6.0.0-alpha.0",
     "stylelint": "^15.10.3",
     "stylelint-config-clean-order": "^5.2.0",
