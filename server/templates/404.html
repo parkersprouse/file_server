@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    {{> header page_title='Resource Not Found'}}
+    {{> header page_title='Not Found'}}
+    <style>
+      html, body {
+        height: 100vh;
+      }
+
+      a i {
+        font-size: 1.15rem !important;
+      }
+
+      a span {
+        font-size: 1.25rem !important;
+      }
+
+      main {
+        align-items: center;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        text-align: center;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>Not Found</h1>
-    <a href='/' style='font-size: 1.25rem; height: max-content;'>
-      <i class='fa-sharp fa-solid fa-angle-left'></i>
-      <span>Back</span>
-    </a>
+    <main>
+      <div>
+        <h1>Not Found</h1>
+        <a href='/'>
+          <i class='fa-sharp fa-solid fa-angle-left'></i>
+          <span>Back</span>
+        </a>
+      </div>
+    </main>
   </body>
 </html>

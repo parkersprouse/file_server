@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^2.1.2",
-    "@floating-ui/dom": "^1.5.1",
+    "@floating-ui/dom": "^1.5.3",
     "@fontsource/inter": "^5.0.8",
     "@hapi/hapi": "^21.3.2",
     "@hapi/inert": "^7.1.0",
@@ -34,12 +34,11 @@
     "handlebars": "^4.7.8",
     "lodash-es": "^4.17.21",
     "qs": "^6.11.2",
-    "remixicon": "^3.5.0",
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.15",
-    "esbuild": "0.19.2",
+    "autoprefixer": "^10.4.16",
+    "esbuild": "0.19.3",
     "postcss": "^8.4.30",
     "postcss-cli": "^10.1.0",
     "postcss-preset-env": "^9.1.4",
