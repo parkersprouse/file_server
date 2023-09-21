@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import { fileTypeFromFile } from 'file-type';
-import qs from 'qs';
 import {
   atRoot,
   formatDuration,
