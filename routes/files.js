@@ -51,7 +51,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     const file_path = path.join(local_path, f.name);
     const last_updated = getLastUpdated(file_path);
     const output = {
-      icon: dir ? 'ri-folder-fill' : 'ri-file-line',
+      icon: dir ? 'fa-sharp fa-solid fa-folder' : 'fa-sharp fa-light fa-file',
       last_updated: formatLastUpdated(last_updated),
       name: f.name,
       path: `/f/${strip(encoded_root_path)}${toQuery(request.query)}`,
@@ -62,11 +62,11 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     if (!dir) {
       const determined_type = await fileTypeFromFile(file_path);
       if (determined_type?.mime?.startsWith('image')) {
-        output.icon = 'ri-image-2-line';
+        output.icon = 'fa-sharp fa-light fa-image';
         output.type = 'image';
         if (view_param === 'grid') output.src = `/f/${strip(req_path)}/${f.name}`;
       } else if (determined_type?.mime?.startsWith('video')) {
-        output.icon = 'ri-film-line';
+        output.icon = 'fa-sharp fa-light fa-film';
         output.type = 'video';
 
         const dur = await getDuration(file_path);
@@ -79,7 +79,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
           output.thumbnail = `/f/.thumbnails/${strip(req_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
         }
       } else if (determined_type?.mime?.startsWith('audio')) {
-        output.icon = 'ri-headphone-line';
+        output.icon = 'fa-sharp fa-light fa-music';
         output.type = 'audio';
 
         const dur = await getDuration(file_path);
@@ -88,7 +88,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
       }
 
       if (file_path.toLowerCase().endsWith('.url')) {
-        output.icon = 'ri-external-link-line';
+        output.icon = 'fa-sharp fa-light fa-external-link';
         fs.readFileSync(file_path).toString('utf8').split('\n').forEach((line) => {
           if (line.trim().startsWith('URL=')) output.external_url = line.split('=')[1];
         });

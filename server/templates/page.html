@@ -6,28 +6,28 @@
 
   <body>
     <a href='#' id='theme-toggle'>
-      <i class='ri-moon-line'></i>
+      <i class='fa-sharp fa-solid fa-lightbulb'></i>
     </a>
 
     <nav>
       <a href='{{list_view_url}}' title='List View'{{#ifEquals view_param 'list'}} class='active'{{/ifEquals}}>
-        <i class='ri-list-unordered'></i>
+        <i class='fa-sharp fa-light fa-list-ul'></i>
       </a>
       <a href='{{grid_view_url}}' title='Grid View'{{#ifEquals view_param 'grid'}} class='active'{{/ifEquals}}>
-        <i class='ri-layout-grid-line'></i>
+        <i class='fa-sharp fa-light fa-grid-2'></i>
       </a>
 
       <span class='nav-separator'></span>
 
       <a href='{{name_sort_url}}' title='Sort By Name'{{#ifEquals sort_param 'name'}} class='active'{{/ifEquals}}>
-        <i class='ri-price-tag-3-line'></i>
+        <i class='fa-sharp fa-light fa-tag'></i>
       </a>
       <a href='{{duration_sort_url}}' title='Sort By Duration'{{#ifEquals sort_param 'duration'}} class='active'{{/ifEquals}}>
-        <i class='ri-timer-line'></i>
+        <i class='fa-sharp fa-light fa-stopwatch'></i>
       </a>
 
       <a href='{{last_updated_sort_url}}' title='Sort By Last Updated'{{#ifEquals sort_param 'last_updated'}} class='active'{{/ifEquals}}>
-        <i class='ri-history-line'></i>
+        <i class='fa-sharp fa-light fa-history'></i>
       </a>
     </nav>
 

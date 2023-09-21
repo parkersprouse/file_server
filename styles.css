@@ -1,5 +1,7 @@
 @import url('@fontsource/inter/index.css');
-@import url('remixicon/fonts/remixicon.css');
+@import url('../lib/fa_kit/css/all.min.css');
+
+/* @import url('remixicon/fonts/remixicon.css'); */
 
 /*
  * Example Usage:
@@ -53,8 +55,8 @@ a {
   text-decoration: none;
 }
 
-[class^="ri-"],
-[class*="ri-"] {
+[class^="fa-"],
+[class*="fa-"] {
   font-size: 1.5rem;
 }
 
@@ -96,8 +98,8 @@ nav {
       color: var(--text-color);
     }
 
-    [class^="ri-"],
-    [class*="ri-"] {
+    [class^="fa-"],
+    [class*="fa-"] {
       font-size: 2rem;
     }
   }
@@ -163,8 +165,8 @@ nav {
   color: var(--text-color-muted);
   white-space: nowrap;
 
-  > [class^="ri-"],
-  > [class*="ri-"] {
+  > [class^="fa-"],
+  > [class*="fa-"] {
     font-size: 0.85rem !important;
   }
 }
@@ -177,13 +179,17 @@ nav {
   top: 8px;
   right: 8px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: var(--toggle-size);
   height: var(--toggle-size);
 
   color: var(--text-color);
 
-  > [class^="ri-"],
-  > [class*="ri-"] {
+  > [class^="fa-"],
+  > [class*="fa-"] {
     font-size: var(--toggle-size);
   }
 }
@@ -328,8 +334,8 @@ nav {
     }
 
     div {
-      [class^="ri-"],
-      [class*="ri-"] {
+      [class^="fa-"],
+      [class*="fa-"] {
         font-size: 3rem;
       }
     }
@@ -402,8 +408,8 @@ nav {
       div {
         font-size: 1rem;
 
-        [class^="ri-"],
-        [class*="ri-"] {
+        [class^="fa-"],
+        [class*="fa-"] {
           font-size: 2rem;
         }
       }
