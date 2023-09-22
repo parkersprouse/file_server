@@ -35,11 +35,13 @@ html.dark {
 
 html,
 body {
-  font-family: Inter, sans-serif;
-  color: var(--text-color);
-  background-color: var(--bg-color);
   height: 100vh;
   max-height: 100vh;
+
+  font-family: Inter, sans-serif;
+  color: var(--text-color);
+
+  background-color: var(--bg-color);
 }
 
 a {
@@ -61,9 +63,9 @@ a {
 }
 
 main {
-  padding: 2rem;
-  height: calc(100% - 88px - 34px);
   overflow-y: auto;
+  height: calc(100% - 88px - 34px);
+  padding: 2rem;
 }
 
 nav {
@@ -72,8 +74,8 @@ nav {
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  height: 88px;
 
+  height: 88px;
   padding: 32px;
 
   > span {
@@ -114,8 +116,8 @@ nav {
   gap: 1rem;
   align-items: center;
   justify-content: flex-start;
-  height: 34px;
 
+  height: 34px;
   padding: 0.25rem 2rem;
 
   border-top: 1px solid var(--text-color);
@@ -322,13 +324,14 @@ nav {
     display: block;
     flex-basis: auto;
 
+    aspect-ratio: 1;
+
     /*
     width: 200px;
     height: 200px;
     */
     width: calc((100% / 6) - 0.85rem);
     height: auto;
-    aspect-ratio: 1;
 
     text-align: center;
 

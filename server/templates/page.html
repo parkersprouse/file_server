@@ -11,23 +11,46 @@
 
     <nav>
       <a href='{{list_view_url}}' title='List View'{{#ifEquals view_param 'list'}} class='active'{{/ifEquals}}>
-        <i class='fa-sharp fa-light fa-list-ul'></i>
+        <i class='fa-sharp fa-regular fa-list-ul'></i>
       </a>
       <a href='{{grid_view_url}}' title='Grid View'{{#ifEquals view_param 'grid'}} class='active'{{/ifEquals}}>
-        <i class='fa-sharp fa-light fa-grid-2'></i>
+        <i class='fa-sharp fa-regular fa-grid-2'></i>
       </a>
 
       <span class='nav-separator'></span>
 
       <a href='{{name_sort_url}}' title='Sort By Name'{{#ifEquals sort_param 'name'}} class='active'{{/ifEquals}}>
-        <i class='fa-sharp fa-light fa-tag'></i>
+        <i class='fa-sharp fa-regular fa-tag'></i>
+        <!-- {{#ifEquals sort_param 'name'}}
+          <span class='fa-stack'>
+            <i class='fa-sharp fa-regular fa-tag fa-stack-2x'></i>
+            <i class='fa-sharp fa-solid fa-caret-down fa-stack-1x'></i>
+          </span>
+        {{else}}
+          <i class='fa-sharp fa-regular fa-tag'></i>
+        {{/ifEquals}} -->
       </a>
       <a href='{{duration_sort_url}}' title='Sort By Duration'{{#ifEquals sort_param 'duration'}} class='active'{{/ifEquals}}>
-        <i class='fa-sharp fa-light fa-stopwatch'></i>
+        <i class='fa-sharp fa-regular fa-stopwatch'></i>
+        <!-- {{#ifEquals sort_param 'duration'}}
+          <span class='fa-stack'>
+            <i class='fa-sharp fa-regular fa-stopwatch fa-stack-2x'></i>
+            <i class='fa-sharp fa-solid fa-caret-down fa-stack-1x'></i>
+          </span>
+        {{else}}
+          <i class='fa-sharp fa-regular fa-stopwatch'></i>
+        {{/ifEquals}} -->
       </a>
-
       <a href='{{last_updated_sort_url}}' title='Sort By Last Updated'{{#ifEquals sort_param 'last_updated'}} class='active'{{/ifEquals}}>
-        <i class='fa-sharp fa-light fa-history'></i>
+        <i class='fa-sharp fa-regular fa-history'></i>
+        <!-- {{#ifEquals sort_param 'last_updated'}}
+          <span class='fa-stack'>
+            <i class='fa-sharp fa-regular fa-history fa-stack-2x'></i>
+            <i class='fa-sharp fa-solid fa-caret-down fa-stack-1x'></i>
+          </span>
+        {{else}}
+          <i class='fa-sharp fa-regular fa-history'></i>
+        {{/ifEquals}} -->
       </a>
     </nav>
 
