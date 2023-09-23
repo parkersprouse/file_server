@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { fileTypeFromFile } from 'file-type';
 import {
   atRoot,
   formatDuration,
@@ -13,6 +12,7 @@ import {
   strip,
   toBreadcrumbs,
 } from '../lib/index.js';
+import { getType } from '../services/content_type.js';
 
 const valid_views = Object.freeze(['list', 'grid']);
 const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
@@ -59,12 +59,12 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     };
 
     if (!dir) {
-      const determined_type = await fileTypeFromFile(file_path);
-      if (determined_type?.mime?.startsWith('image')) {
+      const determined_type = await getType(file_path);
+      if (determined_type?.startsWith('image')) {
         output.icon = 'fa-sharp fa-light fa-image';
         output.type = 'image';
         if (view_param === 'grid') output.src = `/f/${strip(req_path)}/${f.name}`;
-      } else if (determined_type?.mime?.startsWith('video')) {
+      } else if (determined_type?.startsWith('video')) {
         output.icon = 'fa-sharp fa-light fa-film';
         output.type = 'video';
 
@@ -77,13 +77,16 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
         if (fs.existsSync(thumbnail_path)) {
           output.thumbnail = `/f/.thumbnails/${strip(req_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
         }
-      } else if (determined_type?.mime?.startsWith('audio')) {
+      } else if (determined_type?.startsWith('audio')) {
         output.icon = 'fa-sharp fa-light fa-music';
         output.type = 'audio';
 
         const dur = await getDuration(file_path);
         output.duration = formatDuration(dur);
         output.raw_duration = dur;
+      } else if (determined_type?.startsWith('text')) {
+        output.icon = 'fa-sharp fa-light fa-file-alt';
+        output.type = 'text';
       }
 
       if (file_path.toLowerCase().endsWith('.url')) {

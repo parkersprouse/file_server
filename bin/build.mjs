@@ -103,6 +103,7 @@ await esbuild.build({
     'file-type',
     'handlebars',
     'lodash-es',
+    'mmmagic',
     'qs',
   ],
   format: 'esm',
