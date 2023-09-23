@@ -50,7 +50,7 @@ async function handleDirectory(request, h, root_path, local_path, req_path) {
     const file_path = path.join(local_path, f.name);
     const last_updated = getLastUpdated(file_path);
     const output = {
-      icon: dir ? 'fa-sharp fa-solid fa-folder' : 'fa-sharp fa-light fa-file',
+      icon: dir ? 'fa-sharp fa-solid fa-folder' : 'fa-sharp fa-light fa-file-circle-question',
       last_updated: formatLastUpdated(last_updated),
       name: f.name,
       path: `/f/${strip(encoded_root_path)}${toQuery(request.query)}`,
