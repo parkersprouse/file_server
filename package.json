@@ -18,8 +18,8 @@
     "init_db": "node ./db/init.js",
     "lint:css": "stylelint styles.css",
     "lint:css:fix": "stylelint --fix styles.css",
-    "lint:js": "eslint --ext .js .",
-    "lint:js:fix": "eslint --fix --ext .js .",
+    "lint:js": "xo **/*.js",
+    "lint:js:fix": "xo **/*.js --fix",
     "server": "pnpm run build && node server/index.js",
     "start": "pnpm run server"
   },
@@ -39,10 +39,8 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
-    "@shopify/eslint-plugin": "^43.0.0",
     "autoprefixer": "^10.4.16",
     "esbuild": "0.19.3",
-    "eslint": "^8.50.0",
     "eslint-plugin-github": "^4.10.0",
     "eslint-plugin-sonarjs": "^0.21.0",
     "postcss": "^8.4.30",
@@ -53,6 +51,7 @@
     "stylelint": "^15.10.3",
     "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-standard": "^34.0.0",
-    "stylelint-use-nesting": "^4.1.0"
+    "stylelint-use-nesting": "^4.1.0",
+    "xo": "^0.56.0"
   }
 }

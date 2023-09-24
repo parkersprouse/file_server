@@ -5,8 +5,8 @@ import sqlite from 'sqlite3';
 try {
   sqlite.verbose();
   const __dirname = dirname(fileURLToPath(import.meta.url));
-  const db = new sqlite.Database(join(__dirname, 'files.db'), function (err) {
-    if (err) throw err;
+  const db = new sqlite.Database(join(__dirname, 'files.db'), function (error) {
+    if (error) throw error;
     this.run('DROP TABLE IF EXISTS files');
   });
 
@@ -16,18 +16,18 @@ try {
     db.run('INSERT INTO files VALUES ($path, $duration, $last_updated)', {
       $path: join(__dirname, 'files.db'),
       $duration: 600,
-      $last_updated: 1695579746770,
+      $last_updated: 1_695_579_746_770,
     });
 
-    db.each('SELECT path, duration, last_updated FROM files', (err, row) => {
-      if (err) console.error(err);
+    db.each('SELECT path, duration, last_updated FROM files', (error, row) => {
+      if (error) console.error(error);
       else console.log(`Name: ${row.path}\nDuration: ${row.duration}\nLast Updated: ${row.last_updated}`);
       console.log('--------------------------------');
     });
   });
 
   db.close();
-} catch (err) {
+} catch (error) {
   console.error('Failed to initialize file database');
-  console.error(err);
+  console.error(error);
 }

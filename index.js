@@ -1,17 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-
+import process from 'node:process';
+import fs from 'node:fs';
+import path from 'node:path';
 import Hapi from '@hapi/hapi';
 import inert from '@hapi/inert';
 import logger from '@hapi/log';
 import vision from '@hapi/vision';
 import handlebars from 'handlebars';
 import qs from 'qs';
-
-import config from './config';
-import assets_route from './routes/assets';
-import files_route from './routes/files';
-import not_found_route from './routes/not_found';
+import config from './config.js';
+import assets_route from './routes/assets.js';
+import files_route from './routes/files.js';
+import not_found_route from './routes/not_found.js';
 
 async function init() {
   const root_path = config.file_source;
@@ -80,9 +79,9 @@ async function init() {
   console.log('Server running on %s', server.info.uri);
 }
 
-process.on('unhandledRejection', (err) => {
-  console.error(err);
+process.on('unhandledRejection', (error) => {
+  console.error(error);
   process.exit(1);
 });
 
-init();
+await init();

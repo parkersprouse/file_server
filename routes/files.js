@@ -1,6 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-
+import fs from 'node:fs';
+import path from 'node:path';
 import {
   atRoot,
   formatDuration,
@@ -12,8 +11,8 @@ import {
   sortEntries,
   strip,
   toBreadcrumbs,
-} from '../lib/index';
-import { getType } from '../services/content_type';
+} from '../lib/index.js';
+import { getType } from '../services/content_type.js';
 
 const valid_views = Object.freeze(['list', 'grid']);
 const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
@@ -26,18 +25,17 @@ const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
  * @param {String} req_path - The URL path being requested.
  * @returns {ResponseObject}
  */
-async function handleDirectory(request, hapi, root_path, local_path, req_path) {
-  const view_param = valid_views.includes(request.query.view?.toLowerCase()) ? request.query.view.toLowerCase() : 'list';
-  const sort_param = valid_sorts.includes(request.query.sort?.toLowerCase()) ? request.query.sort.toLowerCase() : 'name';
+async function handleDirectory(request, hapi, root_path, local_path, request_path) {
+  const view_parameter = valid_views.includes(request.query.view?.toLowerCase()) ? request.query.view.toLowerCase() : 'list';
+  const sort_parameter = valid_sorts.includes(request.query.sort?.toLowerCase()) ? request.query.sort.toLowerCase() : 'name';
 
   const files = fs.readdirSync(local_path, { withFileTypes: true });
 
   // We don't want to serve any directories under our thumbnail folder
-  if (req_path.startsWith('/.thumbnails')) return hapi.view('404').code(404);
+  if (request_path.startsWith('/.thumbnails')) return hapi.view('404').code(404);
 
   let parsed = [];
   for (const file of files) {
-  // for (let i = 0; i < files.length; i += 1) {
     // TODO: List symbolic links as special, untraversable entries
     if (file.isSymbolicLink()) continue;
     const dir = file.isDirectory();
@@ -65,7 +63,7 @@ async function handleDirectory(request, hapi, root_path, local_path, req_path) {
       if (determined_type?.startsWith('image')) {
         output.icon = 'fa-sharp fa-light fa-image';
         output.type = 'image';
-        if (view_param === 'grid') output.src = `/f/${strip(req_path)}/${file.name}`;
+        if (view_parameter === 'grid') output.src = `/f/${strip(request_path)}/${file.name}`;
       } else if (determined_type?.startsWith('video')) {
         output.icon = 'fa-sharp fa-light fa-film';
         output.type = 'video';
@@ -75,9 +73,9 @@ async function handleDirectory(request, hapi, root_path, local_path, req_path) {
         output.raw_duration = dur;
 
         const thumbnail_file = file.name.replace(path.extname(file.name), '.png');
-        const thumbnail_path = path.join(root_path, '.thumbnails', req_path, thumbnail_file);
+        const thumbnail_path = path.join(root_path, '.thumbnails', request_path, thumbnail_file);
         if (fs.existsSync(thumbnail_path)) {
-          output.thumbnail = `/f/.thumbnails/${strip(req_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
+          output.thumbnail = `/f/.thumbnails/${strip(request_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
         }
       } else if (determined_type?.startsWith('audio')) {
         output.icon = 'fa-sharp fa-light fa-music';
@@ -102,23 +100,24 @@ async function handleDirectory(request, hapi, root_path, local_path, req_path) {
 
     parsed.push(output);
   }
-  parsed = sortEntries(parsed, sort_param);
+
+  parsed = sortEntries(parsed, sort_parameter);
 
   const { query } = request;
-  const breadcrumbs = toBreadcrumbs(req_path, query);
+  const breadcrumbs = toBreadcrumbs(request_path, query);
 
   return hapi.view('page', {
-    at_root: atRoot(req_path),
+    at_root: atRoot(request_path),
     breadcrumbs,
-    duration_sort_url: generateUrl(req_path, query, 'sort', 'duration'),
+    duration_sort_url: generateUrl(request_path, query, 'sort', 'duration'),
     files: parsed,
-    grid_view_url: generateUrl(req_path, query, 'view', 'grid'),
-    last_updated_sort_url: generateUrl(req_path, query, 'sort', 'last_updated'),
-    list_view_url: generateUrl(req_path, query, 'view', 'list'),
-    name_sort_url: generateUrl(req_path, query, 'sort', 'name'),
+    grid_view_url: generateUrl(request_path, query, 'view', 'grid'),
+    last_updated_sort_url: generateUrl(request_path, query, 'sort', 'last_updated'),
+    list_view_url: generateUrl(request_path, query, 'view', 'list'),
+    name_sort_url: generateUrl(request_path, query, 'sort', 'name'),
     root_url: `/f${toQuery(query)}`,
-    sort_param,
-    view_param,
+    sort_param: sort_parameter,
+    view_param: view_parameter,
   });
 }
 
@@ -140,10 +139,10 @@ export default {
   handler(request, hapi) {
     try {
       const { root_path } = hapi.request.server.settings.app;
-      const req_path = decodeURIComponent(request.path).replace(/^\/f/, '').replace(/\/+/g, '/') || '/';
-      const local_path = path.join(root_path, req_path);
+      const request_path = decodeURIComponent(request.path).replace(/^\/f/, '').replaceAll(/\/+/, '/') || '/';
+      const local_path = path.join(root_path, request_path);
       const stats = fs.statSync(local_path);
-      if (stats.isDirectory()) return handleDirectory(request, hapi, root_path, local_path, req_path);
+      if (stats.isDirectory()) return handleDirectory(request, hapi, root_path, local_path, request_path);
       if (stats.isFile()) return handleFile(hapi, local_path);
       return hapi.view('404').code(404);
     } catch {
