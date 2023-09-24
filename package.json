@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "node ./bin/build.mjs",
+    "init_db": "node ./db/init.js",
     "lint:css": "stylelint styles.css",
     "lint:css:fix": "stylelint --fix styles.css",
     "lint:js": "eslint --ext .js .",
@@ -48,6 +49,7 @@
     "postcss-cli": "^10.1.0",
     "postcss-preset-env": "^9.1.4",
     "purgecss": "6.0.0-alpha.0",
+    "sqlite3": "^5.1.6",
     "stylelint": "^15.10.3",
     "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-standard": "^34.0.0",

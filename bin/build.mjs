@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
-
-import { dirname, join, resolve } from 'path';
-import { readdir, readFile, rm, writeFile } from 'fs/promises';
-import { fileURLToPath } from 'url';
+import { dirname, join, resolve } from 'node:path';
+import { readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 
 import { PurgeCSS } from 'purgecss';
 import { build } from 'esbuild';
@@ -107,6 +106,7 @@ await build({
     'lodash-es',
     'mmmagic',
     'qs',
+    'sqlite3',
   ],
   format: 'esm',
   outdir: __output_dir,
