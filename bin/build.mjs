@@ -1,11 +1,14 @@
-import autoprefixer from 'autoprefixer';
-import * as esbuild from 'esbuild';
-import { readdir, readFile, rm, writeFile } from 'fs/promises';
+/* eslint-disable no-console */
+
 import { dirname, join, resolve } from 'path';
+import { readdir, readFile, rm, writeFile } from 'fs/promises';
+import { fileURLToPath } from 'url';
+
+import { PurgeCSS } from 'purgecss';
+import { build } from 'esbuild';
+import autoprefixer from 'autoprefixer';
 import postcss from 'postcss';
 import postcssPresetEnv from 'postcss-preset-env';
-import { PurgeCSS } from 'purgecss';
-import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const __root_dir = resolve(__dirname, '..');
@@ -33,10 +36,9 @@ const shared = {
  */
 console.log('[Step 1] Clean Old Files');
 const old_files = await readdir(__output_dir, { withFileTypes: true });
-for (let i = 0; i < old_files.length; i += 1) {
-  const f = old_files[i];
-  if (f.isDirectory() || f.isSymbolicLink()) continue;
-  const file_path = join(__output_dir, f.name);
+for (const file of old_files) {
+  if (file.isDirectory() || file.isSymbolicLink()) continue;
+  const file_path = join(__output_dir, file.name);
   console.log(`Cleaning ${file_path}`);
   await rm(file_path, { force: true });
 }
@@ -53,7 +55,7 @@ const { css } = await css_processor.process(css_contents, { from: source_styles 
  * [Step 3] esbuild - CSS
  */
 console.log('[Step 3] esbuild - CSS');
-await esbuild.build({
+await build({
   ...shared,
   outfile: output_styles,
   stdin: {
@@ -85,7 +87,7 @@ await writeFile(join(__output_dir, 'styles.css.map'), purged_css_results.sourceM
  * [Step 5] esbuild - JS
  */
 console.log('[Step 5] esbuild - JS & additional CSS');
-await esbuild.build({
+await build({
   ...shared,
   entryNames: '[dir]/[name]',
   entryPoints: [

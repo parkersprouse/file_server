@@ -6,11 +6,11 @@ import path from 'path';
 export default {
   method: 'GET',
   path: '/{any*}',
-  handler: function (request, h) {
+  handler(request, hapi) {
     try {
-      return h.file(path.join(h.request.server.settings.app.__dirname, 'server', request.path), { confine: false });
-    } catch (e) {
-      return h.view('404').code(404);
+      return hapi.file(path.join(hapi.request.server.settings.app.__dirname, 'server', request.path), { confine: false });
+    } catch {
+      return hapi.view('404').code(404);
     }
   },
 };

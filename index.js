@@ -1,24 +1,27 @@
 import fs from 'fs';
 import path from 'path';
+
 import Hapi from '@hapi/hapi';
 import inert from '@hapi/inert';
 import logger from '@hapi/log';
 import vision from '@hapi/vision';
 import handlebars from 'handlebars';
 import qs from 'qs';
-import config from './config.js';
-import assets_route from './routes/assets.js';
-import files_route from './routes/files.js';
-import not_found_route from './routes/not_found.js';
+
+import config from './config';
+import assets_route from './routes/assets';
+import files_route from './routes/files';
+import not_found_route from './routes/not_found';
 
 async function init() {
   const root_path = config.file_source;
-  if (!root_path) throw 'No file source path provided';
+  if (!root_path) throw new Error('No file source path provided');
   if (!fs.existsSync(root_path) || !fs.statSync(root_path).isDirectory()) {
-    throw 'Invalid file source path provided';
+    throw new Error('Invalid file source path provided');
   }
 
-  handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+  handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+    // eslint-disable-next-line @babel/no-invalid-this,no-invalid-this
     return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
   });
 
@@ -59,9 +62,9 @@ async function init() {
     partialsPath: path.join(__dirname, 'server', 'templates', 'partials'),
   });
 
-  server.ext('onRequest', (request, h) => {
+  server.ext('onRequest', (request, hapi) => {
     if (request.path === '/') request.setUrl('/f');
-    return h.continue;
+    return hapi.continue;
   });
 
   // Attempt to get the requested file from the file system

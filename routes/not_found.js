@@ -1,7 +1,7 @@
 export default {
   method: '*',
   path: '/{any*}',
-  handler: function (_request, h) {
-    return h.view('404').code(404);
+  handler(_request, hapi) {
+    return hapi.view('404').code(404);
   },
 };

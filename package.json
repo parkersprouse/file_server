@@ -14,11 +14,13 @@
     "pnpm": "^8"
   },
   "scripts": {
+    "build": "node ./bin/build.mjs",
     "lint:css": "stylelint styles.css",
     "lint:css:fix": "stylelint --fix styles.css",
-    "build": "node ./bin/build.mjs",
-    "start": "pnpm run server",
-    "server": "pnpm run build && node server/index.js"
+    "lint:js": "eslint --ext .js .",
+    "lint:js:fix": "eslint --fix --ext .js .",
+    "server": "pnpm run build && node server/index.js",
+    "start": "pnpm run server"
   },
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^2.1.2",
@@ -36,8 +38,12 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
+    "@shopify/eslint-plugin": "^43.0.0",
     "autoprefixer": "^10.4.16",
     "esbuild": "0.19.3",
+    "eslint": "^8.50.0",
+    "eslint-plugin-github": "^4.10.0",
+    "eslint-plugin-sonarjs": "^0.21.0",
     "postcss": "^8.4.30",
     "postcss-cli": "^10.1.0",
     "postcss-preset-env": "^9.1.4",
