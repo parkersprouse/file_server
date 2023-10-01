@@ -1,7 +1,7 @@
 import path from 'node:path';
 
 /**
- * GET /assets/*
+ * GET /*
  */
 export default {
   method: 'GET',

@@ -20,7 +20,7 @@ async function init() {
   }
 
   handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
-    // eslint-disable-next-line @babel/no-invalid-this,no-invalid-this
+    // eslint-disable-next-line no-invalid-this
     return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
   });
 
@@ -76,7 +76,7 @@ async function init() {
   server.route(not_found_route);
 
   await server.start();
-  console.log('Server running on %s', server.info.uri);
+  server.log('info', `Server running on ${server.info.uri}`);
 }
 
 process.on('unhandledRejection', (error) => {

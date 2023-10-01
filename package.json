@@ -40,10 +40,10 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
-    "esbuild": "0.19.3",
-    "eslint-plugin-github": "^4.10.0",
+    "esbuild": "0.19.4",
+    "eslint-plugin-github": "^4.10.1",
     "eslint-plugin-sonarjs": "^0.21.0",
-    "postcss": "^8.4.30",
+    "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
     "postcss-preset-env": "^9.1.4",
     "purgecss": "6.0.0-alpha.0",

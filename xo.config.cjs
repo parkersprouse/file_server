@@ -20,7 +20,12 @@ module.exports = {
   rules: {
     'arrow-parens': ['error', 'always'],
     camelcase: 'off',
+    'capitalized-comments': 'off',
     curly: ['error', 'multi-line'],
+    'i18n-text/no-en': 'off',
+    'no-await-in-loop': 'off',
+    'no-console': 'off',
+    'no-unused-vars': ['error', { 'varsIgnorePattern': '^_.*' }],
     'object-curly-spacing': ['error', 'always', {
       arraysInObjects: false,
     }],

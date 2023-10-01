@@ -5,19 +5,18 @@ import sqlite from 'sqlite3';
 try {
   sqlite.verbose();
   const __dirname = dirname(fileURLToPath(import.meta.url));
-  const db = new sqlite.Database(join(__dirname, 'files.db'), function (error) {
+  const db = new sqlite.Database(join(__dirname, 'files.db'), (error) => {
     if (error) throw error;
-    this.run('DROP TABLE IF EXISTS files');
   });
 
   db.serialize(() => {
+    db.run('DROP TABLE IF EXISTS files');
     db.run('CREATE TABLE files (path TEXT, duration INTEGER, last_updated INTEGER)');
-
-    db.run('INSERT INTO files VALUES ($path, $duration, $last_updated)', {
-      $path: join(__dirname, 'files.db'),
-      $duration: 600,
-      $last_updated: 1_695_579_746_770,
-    });
+    // db.run('INSERT INTO files VALUES ($path, $duration, $last_updated)', {
+    //   $path: join(__dirname, 'files.db'),
+    //   $duration: 600,
+    //   $last_updated: Date.now(),
+    // });
 
     db.each('SELECT path, duration, last_updated FROM files', (error, row) => {
       if (error) console.error(error);

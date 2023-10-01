@@ -2,6 +2,7 @@
 **/*.env.*
 **/.DS_Store
 **/node_modules/
-/server/*.*
+/server
+!/server/**/*.html
 /lib/fa_kit
 /db/*.db
