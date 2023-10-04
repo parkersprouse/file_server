@@ -31,11 +31,9 @@ async function handleDirectory(request, hapi) {
   let parsed = await parse(files, request, view_parameter);
   parsed = sortEntries(parsed, sort_parameter);
 
-  const breadcrumbs = toBreadcrumbs(request_path, query);
-
   return hapi.view('page', {
     at_root: atRoot(request_path),
-    breadcrumbs,
+    breadcrumbs: toBreadcrumbs(request_path, query),
     duration_sort_url: generateUrl(request_path, query, 'sort', 'duration'),
     files: parsed,
     grid_view_url: generateUrl(request_path, query, 'view', 'grid'),
