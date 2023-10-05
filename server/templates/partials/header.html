@@ -6,24 +6,37 @@
 <script src='/vendor.min.js'></script>
 <script>
   window.addEventListener('load', () => {
+    // Theme toggle
     const theme_toggle = document.getElementById('theme-toggle');
-    if (!theme_toggle) return;
+    if (theme_toggle) {
+      const html = document.querySelector('html');
+      theme_toggle.onclick = () => {
+        html.classList.toggle('dark');
+        const is_dark = html.classList.contains('dark');
+        window.localStorage.setItem('theme', is_dark ? 'dark' : 'light');
+        theme_toggle.querySelector('svg').dataset.icon = is_dark ? 'lightbulb-on' : 'lightbulb';
+      };
 
-    const html = document.querySelector('html');
-    theme_toggle.onclick = () => {
-      html.classList.toggle('dark');
-      const is_dark = html.classList.contains('dark');
-      window.localStorage.setItem('theme', is_dark ? 'dark' : 'light');
-      theme_toggle.querySelector('svg').dataset.icon = is_dark ? 'lightbulb-on' : 'lightbulb';
-    };
+      if (window.localStorage.getItem('theme') === 'dark') {
+        html.classList.add('dark');
+        // We have to throw the updating of the SVG in a `setTimeout` since
+        // it won't exist until after the FA script runs.
+        setTimeout(() => {
+          theme_toggle.querySelector('svg').dataset.icon = 'lightbulb-on';
+        }, 10);
+      }
+    }
 
-    if (window.localStorage.getItem('theme') === 'dark') {
-      html.classList.add('dark');
-      // We have to throw the updating of the SVG in a `setTimeout` since
-      // it won't exist until after the FA script runs.
-      setTimeout(() => {
-        theme_toggle.querySelector('svg').dataset.icon = 'lightbulb-on';
-      }, 10);
+    // Preview Dialog
+    const preview_dialog = document.querySelector('#preview-dialog');
+    if (preview_dialog) {
+      preview_dialog.addEventListener("click", event => {
+        const rect = preview_dialog.getBoundingClientRect();
+        const { clientX, clientY } = event;
+        if (clientY < rect.top || clientY > rect.bottom || clientX < rect.left || clientX > rect.right) {
+          preview_dialog.close();
+        }
+      });
     }
   });
 </script>

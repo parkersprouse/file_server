@@ -96,6 +96,10 @@ nav {
   > a {
     color: var(--text-color-muted-hard);
 
+    &[class*="hint--"] {
+      display: inline-flex;
+    }
+
     &:hover {
       color: var(--text-color-muted);
     }
@@ -428,6 +432,46 @@ nav {
     }
   }
 }
+
+
+/* Preview Dialog */
+
+#preview-dialog {
+  position: absolute;
+
+  width: auto;
+  min-width: 200px;
+  max-width: 100%;
+  height: auto;
+  min-height: 200px;
+  max-height: 100%;
+
+  &::backdrop {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+  }
+}
+
+
+/* hint.css customizations */
+
+[class*="hint--"]::after {
+  padding: 4px;
+}
+
+.hint--no-animate {
+  &::after, &::before {
+    transition: none;
+  }
+}
+
+.hint--bottom {
+  &::after, &::before {
+    top: 125%;
+  }
+}
+
 
 /* stylelint-disable no-duplicate-selectors -- Adding these to the top heavily messes up specificity */
 html.dark {
