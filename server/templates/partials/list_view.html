@@ -2,9 +2,23 @@
   {{#each files}}
     <li>
       {{#if this.external_url}}
-      <a href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer'>
+      <a href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
       {{else}}
-      <a href='{{this.path}}'>
+      <a
+        href='{{this.path}}'
+        class='{{this.type}}-thumbnail'
+        title='{{this.name}}'
+        {{#if (or
+          (eq this.type "image")
+          (eq this.type "video"))}}
+          data-src='{{this.path}}'
+        {{/if}}
+        {{#if this.src}}
+          data-poster='{{this.src}}'
+        {{else if this.thumbnail}}
+          data-poster='{{this.thumbnail}}'
+        {{/if}}
+      >
       {{/if}}
         <div class='list-main-wrapper'>
           <span class='list-view-icon'><i class='{{this.icon}}'></i></span>

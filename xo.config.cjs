@@ -22,6 +22,7 @@ module.exports = {
     camelcase: 'off',
     'capitalized-comments': 'off',
     curly: ['error', 'multi-line'],
+    'filenames/match-regex': 'off',
     'i18n-text/no-en': 'off',
     'no-await-in-loop': 'off',
     'no-console': 'off',
@@ -38,6 +39,7 @@ module.exports = {
     'unicorn/filename-case': ['error', {
       case: 'snakeCase',
     }],
+    'unicorn/no-array-reduce': 'off',
   },
 };
 

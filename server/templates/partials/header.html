@@ -7,7 +7,7 @@
 <script>
   window.addEventListener('load', () => {
     // Theme toggle
-    const theme_toggle = document.getElementById('theme-toggle');
+    const theme_toggle = document.querySelector('#theme-toggle');
     if (theme_toggle) {
       const html = document.querySelector('html');
       theme_toggle.onclick = () => {
@@ -30,12 +30,59 @@
     // Preview Dialog
     const preview_dialog = document.querySelector('#preview-dialog');
     if (preview_dialog) {
-      preview_dialog.addEventListener("click", event => {
-        const rect = preview_dialog.getBoundingClientRect();
-        const { clientX, clientY } = event;
-        if (clientY < rect.top || clientY > rect.bottom || clientX < rect.left || clientX > rect.right) {
-          preview_dialog.close();
+      preview_dialog.addEventListener('click', (event) => {
+        preview_dialog.close();
+      });
+
+      preview_dialog.querySelector('.dialog-close').addEventListener('click', () => {
+        preview_dialog.close();
+      });
+
+      preview_dialog.addEventListener('close', () => {
+        for (const node of Array.from(preview_dialog.childNodes)) {
+          if (node.className !== 'dialog-close') {
+            node.remove();
+          }
         }
+      })
+    }
+
+    const image_thumbnails = document.querySelectorAll('.image-thumbnail');
+    for (const thumbnail of image_thumbnails) {
+      thumbnail.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const img = document.createElement('img');
+        const src = thumbnail.dataset.src;
+        img.setAttribute('src', src);
+        img.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          window.open(src, '_blank');
+        });
+        preview_dialog.appendChild(img);
+        preview_dialog.showModal();
+      });
+    }
+
+    const video_thumbnails = document.querySelectorAll('.video-thumbnail');
+    for (const thumbnail of video_thumbnails) {
+      thumbnail.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const video = document.createElement('video');
+        const { poster, src } = thumbnail.dataset;
+        video.setAttribute('src', src);
+        video.setAttribute('controls', true);
+        video.setAttribute('playsinline', true);
+        if (poster) video.setAttribute('poster', poster);
+        // video.addEventListener('click', (event) => {
+        //   event.preventDefault();
+        //   event.stopPropagation();
+        //   window.open(src, '_blank');
+        // });
+        preview_dialog.appendChild(video);
+        preview_dialog.showModal();
       });
     }
   });

@@ -8,6 +8,7 @@ import vision from '@hapi/vision';
 import handlebars from 'handlebars';
 import qs from 'qs';
 import config from './config.js';
+import { initTemplateEngine } from './lib/init_template_engine.js';
 import assets_route from './routes/assets.js';
 import files_route from './routes/files.js';
 import not_found_route from './routes/not_found.js';
@@ -19,10 +20,7 @@ async function init() {
     throw new Error('Invalid file source path provided');
   }
 
-  handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
-    // eslint-disable-next-line no-invalid-this
-    return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
-  });
+  initTemplateEngine(handlebars);
 
   const __dirname = path.resolve('.');
   const server = Hapi.server({
