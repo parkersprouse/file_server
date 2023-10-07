@@ -38,13 +38,18 @@
         preview_dialog.close();
       });
 
+      preview_dialog.querySelector('.dialog-new-tab').addEventListener('click', (event) => {
+        event.stopPropagation();
+      });
+
       preview_dialog.addEventListener('close', () => {
+        preview_dialog.querySelector('.dialog-new-tab').setAttribute('href', '#');
         for (const node of Array.from(preview_dialog.childNodes)) {
-          if (node.className !== 'dialog-close') {
+          if (!node.classList?.contains('dialog-close') && !node.classList?.contains('dialog-new-tab')) {
             node.remove();
           }
         }
-      })
+      });
     }
 
     const image_thumbnails = document.querySelectorAll('.image-thumbnail');
@@ -54,6 +59,7 @@
 
         const img = document.createElement('img');
         const src = thumbnail.dataset.src;
+        preview_dialog.querySelector('.dialog-new-tab')?.setAttribute('href', src);
         img.setAttribute('src', src);
         img.addEventListener('click', (event) => {
           event.preventDefault();
@@ -72,15 +78,11 @@
 
         const video = document.createElement('video');
         const { poster, src } = thumbnail.dataset;
+        preview_dialog.querySelector('.dialog-new-tab')?.setAttribute('href', src);
         video.setAttribute('src', src);
         video.setAttribute('controls', true);
         video.setAttribute('playsinline', true);
         if (poster) video.setAttribute('poster', poster);
-        // video.addEventListener('click', (event) => {
-        //   event.preventDefault();
-        //   event.stopPropagation();
-        //   window.open(src, '_blank');
-        // });
         preview_dialog.appendChild(video);
         preview_dialog.showModal();
       });

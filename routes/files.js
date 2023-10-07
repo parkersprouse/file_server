@@ -28,7 +28,7 @@ async function handleDirectory(request, hapi) {
   // We don't want to serve any directories under our thumbnail folder
   if (request_path.startsWith('/.thumbnails')) return hapi.view('404').code(404);
 
-  let parsed = await parse(files, request, view_parameter);
+  let parsed = await parse(files, request);
   parsed = sortEntries(parsed, sort_parameter);
 
   return hapi.view('page', {

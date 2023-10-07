@@ -29,11 +29,15 @@
             <span class='list-view-duration meta'>
               <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration}}
             </span>
+          {{/if}}
+          {{#if (and this.duration this.last_updated)}}
             <span class='list-meta-separator'></span>
           {{/if}}
-          <span class='list-view-last-updated meta'>
-            <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated}}
-          </span>
+          {{#if this.last_updated}}
+            <span class='list-view-last-updated meta'>
+              <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated}}
+            </span>
+          {{/if}}
         </div>
       </a>
     </li>

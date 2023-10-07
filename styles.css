@@ -461,12 +461,9 @@ nav {
     justify-content: center;
   }
 
-  & .dialog-close {
+  & .dialog-close,
+  & .dialog-new-tab {
     cursor: pointer;
-
-    position: absolute;
-    top: 15px;
-    right: 20px;
 
     width: 24px;
     height: 24px;
@@ -476,6 +473,18 @@ nav {
 
     background: none;
     border: none;
+  }
+
+  & .dialog-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+
+  & .dialog-new-tab {
+    position: absolute;
+    top: 15px;
+    right: 60px;
   }
 
   & img, & video {

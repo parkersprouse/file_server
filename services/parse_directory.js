@@ -10,7 +10,7 @@ import {
 } from '../lib/index.js';
 import { getType } from './content_type.js';
 
-async function handleFile(request, file, view_parameter) {
+async function handleFile(request, file) {
   const { request_path, root_path } = request;
   const { file_path } = file;
   const output = {};
@@ -19,7 +19,7 @@ async function handleFile(request, file, view_parameter) {
   if (determined_type?.startsWith('image')) {
     output.icon = 'fa-sharp fa-light fa-image';
     output.type = 'image';
-    if (view_parameter === 'grid') output.src = `/f/${strip(request_path)}/${file.name}`;
+    output.src = `/f/${strip(request_path)}/${file.name}`;
   } else if (determined_type?.startsWith('video')) {
     const dur = await getDuration(file_path);
     output.icon = 'fa-sharp fa-light fa-film';
@@ -54,7 +54,7 @@ async function handleFile(request, file, view_parameter) {
   return output;
 }
 
-export async function parse(files, request, view_parameter) {
+export async function parse(files, request) {
   const { local_path, root_path } = request;
 
   const parsed = [];
@@ -81,7 +81,7 @@ export async function parse(files, request, view_parameter) {
       type: dir ? 'folder' : 'file',
     };
 
-    if (!dir) Object.assign(output, await handleFile(request, file, view_parameter));
+    if (!dir) Object.assign(output, await handleFile(request, file));
 
     parsed.push(output);
   }
