@@ -20,19 +20,15 @@
     >
     {{/if}}
       <div>
-        {{#if this.src}}
-          <div class='thumbnail'>
+        <div class='thumbnail'>
+          {{#if this.src}}
             <img src='{{this.src}}'>
-          </div>
-        {{else if this.thumbnail}}
-          <div class='thumbnail'>
+          {{else if this.thumbnail}}
             <img src='{{this.thumbnail}}'>
-          </div>
-        {{else}}
-          <div>
+          {{else}}
             <i class='{{this.icon}}'></i>
-          </div>
-        {{/if}}
+          {{/if}}
+        </div>
 
         {{#if this.name}}
           <div>
@@ -40,17 +36,22 @@
           </div>
         {{/if}}
 
-        {{#if this.duration}}
-          <div class='meta'>
-            <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration}}
-          </div>
-        {{/if}}
-
-        {{#if this.last_updated}}
-          <div class='meta'>
-            <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated}}
-          </div>
-        {{/if}}
+        <table class='meta'>
+          <tbody>
+            {{#if this.duration}}
+              <tr>
+                <td><i class='fa-sharp fa-regular fa-stopwatch'></i></td>
+                <td>{{this.duration}}</td>
+              </tr>
+            {{/if}}
+            {{#if this.last_updated}}
+              <tr>
+                <td><i class='fa-sharp fa-regular fa-history'></i></td>
+                <td class='grid-view-last-updated'>{{this.last_updated}}</td>
+              </tr>
+            {{/if}}
+          </tbody>
+        </table>
       </div>
     </a>
   {{/each}}

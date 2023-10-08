@@ -25,19 +25,16 @@
           <span class='list-view-name'>{{this.name}}</span>
         </div>
         <div class='list-meta-wrapper'>
-          {{#if this.duration}}
-            <span class='list-view-duration meta'>
-              <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration}}
-            </span>
-          {{/if}}
-          {{#if (and this.duration this.last_updated)}}
-            <span class='list-meta-separator'></span>
-          {{/if}}
-          {{#if this.last_updated}}
-            <span class='list-view-last-updated meta'>
+          <span class='list-view-last-updated meta'>
+            {{#if this.last_updated}}
               <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated}}
-            </span>
-          {{/if}}
+            {{/if}}
+          </span>
+          <span class='list-view-duration meta'>
+            {{#if this.duration}}
+              <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration}}
+            {{/if}}
+          </span>
         </div>
       </a>
     </li>
