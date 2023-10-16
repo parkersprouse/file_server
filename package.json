@@ -46,7 +46,7 @@
     "eslint-plugin-sonarjs": "^0.21.0",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
-    "postcss-preset-env": "^9.1.4",
+    "postcss-preset-env": "^9.2.0",
     "purgecss": "6.0.0-alpha.0",
     "sqlite3": "^5.1.6",
     "stylelint": "^15.10.3",
