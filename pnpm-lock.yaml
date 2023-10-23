@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.1.2
     version: 2.1.2
   '@fontsource/inter':
-    specifier: ^5.0.13
-    version: 5.0.13
+    specifier: ^5.0.15
+    version: 5.0.15
   '@hapi/hapi':
     specifier: ^21.3.2
     version: 21.3.2
@@ -794,8 +794,8 @@ packages:
     dev: false
     optional: true
 
-  /@fontsource/inter@5.0.13:
-    resolution: {integrity: sha512-FVIBhP9X/x02blF2VQl2Pji/c3jUjkWEQ9bom4vIrGwO1MlHRDXhXx9iA1hhjpcCIfH3oX68ihIBdYcFnOXhsg==}
+  /@fontsource/inter@5.0.15:
+    resolution: {integrity: sha512-/IoWYEXl8lqJEx50JqNPT+bI4VNwxb/bg2oOfvG8PiEsDsmHRFvWBVHlohBNn1+QdBf+KbAjU/gb4vlGOSsVWw==}
     dev: false
 
   /@gar/promisify@1.1.3:
