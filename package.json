@@ -49,7 +49,7 @@
     "postcss-preset-env": "^9.1.4",
     "purgecss": "6.0.0-alpha.0",
     "sqlite3": "^5.1.6",
-    "stylelint": "^15.10.3",
+    "stylelint": "^15.11.0",
     "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-use-nesting": "^4.1.0",
