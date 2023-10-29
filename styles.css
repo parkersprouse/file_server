@@ -34,7 +34,12 @@ html.dark {
 
 html,
 body {
+  /* display: flex;
+  flex-flow: column nowrap; */
+
+  height: 100%;
   height: 100vh;
+  max-height: 100%;
   max-height: 100vh;
 
   font-family: Inter, sans-serif;
@@ -46,9 +51,8 @@ body {
 a {
   display: inline-flex;
   gap: 0.5rem;
-  align-content: center;
+  place-content: center flex-start;
   align-items: center;
-  justify-content: flex-start;
 
   height: 20px;
 
@@ -62,20 +66,40 @@ a {
 }
 
 main {
-  overflow-y: auto;
-  height: calc(100% - 88px - 34px);
-  padding: 2rem;
+  z-index: 100;
+  margin-top: 154px; /* 122px from the top (nav + bread) + 32 for padding */
+
+  /* overflow-y: auto;
+  height: calc(100% - (88px + 34px));
+  max-height: calc(100% - (88px + 34px)); */
+  padding: 0 32px 32px;
+
+  /* & > #list-view,
+  & > #grid-view {
+    overflow-y: auto;
+    height: 100%;
+    max-height: 100%;
+    padding: 2rem;
+  } */
 }
 
 nav {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+
   display: flex;
   flex-flow: row nowrap;
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
 
+  width: 100%;
   height: 88px;
-  padding: 32px;
+  padding: 0 32px;
+
+  background-color: var(--bg-color);
 
   & > span {
     &.nav-separator {
@@ -114,15 +138,22 @@ nav {
 }
 
 #breadcrumbs {
+  position: fixed;
+  z-index: 300;
+  top: 88px;
+  left: 0;
+
   display: flex;
   flex-flow: row nowrap;
   gap: 1rem;
   align-items: center;
   justify-content: flex-start;
 
+  width: 100%;
   height: 34px;
-  padding: 0.25rem 2rem;
+  padding: 0 32px;
 
+  background-color: var(--bg-color);
   border-top: 1px solid var(--text-color);
   border-bottom: 1px solid var(--text-color);
 
@@ -179,7 +210,8 @@ nav {
 #theme-toggle:hover {
   --toggle-size: 20px;
 
-  position: absolute;
+  position: fixed;
+  z-index: 400;
   top: 8px;
   right: 8px;
 
@@ -329,9 +361,8 @@ nav {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  align-content: center;
+  place-content: center flex-start;
   align-items: center;
-  justify-content: flex-start;
 
   & > a {
     display: block;
@@ -431,10 +462,8 @@ nav {
       }
     }
   }
-}
 
 @media (--mobile) {
-  #grid-view {
     & > a.content-card {
       width: calc((100% / 2) - 0.5rem);
 
@@ -455,13 +484,15 @@ nav {
         }
       }
     }
-  }
+}
 }
 
 
 /* Preview Dialog */
 
 #preview-dialog {
+  z-index: 1000;
+
   display: none;
 
   width: auto;
@@ -473,14 +504,12 @@ nav {
 
   background-color: transparent;
   border: none;
-  
-  z-index: 1000;
 
   &::backdrop {
+    z-index: 999;
     width: 100%;
     height: 100%;
     background-color: rgb(0 0 0 / 85%);
-    z-index: 999;
   }
 
   &[open] {
@@ -493,6 +522,8 @@ nav {
   & .dialog-new-tab {
     cursor: pointer;
 
+    z-index: 1001;
+
     width: 24px;
     height: 24px;
 
@@ -501,8 +532,6 @@ nav {
 
     background: none;
     border: none;
-    
-    z-index: 1001;
   }
 
   & .dialog-close {
