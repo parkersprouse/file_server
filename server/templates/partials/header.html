@@ -50,6 +50,16 @@
           }
         }
       });
+
+      const observer = new MutationObserver(() => {
+        if (preview_dialog.open) document.body.classList.add('dialog-open');
+        else document.body.classList.remove('dialog-open');
+      });
+
+      observer.observe(preview_dialog, {
+        attributes: true,
+        attributeFilter: ['open'],
+      });
     }
 
     const image_thumbnails = document.querySelectorAll('.image-thumbnail');
