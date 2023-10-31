@@ -31,27 +31,27 @@
         </div>
 
         {{#if this.name}}
-          <div>
+          <div class='name'>
             {{this.name}}
           </div>
         {{/if}}
 
-        <table class='meta'>
-          <tbody>
+        {{#if (or this.duration this.last_updated)}}
+          <div class='grid-meta-wrapper'>
             {{#if this.duration}}
-              <tr>
-                <td><i class='fa-sharp fa-regular fa-stopwatch'></i></td>
-                <td>{{this.duration}}</td>
-              </tr>
+              <div class='meta'>
+                <i class='fa-sharp fa-regular fa-stopwatch'></i>
+                <span>{{this.duration}}</span>
+              </div>
             {{/if}}
             {{#if this.last_updated}}
-              <tr>
-                <td><i class='fa-sharp fa-regular fa-history'></i></td>
-                <td class='grid-view-last-updated'>{{this.last_updated}}</td>
-              </tr>
+              <div class='meta'>
+                <i class='fa-sharp fa-regular fa-history'></i>
+                <span>{{this.last_updated}}</span>
+              </div>
             {{/if}}
-          </tbody>
-        </table>
+          </div>
+        {{/if}}
       </div>
     </a>
   {{/each}}

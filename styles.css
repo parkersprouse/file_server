@@ -195,12 +195,18 @@ nav {
 
 .meta,
 .meta:hover {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+
   font-size: 0.75rem !important;
   color: var(--text-color-muted);
+  white-space: nowrap;
 
   & [class^="fa-"],
   & [class*="fa-"] {
-    font-size: 0.75rem !important;
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -233,13 +239,6 @@ nav {
   margin: 0;
   padding: 0;
   list-style-type: none;
-
-  & .meta {
-    display: inline-flex;
-    gap: 0.25rem;
-    align-items: center;
-    white-space: nowrap;
-  }
 
   & > li {
     width: 100%;
@@ -293,10 +292,6 @@ nav {
               color: var(--text-color-muted-hard);
             }
           }
-
-          & > .list-view-last-updated {
-            white-space: nowrap;
-          }
         }
       }
 
@@ -345,10 +340,6 @@ nav {
           justify-content: space-between;
 
           width: 100%;
-
-          & > .list-view-last-updated {
-            white-space: nowrap;
-          }
         }
       }
     }
@@ -427,7 +418,7 @@ nav {
             }
           }
 
-          &:not(.thumbnail) {
+          &.name {
             overflow-x: clip;
             flex: 0 1 0;
 
@@ -440,49 +431,37 @@ nav {
             word-wrap: normal;
             white-space: nowrap;
           }
-        }
 
-        & > table {
-          width: 100%;
+          &.grid-meta-wrapper {
+            overflow: clip;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: space-between;
 
-          & td {
-            text-align: left;
-
-            &:first-of-type {
-              text-align: center;
-            }
-          }
-
-          & .grid-view-last-updated {
-            white-space: nowrap;
+            width: 100%;
           }
         }
       }
     }
   }
 
-@media (--mobile) {
-    & > a.content-card {
-      width: calc((100% / 2) - 0.5rem);
+  @media (--mobile) {
+      & > a.content-card {
+        width: calc((100% / 2) - 0.5rem);
 
-      & div {
-        font-size: 1rem;
+        & div {
+          font-size: 1rem;
 
-        & > div.thumbnail {
-          & [class^="fa-"],
-          [class*="fa-"] {
-            font-size: 2rem;
-          }
-        }
-
-        & > table {
-          & .grid-view-last-updated {
-            white-space: pre-line;
+          & > div.thumbnail {
+            & [class^="fa-"],
+            [class*="fa-"] {
+              font-size: 2rem;
+            }
           }
         }
       }
-    }
-}
+  }
 }
 
 
