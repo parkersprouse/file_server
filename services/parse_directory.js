@@ -10,6 +10,12 @@ import {
 } from '../lib/index.js';
 import { getType } from './content_type.js';
 
+const archive_types = ['x-7z-compressed', 'x-rar', 'x-tar', 'x-xz', 'zip'];
+function isArchive(type) {
+  if (!type) return false;
+  return archive_types.some((t) => type.endsWith(t));
+}
+
 async function handleFile(request, file) {
   const { request_path, root_path } = request;
   const { file_path } = file;
@@ -41,6 +47,9 @@ async function handleFile(request, file) {
   } else if (determined_type?.startsWith('text')) {
     output.icon = 'fa-sharp fa-light fa-file-alt';
     output.type = 'text';
+  } else if (isArchive(determined_type)) {
+    output.icon = 'fa-sharp fa-light fa-file-zipper';
+    output.type = 'archive';
   }
 
   if (file_path.toLowerCase().endsWith('.url')) {
