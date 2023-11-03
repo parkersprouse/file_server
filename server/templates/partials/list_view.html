@@ -1,12 +1,21 @@
-<ul id='list-view'>
-  {{#each files}}
-    <li>
+<div class='table-wrapper'>
+  <div role='grid' class='table' id='list-view'>
+    {{#each files}}
       {{#if this.external_url}}
-      <a href='{{this.external_url}}' target='_blank' rel='noopener noreferrer' referrerpolicy='no-referrer' title='{{this.name}}'>
+      <a
+        role='row'
+        href='{{this.external_url}}'
+        class='row'
+        target='_blank'
+        rel='noopener noreferrer'
+        referrerpolicy='no-referrer'
+        title='{{this.name}}'
+      >
       {{else}}
       <a
+        role='row'
         href='{{this.path}}'
-        class='{{this.type}}-thumbnail'
+        class='row {{this.type}}-thumbnail'
         title='{{this.name}}'
         {{#if (or
           (eq this.type "image")
@@ -20,23 +29,27 @@
         {{/if}}
       >
       {{/if}}
-        <div class='list-main-wrapper'>
-          <span class='list-view-icon'><i class='{{this.icon}}'></i></span>
-          <span class='list-view-name'>{{this.name}}</span>
+        <div role='gridcell' class='cell list-view-icon'>
+          <i class='{{this.icon}}'></i>
         </div>
-        <div class='list-meta-wrapper'>
-          <span class='list-view-last-updated meta'>
-            {{#if this.last_updated}}
+        <div role='gridcell' class='cell'>
+          {{this.name}}
+        </div>
+        <div role='gridcell' class='cell last-updated-cell'>
+          {{#if this.last_updated}}
+            <span class='meta' title='Last Updated {{this.last_updated}}'>
               <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated}}
-            {{/if}}
-          </span>
-          <span class='list-view-duration meta'>
+            </span>
+          {{/if}}
+        </div>
+        <div role='gridcell' class='cell duration-cell'>
+          <span class='meta' title='Video Duration: {{this.duration}}'>
             {{#if this.duration}}
               <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration}}
             {{/if}}
           </span>
         </div>
       </a>
-    </li>
-  {{/each}}
-</ul>
+    {{/each}}
+  </div>
+</div>
