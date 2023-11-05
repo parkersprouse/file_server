@@ -39,15 +39,15 @@
         {{#if (or this.duration this.last_updated)}}
           <div class='grid-meta-wrapper'>
             {{#if this.duration}}
-              <div class='meta'>
+              <div class='meta' title='{{this.duration.long}}'>
                 <i class='fa-sharp fa-regular fa-stopwatch'></i>
-                <span>{{this.duration}}</span>
+                <span>{{this.duration.short}}</span>
               </div>
             {{/if}}
             {{#if this.last_updated}}
-              <div class='meta'>
+              <div class='meta' title='{{this.last_updated.absolute}}'>
                 <i class='fa-sharp fa-regular fa-history'></i>
-                <span>{{this.last_updated}}</span>
+                <span>{{this.last_updated.relative}}</span>
               </div>
             {{/if}}
           </div>

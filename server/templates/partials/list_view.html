@@ -37,15 +37,15 @@
         </div>
         <div role='gridcell' class='cell last-updated-cell'>
           {{#if this.last_updated}}
-            <span class='meta' title='Last Updated {{this.last_updated}}'>
-              <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated}}
+            <span class='meta' title='{{this.last_updated.absolute}}'>
+              <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated.relative}}
             </span>
           {{/if}}
         </div>
         <div role='gridcell' class='cell duration-cell'>
-          <span class='meta' title='Video Duration: {{this.duration}}'>
+          <span class='meta' title='{{this.duration.long}}'>
             {{#if this.duration}}
-              <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration}}
+              <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration.short}}
             {{/if}}
           </span>
         </div>
