@@ -1,3 +1,70 @@
+<div id='list-view'>
+  {{#each files}}
+    {{#if this.external_url}}
+    <a
+      href='{{this.external_url}}'
+      class='list-view--entry'
+      target='_blank'
+      rel='noopener noreferrer'
+      referrerpolicy='no-referrer'
+      title='{{this.name}}'
+    >
+    {{else}}
+    <a
+      href='{{this.path}}'
+      class='list-view--entry {{this.type}}-thumbnail'
+      title='{{this.name}}'
+      {{#if (or
+        (eq this.type "image")
+        (eq this.type "video"))}}
+        data-src='{{this.path}}'
+      {{/if}}
+      {{#if this.src}}
+        data-poster='{{this.src}}'
+      {{else if this.thumbnail}}
+        data-poster='{{this.thumbnail}}'
+      {{/if}}
+    >
+    {{/if}}
+      <div class='list-view--entry__left'>
+        <div class='list-view--entry-cell list-view--entry-cell__icon'>
+          <i class='{{this.icon}}'></i>
+        </div>
+      </div>
+      <div class='list-view--entry__right'>
+        <div class='list-view--entry-cell__right-top'>
+          <div class='list-view--entry-cell list-view--entry-cell__name'>
+            {{this.name}}
+          </div>
+        </div>
+        {{#if (or this.duration this.last_updated)}}
+          <div class='list-view--entry-cell__right-bottom'>
+            {{#if this.last_updated}}
+              <div class='list-view--entry-cell list-view--entry-cell__last-updated'>
+                <span class='meta' title='{{this.last_updated.absolute}}'>
+                  <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated.relative}}
+                </span>
+              </div>
+            {{/if}}
+            {{#if (and this.duration this.last_updated)}}
+              <span class='separator'>&bull;</span>
+            {{/if}}
+            {{#if this.duration}}
+              <div class='list-view--entry-cell list-view--entry-cell__duration'>
+                <span class='meta' title='{{this.duration.long}}'>
+                  <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration.short}}
+                </span>
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </a>
+  {{/each}}
+</div>
+
+
+<!--
 <div class='table-wrapper'>
   <div role='grid' class='table' id='list-view'>
     {{#each files}}
@@ -53,3 +120,4 @@
     {{/each}}
   </div>
 </div>
+-->
