@@ -234,26 +234,26 @@ nav {
     height: auto;
     padding: 0.5rem;
 
+    border-bottom: 1px solid var(--border-color);
+
     &:hover {
       background-color: var(--bg-color-hover);
     }
 
-    &:not(:last-of-type) {
-      border-bottom: 1px solid var(--border-color);
+    &:first-of-type {
+      border-top: 1px solid var(--border-color);
     }
 
     & .list-view--entry__left {
       display: flex;
-      flex: 0 1 10%;
+      flex: 0 1 30px;
       align-items: center;
       justify-content: center;
-
-      width: 10%;
     }
 
     & .list-view--entry__right {
       display: flex;
-      flex: 1 0 90%;
+      flex: 1 0 0;
       flex-flow: column nowrap;
       align-items: flex-start;
       justify-content: center;
