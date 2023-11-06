@@ -24,11 +24,11 @@
 }
 
 html.dark {
-  --bg-color: #111317;
-  --bg-color-hover: #252932;
-  --text-color: #98a3ad; /* #c5c8c6 */
-  --text-color-muted-hard: rgb(234 239 239 / 20%);
-  --text-color-muted: rgb(234 239 239 / 35%);
+  --bg-color: #121212;
+  --bg-color-hover: #212121;
+  --text-color: rgb(228 228 228); /* #c5c8c6 */
+  --text-color-muted-hard: rgb(228 228 228 / 20%);
+  --text-color-muted: rgb(228 228 228 / 35%);
   --border-color: var(--text-color-muted-hard);
 }
 
@@ -536,29 +536,20 @@ html.dark {
   }
 
   & #grid-view {
-    > a:hover {
+    & > a:hover {
       border-color: var(--text-color-muted);
     }
   }
 
   & [class*="hint--"]::after {
-    padding: 4px;
-    color: #98a3ad;
-    background: #383838;
-  }
-
-  & .hint--no-animate {
-    &::after,
-    &::before {
-      transition: none;
-    }
+    color: var(--text-color);
+    background: #3c3c3c;
   }
 
   & .hint--bottom {
     &::after,
     &::before {
-      top: 125%;
-      border-bottom-color: #383838;
+      border-bottom-color: #3c3c3c;
     }
   }
 }
