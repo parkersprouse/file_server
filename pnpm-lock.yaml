@@ -62,8 +62,8 @@ devDependencies:
     specifier: ^4.10.1
     version: 4.10.1(eslint@8.53.0)(typescript@5.2.2)
   eslint-plugin-sonarjs:
-    specifier: ^0.22.0
-    version: 0.22.0(eslint@8.53.0)
+    specifier: ^0.23.0
+    version: 0.23.0(eslint@8.53.0)
   postcss:
     specifier: ^8.4.31
     version: 8.4.31
@@ -2877,8 +2877,8 @@ packages:
       synckit: 0.8.5
     dev: true
 
-  /eslint-plugin-sonarjs@0.22.0(eslint@8.53.0):
-    resolution: {integrity: sha512-LJz+TCosMOBLkbAsNk6Q1lCgmK6qNO5RCqtOAle1DCnqqnmxoSTPHakZ1R7Gcnjhw5n7VDcAwuqefmpd4XXPLQ==}
+  /eslint-plugin-sonarjs@0.23.0(eslint@8.53.0):
+    resolution: {integrity: sha512-z44T3PBf9W7qQ/aR+NmofOTyg6HLhSEZOPD4zhStqBpLoMp8GYhFksuUBnCxbnf1nfISpKBVkQhiBLFI/F4Wlg==}
     engines: {node: '>=14'}
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
