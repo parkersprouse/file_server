@@ -35,7 +35,7 @@
     "handlebars": "^4.7.8",
     "hint.css": "^2.7.0",
     "lodash-es": "^4.17.21",
-    "luxon": "^3.4.3",
+    "luxon": "^3.4.4",
     "mmmagic": "^0.5.3",
     "qs": "^6.11.2",
     "sanitize.css": "^13.0.0"
