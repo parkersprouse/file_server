@@ -8,6 +8,7 @@ import {
   toQuery,
   strip,
 } from '../lib/index.js';
+import { db } from '../db/index.js';
 import { getType } from './content_type.js';
 
 const archive_types = ['x-7z-compressed', 'x-rar', 'x-tar', 'x-xz', 'zip'];
@@ -18,7 +19,7 @@ function isArchive(type) {
 
 async function handleFile(request, file) {
   const { request_path, root_path } = request;
-  const { file_path } = file;
+  const { file_path, row } = file;
   const output = {};
   const determined_type = await getType(file_path);
 
@@ -27,7 +28,7 @@ async function handleFile(request, file) {
     output.type = 'image';
     output.src = `/f/${strip(request_path)}/${file.name}`;
   } else if (determined_type?.startsWith('video')) {
-    const dur = await getDuration(file_path);
+    const dur = row?.duration || await getDuration(file_path);
     output.icon = 'fa-sharp fa-light fa-film';
     output.type = 'video';
     output.duration = formatDuration(dur);
@@ -39,7 +40,7 @@ async function handleFile(request, file) {
       output.thumbnail = `/f/.thumbnails/${strip(request_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
     }
   } else if (determined_type?.startsWith('audio')) {
-    const dur = await getDuration(file_path);
+    const dur = row?.duration || await getDuration(file_path);
     output.icon = 'fa-sharp fa-light fa-music';
     output.type = 'audio';
     output.duration = formatDuration(dur);
@@ -66,6 +67,11 @@ async function handleFile(request, file) {
 export async function parse(files, request) {
   const { local_path, root_path } = request;
 
+  const rows = await db.each('SELECT * FROM files');
+  for (const row of rows) {
+    console.log(row);
+  }
+
   const parsed = [];
   for (const file of files) {
     // TODO: List symbolic links as special, untraversable entries
@@ -76,11 +82,18 @@ export async function parse(files, request) {
     if (file.name === '.thumbnails') continue;
     file.file_path = path.join(local_path, file.name);
 
+    let row;
+    try {
+      row = db?.get('SELECT * FROM files WHERE path = $path', { $path: file.file_path });
+      file.row = row;
+      // console.log(row);
+    } catch {}
+
     const encoded_name = encodeURIComponent(file.name);
     const encoded_local_path = path.join(local_path, encoded_name);
     const encoded_root_path = path.relative(root_path, encoded_local_path);
 
-    const last_updated = getLastUpdated(file.file_path);
+    const last_updated = file.row?.last_updated || getLastUpdated(file.file_path);
     const output = {
       icon: dir ? 'fa-sharp fa-solid fa-folder' : 'fa-sharp fa-light fa-file-circle-question',
       last_updated: formatLastUpdated(last_updated),

@@ -105,6 +105,7 @@ await build({
     'handlebars',
     'lodash-es',
     'mmmagic',
+    'promised-sqlite3',
     'qs',
     'sqlite3',
   ],
