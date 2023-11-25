@@ -24,6 +24,7 @@ module.exports = {
     curly: ['error', 'multi-line'],
     'filenames/match-regex': 'off',
     'i18n-text/no-en': 'off',
+    'import/no-named-as-default-member': 'off',
     'no-await-in-loop': 'off',
     'no-console': 'off',
     'no-unused-vars': ['error', { 'varsIgnorePattern': '^_.*' }],

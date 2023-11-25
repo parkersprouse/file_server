@@ -8,10 +8,10 @@ import {
   toQuery,
   strip,
 } from '../lib/index.js';
-import { db } from '../db/index.js';
+import { getDB } from '../db/index.js';
 import { getType } from './content_type.js';
 
-const archive_types = ['x-7z-compressed', 'x-rar', 'x-tar', 'x-xz', 'zip'];
+const archive_types = Object.freeze(['x-7z-compressed', 'x-rar', 'x-tar', 'x-xz', 'zip']);
 function isArchive(type) {
   if (!type) return false;
   return archive_types.some((t) => type.endsWith(t));
@@ -67,11 +67,6 @@ async function handleFile(request, file) {
 export async function parse(files, request) {
   const { local_path, root_path } = request;
 
-  const rows = await db.each('SELECT * FROM files');
-  for (const row of rows) {
-    console.log(row);
-  }
-
   const parsed = [];
   for (const file of files) {
     // TODO: List symbolic links as special, untraversable entries
@@ -84,9 +79,8 @@ export async function parse(files, request) {
 
     let row;
     try {
-      row = db?.get('SELECT * FROM files WHERE path = $path', { $path: file.file_path });
+      row = await getDB().findOne({ path: file.file_path });
       file.row = row;
-      // console.log(row);
     } catch {}
 
     const encoded_name = encodeURIComponent(file.name);

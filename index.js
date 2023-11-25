@@ -14,6 +14,8 @@ import files_route from './routes/files.js';
 import not_found_route from './routes/not_found.js';
 
 async function init() {
+  const __dirname = path.resolve('.');
+
   const root_path = config.file_source;
   if (!root_path) throw new Error('No file source path provided');
   if (!fs.existsSync(root_path) || !fs.statSync(root_path).isDirectory()) {
@@ -22,7 +24,6 @@ async function init() {
 
   initTemplateEngine(handlebars);
 
-  const __dirname = path.resolve('.');
   const server = Hapi.server({
     app: {
       __dirname,

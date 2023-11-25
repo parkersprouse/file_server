@@ -15,9 +15,8 @@
   },
   "scripts": {
     "build": "node ./bin/build.mjs",
-    "db:create": "node ./db/create.js",
-    "db:create:force": "node ./db/create.js -f",
-    "db:update": "node ./db/update.js",
+    "db:scan": "node ./db/scan.js",
+    "db:scan:clean": "node ./db/scan.js -c",
     "lint:css": "stylelint styles.css",
     "lint:css:fix": "stylelint --fix styles.css",
     "lint:js": "xo **/*.js",
@@ -39,7 +38,7 @@
     "lodash-es": "^4.17.21",
     "luxon": "^3.4.4",
     "mmmagic": "^0.5.3",
-    "promised-sqlite3": "^2.1.0",
+    "mongodb": "^6.3.0",
     "qs": "^6.11.2",
     "sanitize.css": "^13.0.0"
   },
@@ -52,7 +51,6 @@
     "postcss-cli": "^10.1.0",
     "postcss-preset-env": "^9.3.0",
     "purgecss": "6.0.0-alpha.0",
-    "sqlite3": "^5.1.6",
     "stylelint": "^15.11.0",
     "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-standard": "^34.0.0",
