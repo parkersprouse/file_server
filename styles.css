@@ -61,8 +61,8 @@ a {
   text-decoration: none;
 }
 
-[class^="fa-"],
-[class*="fa-"] {
+[class^="material-"],
+[class*="material-"] {
   font-size: 1.5rem;
 }
 
@@ -120,8 +120,8 @@ nav {
       color: var(--text-color);
     }
 
-    & [class^="fa-"],
-    & [class*="fa-"] {
+    & [class^="material-"],
+    & [class*="material-"] {
       font-size: 2rem;
     }
   }
@@ -203,10 +203,9 @@ nav {
   color: var(--text-color-muted);
   white-space: nowrap;
 
-  & [class^="fa-"],
-  & [class*="fa-"] {
-    width: 10px;
-    height: 10px;
+  & [class^="material-"],
+  & [class*="material-"] {
+    font-size: 13px;
   }
 }
 
@@ -309,8 +308,8 @@ nav {
 
   color: var(--text-color);
 
-  & > [class^="fa-"],
-  & > [class*="fa-"] {
+  & > [class^="material-"],
+  & > [class*="material-"] {
     font-size: var(--toggle-size);
   }
 }
@@ -379,8 +378,8 @@ nav {
           object-fit: contain;
         }
 
-        & [class^="fa-"],
-        & [class*="fa-"] {
+        & [class^="material-"],
+        & [class*="material-"] {
           font-size: 4rem;
         }
       }
@@ -417,8 +416,8 @@ nav {
         font-size: 1rem;
 
         & .thumbnail {
-          & [class^="fa-"],
-          & [class*="fa-"] {
+          & [class^="material-"],
+          & [class*="material-"] {
             font-size: 2rem;
           }
         }

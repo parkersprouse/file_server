@@ -20,13 +20,13 @@ const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
 async function handleDirectory(request, hapi) {
   const { local_path, request_path, query } = request;
 
+  // We don't want to serve any directories under our thumbnail folder
+  if (request_path.startsWith('/.thumbnails')) return hapi.view('404').code(404);
+
   const view_parameter = valid_views.includes(query.view?.toLowerCase()) ? query.view.toLowerCase() : 'list';
   const sort_parameter = valid_sorts.includes(query.sort?.toLowerCase()) ? query.sort.toLowerCase() : 'name';
 
   const files = fs.readdirSync(local_path, { withFileTypes: true });
-
-  // We don't want to serve any directories under our thumbnail folder
-  if (request_path.startsWith('/.thumbnails')) return hapi.view('404').code(404);
 
   let parsed = await parse(files, request);
   parsed = sortEntries(parsed, sort_parameter);

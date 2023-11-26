@@ -67,21 +67,29 @@ async function handleFile(request, file) {
 export async function parse(files, request) {
   const { local_path, root_path } = request;
 
+  const rows = await getDB().find({
+    path: {
+      $in: [files.map((file) => file.file_path)],
+    },
+  });
+  // https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#modify-the-cursor-behavior
+  console.log(rows);
+
   const parsed = [];
   for (const file of files) {
     // TODO: List symbolic links as special, untraversable entries
     if (file.isSymbolicLink()) continue;
-    const dir = file.isDirectory();
-
     // We don't want the thumbnail folder to be listed
     if (file.name === '.thumbnails') continue;
+
+    const dir = file.isDirectory();
     file.file_path = path.join(local_path, file.name);
 
-    let row;
-    try {
-      row = await getDB().findOne({ path: file.file_path });
-      file.row = row;
-    } catch {}
+    // let row;
+    // try {
+    //   row = await getDB().findOne({ path: file.file_path });
+    //   file.row = row;
+    // } catch {}
 
     const encoded_name = encodeURIComponent(file.name);
     const encoded_local_path = path.join(local_path, encoded_name);

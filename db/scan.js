@@ -14,6 +14,7 @@ async function parse(dir_name) {
     const f = statSync(file_path);
     if (f.isSymbolicLink()) continue;
     else if (f.isDirectory()) {
+      if (file.startsWith('.thumbnails')) continue;
       try {
         // Ensure we can read the directory before parsing
         accessSync(file_path, constants.R_OK);
