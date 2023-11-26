@@ -41,6 +41,7 @@ async function parse(dir_name) {
 
 try {
   if (process.argv.includes('-c') || process.argv.includes('--clean')) await dropDB();
+  await getDB().createIndex({ path: 1 });
   await parse(file_source);
   process.exit(0);
 } catch (error) {
