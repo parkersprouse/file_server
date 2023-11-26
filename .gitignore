@@ -4,5 +4,4 @@
 **/node_modules/
 /server
 !/server/**/*.html
-/lib/fa_kit
 /db/*.db

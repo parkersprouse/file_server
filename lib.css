@@ -9,3 +9,121 @@
 @import url('sanitize.css/typography.css');
 @import url('sanitize.css/ui-monospace.css');
 @import url('hint.css/hint.min.css');
+@import url('@fontsource/inter/index.css');
+
+/**
+ * source: https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200
+ * static alt: https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,300,0,0
+ */
+@font-face {
+  font-family: 'Material Symbols Sharp';
+  font-weight: 100 700;
+  font-style: normal;
+  src: url('material_symbols.woff2') format('woff2');
+}
+
+.material-symbols-sharp {
+  direction: ltr;
+  display: inline-block;
+
+  font-family: 'Material Symbols Sharp', sans-serif;
+  font-size: 24px;
+  font-feature-settings: 'liga';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+
+  -moz-osx-font-smoothing: grayscale;
+
+  &.outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
+
+  &.filled {
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
+
+  &.file_video::after {
+    content: '\e04b';
+  }
+
+  &.folder::after {
+    content: '\e2c7';
+  }
+
+  &.view_grid::after {
+    content: '\e9b0';
+  }
+
+  &.file_archive::after {
+    content: '\e1a1';
+  }
+
+  &.view_list::after {
+    content: '\e896';
+  }
+
+  &.sort_desc::after {
+    content: '\e5c5';
+  }
+
+  &.sort_asc::after {
+    content: '\e5c7';
+  }
+
+  &.back_arrow::after {
+    content: '\e408';
+  }
+
+  &.file_image::after {
+    content: '\e3f4';
+  }
+
+  &.file_audio::after {
+    content: '\e405';
+  }
+
+  &.file_text::after {
+    content: '\e873';
+  }
+
+  &.file_default::after {
+    content: '\e66d';
+  }
+
+  &.file_unknown::after {
+    content: '\f804';
+  }
+
+  &.external_link::after {
+    content: '\e89e';
+  }
+
+  &.sort_by_name::after {
+    content: '\f05b';
+  }
+
+  &.sort_by_last_updated::after {
+    content: '\e889';
+  }
+
+  &.sort_by_duration::after {
+    content: '\e422';
+  }
+
+  &.close::after {
+    content: '\e5cd';
+  }
+
+  &.theme_dark::after {
+    content: '\e51c';
+  }
+
+  &.theme_light::after {
+    content: '\e518';
+  }
+}

@@ -24,12 +24,12 @@ async function handleFile(request, file) {
   const determined_type = await getType(file_path);
 
   if (determined_type?.startsWith('image')) {
-    output.icon = 'fa-sharp fa-light fa-image';
+    output.icon = 'material-symbols-sharp file_image outlined';
     output.type = 'image';
     output.src = `/f/${strip(request_path)}/${file.name}`;
   } else if (determined_type?.startsWith('video')) {
     const dur = row?.duration || await getDuration(file_path);
-    output.icon = 'fa-sharp fa-light fa-film';
+    output.icon = 'material-symbols-sharp file_video outlined';
     output.type = 'video';
     output.duration = formatDuration(dur);
     output.raw_duration = dur;
@@ -41,20 +41,20 @@ async function handleFile(request, file) {
     }
   } else if (determined_type?.startsWith('audio')) {
     const dur = row?.duration || await getDuration(file_path);
-    output.icon = 'fa-sharp fa-light fa-music';
+    output.icon = 'material-symbols-sharp file_audio outlined';
     output.type = 'audio';
     output.duration = formatDuration(dur);
     output.raw_duration = dur;
   } else if (determined_type?.startsWith('text')) {
-    output.icon = 'fa-sharp fa-light fa-file-alt';
+    output.icon = 'material-symbols-sharp file_text outlined';
     output.type = 'text';
   } else if (isArchive(determined_type)) {
-    output.icon = 'fa-sharp fa-light fa-file-zipper';
+    output.icon = 'material-symbols-sharp file_archive outlined';
     output.type = 'archive';
   }
 
   if (file_path.toLowerCase().endsWith('.url')) {
-    output.icon = 'fa-sharp fa-light fa-external-link';
+    output.icon = 'material-symbols-sharp external_link outlined';
     const lines = fs.readFileSync(file_path).toString('utf8').split('\n');
     for (const line in lines) {
       if (line.trim().startsWith('URL=')) output.external_url = line.split('=')[1];
@@ -89,7 +89,7 @@ export async function parse(files, request) {
 
     const last_updated = file.row?.last_updated || getLastUpdated(file.file_path);
     const output = {
-      icon: dir ? 'fa-sharp fa-solid fa-folder' : 'fa-sharp fa-light fa-file-circle-question',
+      icon: dir ? 'material-symbols-sharp folder filled' : 'material-symbols-sharp file_default outlined',
       last_updated: formatLastUpdated(last_updated),
       name: file.name,
       path: `/f/${strip(encoded_root_path)}${toQuery(request.query)}`,

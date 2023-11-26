@@ -28,7 +28,7 @@
     {{/if}}
       <div class='list-view--entry__left'>
         <div class='list-view--entry-cell list-view--entry-cell__icon'>
-          <i class='{{this.icon}}'></i>
+          <span class='{{this.icon}}'></span>
         </div>
       </div>
       <div class='list-view--entry__right'>
@@ -42,7 +42,7 @@
             {{#if this.last_updated}}
               <div class='list-view--entry-cell list-view--entry-cell__last-updated'>
                 <span class='meta' title='{{this.last_updated.absolute}}'>
-                  <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated.relative}}
+                  <span class='material-symbols-sharp sort_by_last_updated outlined'></span> {{this.last_updated.relative}}
                 </span>
               </div>
             {{/if}}
@@ -52,7 +52,7 @@
             {{#if this.duration}}
               <div class='list-view--entry-cell list-view--entry-cell__duration'>
                 <span class='meta' title='{{this.duration.long}}'>
-                  <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration.short}}
+                  <span class='material-symbols-sharp sort_by_duration outlined'></span> {{this.duration.short}}
                 </span>
               </div>
             {{/if}}
@@ -62,62 +62,3 @@
     </a>
   {{/each}}
 </div>
-
-
-<!--
-<div class='table-wrapper'>
-  <div role='grid' class='table' id='list-view'>
-    {{#each files}}
-      {{#if this.external_url}}
-      <a
-        role='row'
-        href='{{this.external_url}}'
-        class='row'
-        target='_blank'
-        rel='noopener noreferrer'
-        referrerpolicy='no-referrer'
-        title='{{this.name}}'
-      >
-      {{else}}
-      <a
-        role='row'
-        href='{{this.path}}'
-        class='row {{this.type}}-thumbnail'
-        title='{{this.name}}'
-        {{#if (or
-          (eq this.type "image")
-          (eq this.type "video"))}}
-          data-src='{{this.path}}'
-        {{/if}}
-        {{#if this.src}}
-          data-poster='{{this.src}}'
-        {{else if this.thumbnail}}
-          data-poster='{{this.thumbnail}}'
-        {{/if}}
-      >
-      {{/if}}
-        <div role='gridcell' class='cell list-view-icon'>
-          <i class='{{this.icon}}'></i>
-        </div>
-        <div role='gridcell' class='cell'>
-          {{this.name}}
-        </div>
-        <div role='gridcell' class='cell last-updated-cell'>
-          {{#if this.last_updated}}
-            <span class='meta' title='{{this.last_updated.absolute}}'>
-              <i class='fa-sharp fa-regular fa-history'></i> {{this.last_updated.relative}}
-            </span>
-          {{/if}}
-        </div>
-        <div role='gridcell' class='cell duration-cell'>
-          <span class='meta' title='{{this.duration.long}}'>
-            {{#if this.duration}}
-              <i class='fa-sharp fa-regular fa-stopwatch'></i> {{this.duration.short}}
-            {{/if}}
-          </span>
-        </div>
-      </a>
-    {{/each}}
-  </div>
-</div>
--->

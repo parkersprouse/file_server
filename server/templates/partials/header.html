@@ -14,16 +14,14 @@
         html.classList.toggle('dark');
         const is_dark = html.classList.contains('dark');
         window.localStorage.setItem('theme', is_dark ? 'dark' : 'light');
-        theme_toggle.querySelector('svg').dataset.icon = is_dark ? 'lightbulb-on' : 'lightbulb';
+        const icon = theme_toggle.querySelector('span');
+        icon.classList.remove('theme_dark', 'theme_light');
+        icon.classList.add(is_dark ? 'theme_light' : 'theme_dark');
       };
 
       if (window.localStorage.getItem('theme') === 'dark') {
         html.classList.add('dark');
-        // We have to throw the updating of the SVG in a `setTimeout` since
-        // it won't exist until after the FA script runs.
-        setTimeout(() => {
-          theme_toggle.querySelector('svg').dataset.icon = 'lightbulb-on';
-        }, 10);
+        theme_toggle.querySelector('span').classList.replace('theme_dark', 'theme_light');
       }
     }
 

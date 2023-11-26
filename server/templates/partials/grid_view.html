@@ -26,7 +26,7 @@
           {{else if this.thumbnail}}
             <img src='{{this.thumbnail}}'>
           {{else}}
-            <i class='{{this.icon}}'></i>
+            <span class='{{this.icon}}'></span>
           {{/if}}
         </div>
 
@@ -40,13 +40,13 @@
           <div class='grid-meta-wrapper'>
             {{#if this.last_updated}}
               <div class='meta' title='{{this.last_updated.absolute}}'>
-                <i class='fa-sharp fa-regular fa-history'></i>
+                <span class='material-symbols-sharp sort_by_last_updated outlined'></span>
                 <span>{{this.last_updated.relative}}</span>
               </div>
             {{/if}}
             {{#if this.duration}}
               <div class='meta' title='{{this.duration.long}}'>
-                <i class='fa-sharp fa-regular fa-stopwatch'></i>
+                <span class='material-symbols-sharp sort_by_duration outlined'></span>
                 <span>{{this.duration.short}}</span>
               </div>
             {{/if}}

@@ -10,7 +10,6 @@ module.exports = {
     'sonarjs',
   ],
   ignores: [
-    'lib/fa_kit/**/*.js',
     'node_modules/**/*.js',
     'server/**/*.js',
   ],
