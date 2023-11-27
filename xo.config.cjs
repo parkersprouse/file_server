@@ -31,6 +31,7 @@ module.exports = {
       arraysInObjects: false,
     }],
     'prettier/prettier': 'off',
+    'sonarjs/cognitive-complexity': 'off',
     'space-before-function-paren': ['error', {
       anonymous: 'always',
       asyncArrow: 'always',

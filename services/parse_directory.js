@@ -48,6 +48,9 @@ async function handleFile(request, file) {
   } else if (determined_type?.startsWith('text')) {
     output.icon = 'material-symbols-sharp file_text outlined';
     output.type = 'text';
+  } else if (determined_type?.endsWith('pdf')) {
+    output.icon = 'material-symbols-sharp file_pdf outlined';
+    output.type = 'pdf';
   } else if (isArchive(determined_type)) {
     output.icon = 'material-symbols-sharp file_archive outlined';
     output.type = 'archive';

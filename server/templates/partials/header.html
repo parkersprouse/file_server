@@ -1,9 +1,10 @@
 <meta charset='utf-8' />
 <meta name='viewport' content='width=device-width, initial-scale=1' />
 <title>{{page_title}}</title>
+<link href='https://cdn.jsdelivr.net/npm/nprogress@0.2/nprogress.min.css' rel='stylesheet'>
 <link href='/lib.css' rel='stylesheet' type='text/css'>
 <link href='/styles.css' rel='stylesheet' type='text/css'>
-<script src='/vendor.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/nprogress@0.2/nprogress.min.js'></script>
 <script>
   window.addEventListener('load', () => {
     // Theme toggle
@@ -95,5 +96,13 @@
         preview_dialog.showModal();
       });
     }
+  });
+
+  window.addEventListener('beforeunload', (event) => {
+    NProgress.start();
+  });
+
+  window.addEventListener('unload', (event) => {
+    NProgress.done();
   });
 </script>

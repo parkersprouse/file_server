@@ -42,7 +42,7 @@
             {{#if this.last_updated}}
               <div class='list-view--entry-cell list-view--entry-cell__last-updated'>
                 <span class='meta' title='{{this.last_updated.absolute}}'>
-                  <span class='material-symbols-sharp sort_by_last_updated outlined'></span> {{this.last_updated.relative}}
+                  <span class='material-symbols-sharp sort_last_updated outlined'></span> {{this.last_updated.relative}}
                 </span>
               </div>
             {{/if}}
@@ -52,7 +52,7 @@
             {{#if this.duration}}
               <div class='list-view--entry-cell list-view--entry-cell__duration'>
                 <span class='meta' title='{{this.duration.long}}'>
-                  <span class='material-symbols-sharp sort_by_duration outlined'></span> {{this.duration.short}}
+                  <span class='material-symbols-sharp sort_duration outlined'></span> {{this.duration.short}}
                 </span>
               </div>
             {{/if}}
