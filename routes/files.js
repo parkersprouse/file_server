@@ -3,9 +3,9 @@ import path from 'node:path';
 import {
   atRoot,
   generateUrl,
-  toQuery,
   sortEntries,
   toBreadcrumbs,
+  toQuery,
 } from '../lib/index.js';
 import { parse } from '../services/parse_directory.js';
 
