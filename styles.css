@@ -68,9 +68,6 @@ a {
 
 main {
   z-index: 100;
-
-  /* 122px from the top (nav + bread) + 32 for padding */
-  padding: 154px 32px 32px;
 }
 
 nav {
@@ -221,6 +218,9 @@ nav {
   align-items: flex-start;
   justify-content: flex-start;
 
+  /* 122px from the top (nav + bread) + 32 for padding */
+  padding: 154px 0 32px;
+
   & .list-view--entry {
     display: flex;
     flex-flow: row nowrap;
@@ -229,7 +229,7 @@ nav {
 
     width: 100%;
     height: auto;
-    padding: 0.5rem;
+    padding: 0.5rem 32px;
 
     border-bottom: 1px solid var(--border-color);
 
@@ -283,10 +283,6 @@ nav {
         width: 100%;
       }
     }
-
-    /* & .list-view--entry-cell {
-
-    } */
   }
 }
 
@@ -320,6 +316,9 @@ nav {
   gap: 1rem;
   place-content: center flex-start;
   align-items: center;
+
+  /* 122px from the top (nav + bread) + 32 for padding */
+  padding: 154px 32px 32px;
 
   & .content-card {
     display: block;
