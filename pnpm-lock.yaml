@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.1.2
     version: 2.1.2
   '@fontsource/inter':
-    specifier: ^5.0.15
-    version: 5.0.15
+    specifier: ^5.0.16
+    version: 5.0.16
   '@hapi/hapi':
     specifier: ^21.3.2
     version: 21.3.2
@@ -827,8 +827,8 @@ packages:
     dev: false
     optional: true
 
-  /@fontsource/inter@5.0.15:
-    resolution: {integrity: sha512-/IoWYEXl8lqJEx50JqNPT+bI4VNwxb/bg2oOfvG8PiEsDsmHRFvWBVHlohBNn1+QdBf+KbAjU/gb4vlGOSsVWw==}
+  /@fontsource/inter@5.0.16:
+    resolution: {integrity: sha512-qF0aH5UiZvCmneX5orJbVRoc2VTyLTV3X/7laMp03Qt28L+B9tFlZODOGUL64wDWc69YVdi1LeJB0cIgd51lvw==}
     dev: false
 
   /@github/browserslist-config@1.0.0:
