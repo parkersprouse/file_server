@@ -65,7 +65,7 @@ thumbnail_root_dir="$prefix/.thumbnails"
 # i.e. "/mnt/c/my/cool/videos" with a prefix of "/mnt/c" would store thumbnails in "/mnt/c/.thumbnails/my/cool/videos"
 
 # to ignore a specific directory, add the following to the `find` command:
-# -not \( -path <absolute_path> -prune \)
+# -not \( -path '<absolute_path>' -prune \)
 for file in $(find $source_dir -type f -iname '*.mp4' -or -iname '*.m4v' -or -iname '*.webm' -or -name '*.mov');
 do
   # current file path without file extension
