@@ -105,22 +105,19 @@
             autoplay: false,
             controls: [
               'play-large',
-              'restart',
               'play',
               'progress',
               'current-time',
               'duration',
               'mute',
               'volume',
-              'settings',
-              'download',
               'fullscreen',
             ],
             disableContextMenu: false,
             keyboard: { focused: true, global: true },
             settings: ['speed', 'loop'],
             title,
-            tooltips: { controls: true, seek: true },
+            tooltips: { controls: false, seek: true },
           });
 
           plyr.source = {

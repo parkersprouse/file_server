@@ -176,7 +176,27 @@
 #preview-dialog {
   & .plyr {
     --plyr-color-main: rgb(187 36 36);
+    --plyr-tooltip-background: #3c3c3c;
+    --plyr-tooltip-color: #eceff4;
+    --plyr-font-family: Inter, sans-serif;
+    --plyr-tooltip-padding: 4px;
 
     max-height: 100%;
+
+    & .plyr__controls {
+      & input {
+        cursor: pointer;
+      }
+
+      & .plyr__volume input[type="range"] {
+        min-width: 60px;
+        max-width: 60px;
+
+        /* Breakpoint used by Plyr */
+        @media (width <= 767px) {
+          display: none;
+        }
+      }
+    }
   }
 }
