@@ -72,7 +72,7 @@ main {
 
 nav {
   position: fixed;
-  z-index: 200;
+  z-index: 400;
   top: 0;
   left: 0;
 
@@ -291,7 +291,7 @@ nav {
   --toggle-size: 20px;
 
   position: fixed;
-  z-index: 400;
+  z-index: 1000;
   top: 8px;
   right: 8px;
 
@@ -505,10 +505,20 @@ nav {
 
 /* hint.css customizations */
 
-[class*="hint--"]::after {
-  padding: 4px;
-  color: #eceff4;
-  background: #000;
+[class*="hint--"] {
+  &::after {
+    padding: 4px;
+
+    font-family: inherit;
+    font-size: 0.75rem;
+    color: #eceff4;
+
+    background: #000;
+  }
+
+  &::before {
+    background: #000;
+  }
 }
 
 .hint--no-animate {
@@ -518,7 +528,8 @@ nav {
 }
 
 .hint--bottom {
-  &::after, &::before {
+  &::after,
+  &::before {
     top: 125%;
     border-bottom-color: #000;
   }
@@ -537,9 +548,15 @@ html.dark {
     }
   }
 
-  & [class*="hint--"]::after {
-    color: var(--text-color);
-    background: #3c3c3c;
+  & [class*="hint--"] {
+    &::after {
+      color: var(--text-color);
+      background: #3c3c3c;
+    }
+
+    &::before {
+      background: #3c3c3c;
+    }
   }
 
   & .hint--bottom {
