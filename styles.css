@@ -55,8 +55,6 @@ a {
   place-content: center flex-start;
   align-items: center;
 
-  height: 20px;
-
   color: var(--text-color);
   text-decoration: none;
 }
@@ -488,8 +486,9 @@ nav {
     right: 60px;
   }
 
-  & img,
-  & video {
+  & img#modal-image-viewer {
+    cursor: pointer;
+
     width: auto;
     max-width: 100%;
     height: auto;
@@ -498,8 +497,11 @@ nav {
     object-fit: contain;
   }
 
-  & img {
-    cursor: pointer;
+  & video {
+    display: initial;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 }
 

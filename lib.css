@@ -172,3 +172,11 @@
     border-left-color: var(--nprogress-color);
   }
 }
+
+#preview-dialog {
+  & .plyr {
+    --plyr-color-main: rgb(187 36 36);
+
+    max-height: 100%;
+  }
+}
