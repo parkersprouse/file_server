@@ -119,7 +119,7 @@ nav {
 
     & [class^="material-"],
     & [class*="material-"] {
-      font-size: 2rem;
+      font-size: 2.25rem;
     }
   }
 }

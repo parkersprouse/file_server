@@ -113,15 +113,3 @@ await build({
   platform: 'node',
   write: true,
 });
-
-// await build({
-//   ...shared,
-//   entryNames: 'vendor.min',
-//   entryPoints: [
-//     join(__root_dir, 'lib', 'fa_kit', 'js', 'all.min.js'),
-//   ],
-//   format: 'esm',
-//   outdir: __output_dir,
-//   platform: 'browser',
-//   write: true,
-// });
