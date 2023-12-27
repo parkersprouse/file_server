@@ -55,6 +55,9 @@ dependencies:
     version: 13.0.0
 
 devDependencies:
+  '@stylistic/stylelint-plugin':
+    specifier: ^2.0.0
+    version: 2.0.0(stylelint@16.1.0)
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.32)
@@ -88,9 +91,6 @@ devDependencies:
   stylelint-config-standard:
     specifier: ^36.0.0
     version: 36.0.0(stylelint@16.1.0)
-  stylelint-use-nesting:
-    specifier: ^4.1.0
-    version: 4.1.0(stylelint@16.1.0)
   xo:
     specifier: ^0.56.0
     version: 0.56.0(webpack@5.89.0)
@@ -1208,6 +1208,22 @@ packages:
   /@sindresorhus/merge-streams@1.0.0:
     resolution: {integrity: sha512-rUV5WyJrJLoloD4NDN1V1+LDMDWOa4OTsT4yYJwQNpTU6FWxkxHpL7eu4w+DmiH8x/EAM1otkPE1+LaspIbplw==}
     engines: {node: '>=18'}
+    dev: true
+
+  /@stylistic/stylelint-plugin@2.0.0(stylelint@16.1.0):
+    resolution: {integrity: sha512-dHKuT6PGd1WGZLOTuozAM7GdQzdmlmnFXYzvV1jYJXXpcCpV/OJ3+n8TXpMkoOeKHpJydY43EOoZTO1W/FOA4Q==}
+    engines: {node: ^18.12 || >=20.9}
+    peerDependencies:
+      stylelint: ^16.0.2
+    dependencies:
+      '@csstools/css-parser-algorithms': 2.4.0(@csstools/css-tokenizer@2.2.2)
+      '@csstools/css-tokenizer': 2.2.2
+      '@csstools/media-query-list-parser': 2.1.6(@csstools/css-parser-algorithms@2.4.0)(@csstools/css-tokenizer@2.2.2)
+      is-plain-object: 5.0.0
+      postcss-selector-parser: 6.0.14
+      postcss-value-parser: 4.2.0
+      style-search: 0.1.0
+      stylelint: 16.1.0(typescript@5.3.3)
     dev: true
 
   /@types/eslint-scope@3.7.7:
@@ -5282,6 +5298,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /style-search@0.1.0:
+    resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
+    dev: true
+
   /stylelint-config-clean-order@5.2.0(stylelint@16.1.0):
     resolution: {integrity: sha512-eAB9ftPa8txPFY2oh4NIE3DFkNzqVEBIALUZhSXP0+6CISPjZPBoOV24shjC9DgOKr7rNPY52DAXBXIBI//Mhg==}
     peerDependencies:
@@ -5317,15 +5337,6 @@ packages:
     dependencies:
       postcss: 8.4.32
       postcss-sorting: 8.0.2(postcss@8.4.32)
-      stylelint: 16.1.0(typescript@5.3.3)
-    dev: true
-
-  /stylelint-use-nesting@4.1.0(stylelint@16.1.0):
-    resolution: {integrity: sha512-DDI+T/8kGIxdcfPClxp/oS2cFSWvd+hoV54clF7lnrlSvYHOQouaxgMOuPmkIQig0suss/PrAw5GwBYoSu8WoQ==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      stylelint: '>= 10'
-    dependencies:
       stylelint: 16.1.0(typescript@5.3.3)
     dev: true
 

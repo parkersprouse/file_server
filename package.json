@@ -43,6 +43,7 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
+    "@stylistic/stylelint-plugin": "^2.0.0",
     "autoprefixer": "^10.4.16",
     "esbuild": "0.19.10",
     "eslint-plugin-github": "^4.10.1",
@@ -54,7 +55,6 @@
     "stylelint": "^16.1.0",
     "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-standard": "^36.0.0",
-    "stylelint-use-nesting": "^4.1.0",
     "xo": "^0.56.0"
   }
 }
