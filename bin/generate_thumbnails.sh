@@ -66,7 +66,7 @@ thumbnail_root_dir="$prefix/.thumbnails"
 
 # to ignore a specific directory, add the following to the `find` command:
 # -not \( -path '<absolute_path>' -prune \)
-for file in $(find $source_dir -type f -iname '*.mp4' -or -iname '*.m4v' -or -iname '*.webm' -or -name '*.mov');
+for file in $(find $source_dir -type f -iname '*.mp4' -or -iname '*.m4v' -or -iname '*.webm' -or -iname '*.mov');
 do
   # current file path without file extension
   stripped=${file%.*}
