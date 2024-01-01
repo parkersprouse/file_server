@@ -1,6 +1,6 @@
-# Local File Server
+# Local File Browser
 
-This is a basic [Hapi-powered](https://hapi.dev/) file server for serving a local directory through a minimalist, easy-to-use browser interface.
+This is a basic [Hapi-powered](https://hapi.dev/) file browser for serving a local directory through a minimalist, easy-to-use browser interface.
 
 ### Features
 
@@ -18,8 +18,8 @@ This is a basic [Hapi-powered](https://hapi.dev/) file server for serving a loca
 ## Prerequisites
 
 The app was built with and tested on:
-  - [Node](https://nodejs.org/en/) `18.12.1`
-  - [NPM](https://www.npmjs.com/) `8.19.2`
+  - [Node](https://nodejs.org/en/) `^20`
+  - [PNPM](https://www.pnpm.io/) `^8`
 
 So you should have at least these version installed to run it.  
 No guarantee about later versions.
@@ -51,12 +51,12 @@ Simply pass the absolute path to the file source directory and it will be used i
 
 Install dependencies:
 ```sh
-npm install
+pnpm install
 ```
 
 Start server:
 ```sh
-npm start
+pnpm start
 ```
 
 That's it!
