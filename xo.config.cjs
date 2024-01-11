@@ -27,6 +27,7 @@ module.exports = {
     'no-await-in-loop': 'off',
     'no-console': 'off',
     'no-unused-vars': ['error', { 'varsIgnorePattern': '^_.*' }],
+    'no-warning-comments': 'off',
     'object-curly-spacing': ['error', 'always', {
       arraysInObjects: false,
     }],

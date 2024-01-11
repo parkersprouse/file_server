@@ -8,7 +8,6 @@ import {
   toQuery,
   strip,
 } from '../lib/index.js';
-import { getDB } from '../db/index.js';
 import { getType } from './content_type.js';
 
 const archive_types = Object.freeze(['x-7z-compressed', 'x-rar', 'x-tar', 'x-xz', 'zip']);
@@ -19,7 +18,7 @@ function isArchive(type) {
 
 async function handleFile(request, file) {
   const { request_path, root_path } = request;
-  const { file_path, row } = file;
+  const { file_path } = file;
   const output = {};
   const determined_type = await getType(file_path);
 
@@ -28,7 +27,7 @@ async function handleFile(request, file) {
     output.type = 'image';
     output.src = `/f/${strip(request_path)}/${file.name}`;
   } else if (determined_type?.startsWith('video')) {
-    const dur = row?.duration || await getDuration(file_path);
+    const dur = await getDuration(file_path);
     output.icon = 'material-symbols-sharp file_video outlined';
     output.type = 'video';
     output.duration = formatDuration(dur);
@@ -40,7 +39,7 @@ async function handleFile(request, file) {
       output.thumbnail = `/f/.thumbnails/${strip(request_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
     }
   } else if (determined_type?.startsWith('audio')) {
-    const dur = row?.duration || await getDuration(file_path);
+    const dur = await getDuration(file_path);
     output.icon = 'material-symbols-sharp file_audio outlined';
     output.type = 'audio';
     output.duration = formatDuration(dur);
@@ -70,14 +69,8 @@ async function handleFile(request, file) {
 export async function parse(files, request) {
   const { local_path, root_path } = request;
 
-  // https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#modify-the-cursor-behavior
-  const rows_cursor = await getDB().find({
-    path: { $in: files.map((file) => path.join(local_path, file.name)) },
-  });
-  const rows = await rows_cursor.toArray();
-
   const parsed = [];
-  for (const file of files) {
+  for await (const file of files) {
     // TODO: List symbolic links as special, untraversable entries
     if (file.isSymbolicLink()) continue;
     // We don't want the thumbnail folder to be listed
@@ -85,13 +78,12 @@ export async function parse(files, request) {
 
     const dir = file.isDirectory();
     file.file_path = path.join(local_path, file.name);
-    file.row = rows.find((row) => row.path === file.file_path);
 
     const encoded_name = encodeURIComponent(file.name);
     const encoded_local_path = path.join(local_path, encoded_name);
     const encoded_root_path = path.relative(root_path, encoded_local_path);
 
-    const last_updated = file.row?.last_updated || getLastUpdated(file.file_path);
+    const last_updated = getLastUpdated(file.file_path);
     const output = {
       icon: dir ? 'material-symbols-sharp folder filled' : 'material-symbols-sharp file_default outlined',
       last_updated: formatLastUpdated(last_updated),

@@ -1,4 +1,5 @@
-import fs from 'node:fs';
+import { statSync } from 'node:fs';
+import { opendir } from 'node:fs/promises';
 import path from 'node:path';
 import {
   atRoot,
@@ -26,8 +27,7 @@ async function handleDirectory(request, hapi) {
   const view_parameter = valid_views.includes(query.view?.toLowerCase()) ? query.view.toLowerCase() : 'list';
   const sort_parameter = valid_sorts.includes(query.sort?.toLowerCase()) ? query.sort.toLowerCase() : 'name';
 
-  const files = fs.readdirSync(local_path, { withFileTypes: true });
-
+  const files = await opendir(local_path, { bufferSize: 128, recursive: false });
   let parsed = await parse(files, request);
   parsed = sortEntries(parsed, sort_parameter);
 
@@ -66,7 +66,7 @@ export default {
       const { root_path } = hapi.request.server.settings.app;
       const request_path = decodeURIComponent(request.path).replace(/^\/f/, '').replaceAll(/\/+/g, '/') || '/';
       const local_path = path.join(root_path, request_path);
-      const stats = fs.statSync(local_path);
+      const stats = statSync(local_path);
       request.root_path = root_path;
       request.local_path = local_path;
       request.request_path = request_path;
