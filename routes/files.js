@@ -27,7 +27,10 @@ async function handleDirectory(request, hapi) {
   const view_parameter = valid_views.includes(query.view?.toLowerCase()) ? query.view.toLowerCase() : 'list';
   const sort_parameter = valid_sorts.includes(query.sort?.toLowerCase()) ? query.sort.toLowerCase() : 'name';
 
-  const files = await opendir(local_path, { bufferSize: 128, recursive: false });
+  const files = await opendir(local_path, {
+    bufferSize: 128,
+    recursive: false,
+  });
   let parsed = await parse(files, request);
   parsed = sortEntries(parsed, sort_parameter);
 
@@ -52,7 +55,11 @@ async function handleDirectory(request, hapi) {
  * @returns {ResponseObject}
  */
 function handleFile(request, hapi) {
-  return hapi.file(request.local_path, { confine: false, mode: 'inline', etagMethod: 'simple' }).code(200);
+  return hapi.file(request.local_path, {
+    confine: false,
+    mode: 'inline',
+    etagMethod: 'simple',
+  }).code(200);
 }
 
 /**

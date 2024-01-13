@@ -1,16 +1,18 @@
-import process from 'node:process';
 import fs from 'node:fs';
 import path from 'node:path';
+import process from 'node:process';
+
+import handlebars from 'handlebars';
 import Hapi from '@hapi/hapi';
 import inert from '@hapi/inert';
 import logger from '@hapi/log';
-import vision from '@hapi/vision';
-import handlebars from 'handlebars';
 import qs from 'qs';
-import config from './config.js';
-import { initTemplateEngine } from './lib/init_template_engine.js';
+import vision from '@hapi/vision';
+
 import assets_route from './routes/assets.js';
+import config from './config.js';
 import files_route from './routes/files.js';
+import { initTemplateEngine } from './lib/init_template_engine.js';
 import not_found_route from './routes/not_found.js';
 
 async function init() {
@@ -30,8 +32,11 @@ async function init() {
       config,
       root_path,
     },
-    port: config.port,
     host: config.host,
+    port: config.port,
+    query: {
+      parser: (query) => qs.parse(query),
+    },
     router: {
       stripTrailingSlash: true,
     },
@@ -39,9 +44,6 @@ async function init() {
       files: {
         relativeTo: root_path,
       },
-    },
-    query: {
-      parser: (query) => qs.parse(query),
     },
   });
 
@@ -55,9 +57,9 @@ async function init() {
     engines: {
       html: handlebars,
     },
-    relativeTo: __dirname,
-    path: path.join(__dirname, 'server', 'templates'),
     partialsPath: path.join(__dirname, 'server', 'templates', 'partials'),
+    path: path.join(__dirname, 'server', 'templates'),
+    relativeTo: __dirname,
   });
 
   server.ext('onRequest', (request, hapi) => {

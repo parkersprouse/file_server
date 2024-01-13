@@ -15,12 +15,10 @@
   },
   "scripts": {
     "build": "node ./bin/build.mjs",
-    "db:scan": "node ./db/scan.js",
-    "db:scan:clean": "node ./db/scan.js -c",
     "lint:css": "stylelint styles.css",
     "lint:css:fix": "stylelint --fix styles.css",
-    "lint:js": "xo **/*.js",
-    "lint:js:fix": "xo **/*.js --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "server": "pnpm run build && node server/index.js",
     "start": "pnpm run server"
   },
@@ -43,18 +41,21 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.0.0",
+    "@stylistic/eslint-plugin": "^1.5.3",
     "@stylistic/stylelint-plugin": "^2.0.0",
     "autoprefixer": "^10.4.16",
     "esbuild": "0.19.11",
+    "eslint": "^8.56.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-github": "^4.10.1",
-    "eslint-plugin-sonarjs": "^0.23.0",
-    "postcss": "^8.4.32",
+    "eslint-plugin-import": "^2.29.1",
+    "postcss": "^8.4.33",
     "postcss-cli": "^11.0.0",
     "postcss-preset-env": "^9.3.0",
     "purgecss": "6.0.0-alpha.0",
     "stylelint": "^16.1.0",
-    "stylelint-config-clean-order": "^5.2.0",
-    "stylelint-config-standard": "^36.0.0",
-    "xo": "^0.56.0"
+    "stylelint-config-clean-order": "^5.3.0",
+    "stylelint-config-standard": "^36.0.0"
   }
 }

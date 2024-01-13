@@ -1,13 +1,12 @@
-/* eslint-disable no-console */
+import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { readdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
 
-import { PurgeCSS } from 'purgecss';
-import { build } from 'esbuild';
 import autoprefixer from 'autoprefixer';
+import { build } from 'esbuild';
 import postcss from 'postcss';
 import postcssPresetEnv from 'postcss-preset-env';
+import { PurgeCSS } from 'purgecss';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const __root_dir = resolve(__dirname, '..');
@@ -79,8 +78,14 @@ const purged_css_results = (await new PurgeCSS().purge({
   css: [output_styles],
   sourceMap: { to: output_styles },
 }))[0];
-await writeFile(purged_css_results.file, purged_css_results.css, { encoding: 'utf8', flag: 'w' });
-await writeFile(join(__output_dir, 'styles.css.map'), purged_css_results.sourceMap, { encoding: 'utf8', flag: 'w' });
+await writeFile(purged_css_results.file, purged_css_results.css, {
+  encoding: 'utf8',
+  flag: 'w',
+});
+await writeFile(join(__output_dir, 'styles.css.map'), purged_css_results.sourceMap, {
+  encoding: 'utf8',
+  flag: 'w',
+});
 
 /**
  * [Step 5] esbuild - JS

@@ -3,10 +3,10 @@ import path from 'node:path';
 import {
   formatDuration,
   formatLastUpdated,
-  getLastUpdated,
   getDuration,
-  toQuery,
+  getLastUpdated,
   strip,
+  toQuery,
 } from '../lib/index.js';
 import { getType } from './content_type.js';
 
