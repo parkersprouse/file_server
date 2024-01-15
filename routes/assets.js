@@ -6,6 +6,7 @@ import path from 'node:path';
 export default {
   method: 'GET',
   path: '/{any*}',
+
   handler(request, hapi) {
     try {
       return hapi.file(path.join(hapi.request.server.settings.app.__dirname, 'server', request.path), { confine: false });

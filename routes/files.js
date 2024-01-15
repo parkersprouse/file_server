@@ -1,6 +1,8 @@
-import { statSync } from 'node:fs';
 import { opendir } from 'node:fs/promises';
 import path from 'node:path';
+import { statSync } from 'node:fs';
+
+import { parse } from '../services/parse_directory.js';
 import {
   atRoot,
   generateUrl,
@@ -8,7 +10,6 @@ import {
   toBreadcrumbs,
   toQuery,
 } from '../lib/index.js';
-import { parse } from '../services/parse_directory.js';
 
 const valid_views = Object.freeze(['list', 'grid']);
 const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
