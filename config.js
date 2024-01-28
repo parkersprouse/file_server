@@ -4,7 +4,6 @@ import process from 'node:process';
 dotenv.config();
 
 export default {
-  db_host: process.env.DB_HOST,
   file_source: process.env.FILE_SERVER_FILES_SOURCE,
   host: process.env.FILE_SERVER_HOST || '0.0.0.0',
   port: process.env.FILE_SERVER_PORT || 3000,

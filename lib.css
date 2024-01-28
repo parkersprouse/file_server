@@ -178,7 +178,7 @@
     --plyr-color-main: rgb(187 36 36);
     --plyr-tooltip-background: #3c3c3c;
     --plyr-tooltip-color: #eceff4;
-    --plyr-font-family: Inter, sans-serif;
+    --plyr-font-family: 'Inter', sans-serif;
     --plyr-tooltip-padding: 4px;
 
     max-height: 100%;
@@ -188,7 +188,7 @@
         cursor: pointer;
       }
 
-      & .plyr__volume input[type="range"] {
+      & .plyr__volume input[type='range'] {
         min-width: 60px;
         max-width: 60px;
 

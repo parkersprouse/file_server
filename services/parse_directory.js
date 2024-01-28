@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { getType } from './content_type.js';
 import path from 'node:path';
 import {
   formatDuration,
@@ -8,7 +9,6 @@ import {
   strip,
   toQuery,
 } from '../lib/index.js';
-import { getType } from './content_type.js';
 
 const archive_types = Object.freeze(['x-7z-compressed', 'x-rar', 'x-tar', 'x-xz', 'zip']);
 function isArchive(type) {

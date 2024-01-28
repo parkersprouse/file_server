@@ -104,18 +104,17 @@
           plyr = new Plyr('#modal-video-player', {
             autoplay: false,
             controls: [
-              'play-large',
               'play',
+              'rewind',
               'progress',
               'current-time',
               'duration',
+              'fast-forward',
               'mute',
               'volume',
-              'fullscreen',
             ],
-            disableContextMenu: false,
             keyboard: { focused: true, global: true },
-            settings: ['speed', 'loop'],
+            muted: true,
             title,
             tooltips: { controls: false, seek: true },
           });

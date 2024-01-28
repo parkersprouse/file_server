@@ -14,11 +14,11 @@
     "pnpm": "^8"
   },
   "scripts": {
-    "build": "node ./bin/build.mjs",
-    "lint:css": "stylelint styles.css",
-    "lint:css:fix": "stylelint --fix styles.css",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "build": "node ./bin/build.js",
+    "lint:css": "stylelint \"**/*.{css,html}\"",
+    "lint:css:fix": "stylelint --fix \"**/*.{css,html}\"",
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
     "server": "pnpm run build && node server/index.js",
     "start": "pnpm run server"
   },
@@ -29,14 +29,13 @@
     "@hapi/inert": "^7.1.0",
     "@hapi/log": "^2.0.1",
     "@hapi/vision": "^7.0.3",
+    "@picturae/mmmagic": "^0.5.3",
     "dotenv": "^16.3.1",
     "execa": "^8.0.1",
     "handlebars": "^4.7.8",
     "hint.css": "^3.0.0",
     "lodash-es": "^4.17.21",
     "luxon": "^3.4.4",
-    "mmmagic": "^0.5.3",
-    "mongodb": "^6.3.0",
     "qs": "^6.11.2",
     "sanitize.css": "^13.0.0"
   },

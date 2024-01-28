@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { opendir } from 'node:fs/promises';
 import path from 'node:path';
 import { statSync } from 'node:fs';
@@ -58,8 +59,8 @@ async function handleDirectory(request, hapi) {
 function handleFile(request, hapi) {
   return hapi.file(request.local_path, {
     confine: false,
-    mode: 'inline',
     etagMethod: 'simple',
+    mode: 'inline',
   }).code(200);
 }
 
@@ -67,8 +68,6 @@ function handleFile(request, hapi) {
  * GET /f/*
  */
 export default {
-  method: 'GET',
-  path: '/f/{any*}',
   handler(request, hapi) {
     try {
       const { root_path } = hapi.request.server.settings.app;
@@ -86,4 +85,6 @@ export default {
       return hapi.view('404').code(404);
     }
   },
+  method: 'GET',
+  path: '/f/{any*}',
 };
