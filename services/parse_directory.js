@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import { getType } from './content_type.js';
 import path from 'node:path';
 import {
@@ -35,9 +35,11 @@ async function handleFile(request, file) {
 
     const thumbnail_file = file.name.replace(path.extname(file.name), '.png');
     const thumbnail_path = path.join(root_path, '.thumbnails', request_path, thumbnail_file);
-    if (fs.existsSync(thumbnail_path)) {
+
+    try {
+      await fs.stat(thumbnail_path);
       output.thumbnail = `/f/.thumbnails/${strip(request_path)}/${strip(encodeURIComponent(thumbnail_file))}`;
-    }
+    } catch { /* no thumbnail available for this video */ }
   } else if (determined_type?.startsWith('audio')) {
     const dur = await getDuration(file_path);
     output.icon = 'material-symbols-sharp file_audio outlined';
@@ -57,9 +59,9 @@ async function handleFile(request, file) {
 
   if (file_path.toLowerCase().endsWith('.url')) {
     output.icon = 'material-symbols-sharp external_link outlined';
-    const lines = fs.readFileSync(file_path).toString('utf8').split('\n');
-    for (const line in lines) {
-      if (line.trim().startsWith('URL=')) output.external_url = line.split('=')[1];
+    const lines = (await fs.readFile(file_path)).toString('utf8').split('\n');
+    for (const line of lines) {
+      if (line.trim().toLowerCase().startsWith('url=')) output.external_url = line.split('=')[1];
     }
   }
 
