@@ -44,7 +44,7 @@
     "@stylistic/eslint-plugin": "^1.5.3",
     "@stylistic/stylelint-plugin": "^2.0.0",
     "autoprefixer": "^10.4.16",
-    "esbuild": "0.19.11",
+    "esbuild": "0.20.0",
     "eslint": "^8.56.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-github": "^4.10.1",
