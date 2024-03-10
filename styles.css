@@ -13,35 +13,47 @@
 @custom-media --desktop (width >= 768px);
 
 :root {
+  --bg-color-hover: #e3e8ef; /* 5% darker */
   --bg-color: #f3f5f8;
-  --bg-color-hover: #d4dbe6;
-  --text-color: #000;
-  --text-color-muted-hard: rgb(0 0 0 / 25%);
-  --text-color-muted: rgb(0 0 0 / 50%);
   --border-color: var(--text-color-muted-hard);
+  --breadcrumbs-border-color: var(--text-color);
+  --grid-view-card-hover-border-color: var(--text-color);
+  --text-color-muted-hard: #c4c6c9;
+  --text-color-muted: #898c93;
+  --text-color: #181818;
+  --tooltip-bg-color: #181818;
+  --tooltip-text-color: #eceff4;
 }
 
 html.dark {
-  --bg-color: #121212;
-  --bg-color-hover: #212121;
-  --text-color: rgb(228 228 228); /* #c5c8c6 */
-  --text-color-muted-hard: rgb(228 228 228 / 20%);
-  --text-color-muted: rgb(228 228 228 / 35%);
+  --bg-color-hover: #242424; /* 5% lighter */
+  --bg-color: #181818;
   --border-color: var(--text-color-muted-hard);
+  --breadcrumbs-border-color: var(--text-color-muted-hard);
+  --grid-view-card-hover-border-color: var(--text-color-muted);
+  --text-color-muted-hard: #464748;
+  --text-color-muted: #747679;
+  --text-color: #d2d5db;
+  --tooltip-bg-color: #3c3c3c;
+  --tooltip-text-color: var(--text-color);
 }
 
 * {
   font-family: Inter, sans-serif;
+  outline: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none;
+  }
 }
 
 html,
 body {
-  min-height: 100%;
   min-height: 100vh;
-
   font-family: Inter, sans-serif;
   color: var(--text-color);
-
   background-color: var(--bg-color);
 
   &.dialog-open {
@@ -142,8 +154,8 @@ nav {
   padding: 0 32px;
 
   background-color: var(--bg-color);
-  border-top: 1px solid var(--text-color);
-  border-bottom: 1px solid var(--text-color);
+  border-top: 1px solid var(--breadcrumbs-border-color);
+  border-bottom: 1px solid var(--breadcrumbs-border-color);
 
   &::-webkit-scrollbar {
     display: none;
@@ -336,7 +348,7 @@ nav {
     border: 1px solid var(--text-color-muted-hard);
 
     &:hover {
-      border-color: var(--text-color);
+      border-color: var(--grid-view-card-hover-border-color);
 
       & .meta {
         color: var(--text-color);
@@ -407,7 +419,8 @@ nav {
     }
 
     @media (--mobile) {
-      width: calc((100% / 2) - 0.5rem);
+      /* width: calc((100% / 2) - 0.5rem); */
+      width: 100%;
 
       & .content-card--inner-wrapper {
         font-size: 1rem;
@@ -472,7 +485,7 @@ nav {
     width: 24px;
     height: 24px;
 
-    color: #f3f5f8;
+    color: #f3f5f8; /* TODO: Change to match new dark mode text color */
 
     background: none;
     border: none;
@@ -499,8 +512,8 @@ nav {
 
   & video {
     display: initial;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
     object-fit: contain;
   }
 }
@@ -513,13 +526,13 @@ nav {
 
     font-family: inherit;
     font-size: 0.75rem;
-    color: #eceff4;
+    color: var(--tooltip-text-color);
 
-    background: #000;
+    background: var(--tooltip-bg-color);
   }
 
   &::before {
-    background: #000;
+    background: var(--tooltip-bg-color);
   }
 }
 
@@ -533,39 +546,6 @@ nav {
   &::after,
   &::before {
     top: 125%;
-    border-bottom-color: #000;
+    border-bottom-color: var(--tooltip-bg-color);
   }
 }
-
-/* stylelint-disable no-duplicate-selectors -- Adding these to the top heavily messes up specificity */
-html.dark {
-  & #breadcrumbs {
-    border-top-color: var(--text-color-muted-hard);
-    border-bottom-color: var(--text-color-muted-hard);
-  }
-
-  & #grid-view {
-    & > a:hover {
-      border-color: var(--text-color-muted);
-    }
-  }
-
-  & [class*='hint--'] {
-    &::after {
-      color: var(--text-color);
-      background: #3c3c3c;
-    }
-
-    &::before {
-      background: #3c3c3c;
-    }
-  }
-
-  & .hint--bottom {
-    &::after,
-    &::before {
-      border-bottom-color: #3c3c3c;
-    }
-  }
-}
-/* stylelint-enable no-duplicate-selectors */
