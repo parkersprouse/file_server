@@ -53,7 +53,7 @@
     "postcss-cli": "^11.0.0",
     "postcss-preset-env": "^9.3.0",
     "purgecss": "6.0.0-alpha.0",
-    "stylelint": "^16.2.1",
+    "stylelint": "^16.5.0",
     "stylelint-config-clean-order": "^5.4.1",
     "stylelint-config-standard": "^36.0.0"
   }
