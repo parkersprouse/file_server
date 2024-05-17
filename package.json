@@ -11,7 +11,7 @@
   "type": "module",
   "engines": {
     "node": "^20",
-    "pnpm": "^8"
+    "pnpm": "^9"
   },
   "scripts": {
     "build": "node ./bin/build.js",
@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^2.1.2",
-    "@fontsource/inter": "^5.0.16",
-    "@hapi/hapi": "^21.3.3",
+    "@fontsource/inter": "^5.0.18",
+    "@hapi/hapi": "^21.3.9",
     "@hapi/inert": "^7.1.0",
     "@hapi/log": "^2.0.1",
     "@hapi/vision": "^7.0.3",
@@ -36,25 +36,25 @@
     "hint.css": "^3.0.0",
     "lodash-es": "^4.17.21",
     "luxon": "^3.4.4",
-    "qs": "^6.11.2",
+    "qs": "^6.12.1",
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.2",
-    "@stylistic/eslint-plugin": "^1.6.2",
-    "@stylistic/stylelint-plugin": "^2.1.0",
-    "autoprefixer": "^10.4.17",
-    "esbuild": "0.20.2",
+    "@stylistic/eslint-plugin": "^1.8.1",
+    "@stylistic/stylelint-plugin": "^2.1.2",
+    "autoprefixer": "^10.4.19",
+    "esbuild": "0.21.3",
     "eslint": "^8.57.0",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-github": "^4.10.1",
+    "eslint-plugin-github": "^4.10.2",
     "eslint-plugin-import": "^2.29.1",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "postcss-preset-env": "^9.3.0",
-    "purgecss": "6.0.0-alpha.0",
-    "stylelint": "^16.2.1",
-    "stylelint-config-clean-order": "^5.4.1",
+    "postcss-preset-env": "^9.5.13",
+    "purgecss": "6.0.0",
+    "stylelint": "^16.5.0",
+    "stylelint-config-clean-order": "^5.4.2",
     "stylelint-config-standard": "^36.0.0"
   }
 }
