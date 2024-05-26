@@ -95,6 +95,10 @@
     content: '\e2c7';
   }
 
+  &.splitscreen::after  {
+    content: '\f06d';
+  }
+
   &.sort_asc::after {
     content: '\e5c7';
   }
