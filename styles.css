@@ -419,9 +419,6 @@ nav {
     }
 
     @media (--mobile) {
-      /* width: calc((100% / 2) - 0.5rem); */
-      width: 100%;
-
       & .content-card--inner-wrapper {
         font-size: 1rem;
 
@@ -438,6 +435,20 @@ nav {
           align-items: flex-start;
           justify-content: flex-start;
         }
+      }
+    }
+  }
+
+  @media (--mobile) {
+    &.grid_d {
+      & .content-card {
+        width: calc(50% - 0.5rem);
+      }
+    }
+
+    &.grid_s {
+      & .content-card {
+      width: 100%;
       }
     }
   }

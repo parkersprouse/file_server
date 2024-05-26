@@ -12,7 +12,7 @@ import {
   toQuery,
 } from '../lib/index.js';
 
-const valid_views = Object.freeze(['list', 'grid']);
+const valid_views = Object.freeze(['list', 'grid_d', 'grid_s']);
 const valid_sorts = Object.freeze(['name', 'duration', 'last_updated']);
 
 /**
@@ -41,7 +41,8 @@ async function handleDirectory(request, hapi) {
     breadcrumbs: toBreadcrumbs(request_path, query),
     duration_sort_url: generateUrl(request_path, query, 'sort', 'duration'),
     files: parsed,
-    grid_view_url: generateUrl(request_path, query, 'view', 'grid'),
+    grid_d_view_url: generateUrl(request_path, query, 'view', 'grid_d'),
+    grid_s_view_url: generateUrl(request_path, query, 'view', 'grid_s'),
     last_updated_sort_url: generateUrl(request_path, query, 'sort', 'last_updated'),
     list_view_url: generateUrl(request_path, query, 'view', 'list'),
     name_sort_url: generateUrl(request_path, query, 'sort', 'name'),

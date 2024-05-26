@@ -1,10 +1,10 @@
 # Local File Browser
 
-This is a basic [Hapi-powered](https://hapi.dev/), web-based file browser for serving a local directory through a minimalist, easy-to-use interface.
+This is a basic [hapi-powered](https://hapi.dev/), web-based file browser for serving a local directory through a minimalist, easy-to-use interface.
 
 ### Features
 
-- Minimalist, intuitive UI for easy navigation
+- Minimalist, intuitive UI for easy navigation, including dark and light modes
 - List view and grid view options for viewing directory content
 - Icons for identifying basic file types (text, image, video, audio)
 - Auto-linking of `.url` files so they can simply be clicked and visited
@@ -19,7 +19,7 @@ This is a basic [Hapi-powered](https://hapi.dev/), web-based file browser for se
 
 The app was built with and tested on:
   - [Node](https://nodejs.org/en/) `^20`
-  - [pnpm](https://www.pnpm.io/) `^8`
+  - [pnpm](https://www.pnpm.io/) `^9`
 
 You should have at least these versions installed to run it.  
 No guarantee about other versions or package managers.
