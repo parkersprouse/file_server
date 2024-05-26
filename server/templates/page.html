@@ -6,32 +6,40 @@
 
   <body>
     <a href='#' id='theme-toggle'>
-      <span class='material-symbols-sharp filled theme_dark'></span>
+      <svg class='lucide lucide-lightbulb hidden hint--left hint--no-animate' aria-label='Light Mode' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'/>
+        <path d='M9 18h6'/>
+        <path d='M10 22h4'/>
+      </svg>
+
+      <svg class='lucide lucide-lightbulb-off hint--left hint--no-animate' aria-label='Dark Mode' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M16.8 11.2c.8-.9 1.2-2 1.2-3.2a6 6 0 0 0-9.3-5'/>
+        <path d='m2 2 20 20'/>
+        <path d='M6.3 6.3a4.67 4.67 0 0 0 1.2 5.2c.7.7 1.3 1.5 1.5 2.5'/>
+        <path d='M9 18h6'/>
+        <path d='M10 22h4'/>
+      </svg>
+      <!--
+        <svg class='lucide lucide-moon' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+          <path d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/>
+        </svg>
+
+        <svg class='lucide lucide-sun hidden' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+          <circle cx='12' cy='12' r='4'/>
+          <path d='M12 2v2'/>
+          <path d='M12 20v2'/>
+          <path d='m4.93 4.93 1.41 1.41'/>
+          <path d='m17.66 17.66 1.41 1.41'/>
+          <path d='M2 12h2'/>
+          <path d='M20 12h2'/>
+          <path d='m6.34 17.66-1.41 1.41'/>
+          <path d='m19.07 4.93-1.41 1.41'/>
+        </svg>
+      -->
     </a>
 
-    <nav>
-      <a href='{{list_view_url}}' aria-label='List View' class='hint--bottom hint--no-animate{{#ifEquals view_param 'list'}} active{{/ifEquals}}'>
-        <span class='material-symbols-sharp outlined view_list'></span>
-      </a>
-      <a href='{{grid_d_view_url}}' aria-label='Grid View - Dual' class='hint--bottom hint--no-animate{{#ifEquals view_param 'grid_d'}} active{{/ifEquals}}'>
-        <span class='material-symbols-sharp outlined view_grid'></span>
-      </a>
-      <a href='{{grid_s_view_url}}' aria-label='Grid View - Single' class='hint--bottom hint--no-animate{{#ifEquals view_param 'grid_s'}} active{{/ifEquals}}'>
-        <span class='material-symbols-sharp outlined splitscreen'></span>
-      </a>
-
-      <span class='nav-separator'></span>
-
-      <a href='{{name_sort_url}}' aria-label='Sort By Name' class='hint--bottom hint--no-animate{{#ifEquals sort_param 'name'}} active{{/ifEquals}}'>
-        <span class='material-symbols-sharp outlined sort_name'></span>
-      </a>
-      <a href='{{duration_sort_url}}' aria-label='Sort By Duration' class='hint--bottom hint--no-animate{{#ifEquals sort_param 'duration'}} active{{/ifEquals}}'>
-        <span class='material-symbols-sharp outlined sort_duration'></span>
-      </a>
-      <a href='{{last_updated_sort_url}}' aria-label='Sort By Last Updated' class='hint--bottom hint--no-animate{{#ifEquals sort_param 'last_updated'}} active{{/ifEquals}}'>
-        <span class='material-symbols-sharp outlined sort_last_updated'></span>
-      </a>
-    </nav>
+    {{> nav_mobile}}
+    {{> nav_desktop}}
 
     {{#if breadcrumbs}}
       <div id='breadcrumbs'>
@@ -53,19 +61,26 @@
     {{/if}}
 
     <main>
-      {{#ifStartsWith view_param 'grid'}}
-        {{> grid_view}}
-      {{else}}
+      {{#ifEquals view_param 'list_compact'}}
         {{> list_view}}
-      {{/ifStartsWith}}
+      {{else}}
+        {{> grid_view}}
+      {{/ifEquals}}
     </main>
 
     <dialog id='preview-dialog'>
       <button aria-label='Close' class='hint--bottom hint--no-animate dialog-close'>
-        <span class='material-symbols-sharp outlined close'></span>
+        <svg class='lucide lucide-x' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+          <path d='M18 6 6 18'/>
+          <path d='m6 6 12 12'/>
+        </svg>
       </button>
       <a aria-label='Open in New Tab' class='hint--bottom hint--no-animate dialog-new-tab' target='_blank'>
-        <span class='material-symbols-sharp outlined external_link'></span>
+        <svg class='lucide lucide-square-arrow-out-up-right' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+          <path d='M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6'/>
+          <path d='m21 3-9 9'/>
+          <path d='M15 3h6v6'/>
+        </svg>
       </a>
     </dialog>
   </body>

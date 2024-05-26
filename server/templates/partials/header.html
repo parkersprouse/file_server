@@ -11,20 +11,31 @@
   window.addEventListener('load', () => {
     // Theme toggle
     const theme_toggle = document.querySelector('#theme-toggle');
-    if (theme_toggle) {
+    const icon_light = theme_toggle.querySelector('svg.lucide-lightbulb');
+    const icon_dark = theme_toggle.querySelector('svg.lucide-lightbulb-off');
+
+    function toggleThemeIcon(is_dark = false) {
+      if (is_dark) {
+        icon_light.classList.remove('hidden');
+        icon_dark.classList.add('hidden');
+      } else {
+        icon_light.classList.add('hidden');
+        icon_dark.classList.remove('hidden');
+      }
+    }
+
+    if (theme_toggle && icon_light && icon_dark) {
       const html = document.querySelector('html');
       theme_toggle.onclick = () => {
         html.classList.toggle('dark');
         const is_dark = html.classList.contains('dark');
         window.localStorage.setItem('theme', is_dark ? 'dark' : 'light');
-        const icon = theme_toggle.querySelector('span');
-        icon.classList.remove('theme_dark', 'theme_light');
-        icon.classList.add(is_dark ? 'theme_light' : 'theme_dark');
+        toggleThemeIcon(is_dark);
       };
 
       if (window.localStorage.getItem('theme') === 'dark') {
         html.classList.add('dark');
-        theme_toggle.querySelector('span').classList.replace('theme_dark', 'theme_light');
+        toggleThemeIcon(true);
       }
     }
 

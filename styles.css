@@ -71,9 +71,9 @@ a {
   text-decoration: none;
 }
 
-[class^='material-'],
-[class*='material-'] {
-  font-size: 1.5rem;
+.lucide {
+  width: 24px;
+  height: 24px;
 }
 
 main {
@@ -127,9 +127,21 @@ nav {
       color: var(--text-color);
     }
 
-    & [class^='material-'],
-    & [class*='material-'] {
-      font-size: 2.25rem;
+    & .lucide {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+
+  @media (--mobile) {
+    &#nav-desktop {
+      display: none !important;
+    }
+  }
+
+  @media (--desktop) {
+    &#nav-mobile {
+      display: none !important;
     }
   }
 }
@@ -210,9 +222,9 @@ nav {
   color: var(--text-color-muted);
   white-space: nowrap;
 
-  & [class^='material-'],
-  & [class*='material-'] {
-    font-size: 13px;
+  & .lucide {
+    width: 0.8rem;
+    height: 0.8rem;
   }
 }
 
@@ -298,7 +310,7 @@ nav {
 
 #theme-toggle,
 #theme-toggle:hover {
-  --toggle-size: 20px;
+  --toggle-size: 1.25rem;
 
   position: fixed;
   z-index: 1000;
@@ -314,9 +326,9 @@ nav {
 
   color: var(--text-color);
 
-  & > [class^='material-'],
-  & > [class*='material-'] {
-    font-size: var(--toggle-size);
+  & > .lucide {
+    width: var(--toggle-size);
+    height: var(--toggle-size);
   }
 }
 
@@ -387,9 +399,9 @@ nav {
           object-fit: contain;
         }
 
-        & [class^='material-'],
-        & [class*='material-'] {
-          font-size: 4rem;
+        & .lucide {
+          width: 4rem;
+          height: 4rem;
         }
       }
 
@@ -423,9 +435,9 @@ nav {
         font-size: 1rem;
 
         & .thumbnail {
-          & [class^='material-'],
-          & [class*='material-'] {
-            font-size: 2rem;
+          & .lucide {
+            width: 2rem;
+            height: 2rem;
           }
         }
 
@@ -440,18 +452,22 @@ nav {
   }
 
   @media (--mobile) {
-    &.grid_d {
+    &.grid {
       & .content-card {
         width: calc(50% - 0.5rem);
       }
     }
 
-    &.grid_s {
+    &.list_block {
       & .content-card {
-      width: 100%;
+        width: 100%;
       }
     }
   }
+}
+
+.hidden {
+  display: none !important;
 }
 
 /* Preview Dialog */
@@ -495,6 +511,7 @@ nav {
 
     width: 24px;
     height: 24px;
+    padding: 0;
 
     color: #f3f5f8; /* TODO: Change to match new dark mode text color */
 
