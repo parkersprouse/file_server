@@ -10,28 +10,32 @@
 <script>
   window.addEventListener('load', () => {
     // Theme toggle
-    const theme_toggle = document.querySelector('#theme-toggle');
-    const icon_light = theme_toggle.querySelector('svg.lucide-lightbulb');
-    const icon_dark = theme_toggle.querySelector('svg.lucide-lightbulb-off');
+    const toggle_light = document.querySelector('.theme-toggle.theme-toggle--light');
+    const toggle_dark = document.querySelector('.theme-toggle.theme-toggle--dark');
+    // const icon_light = theme_toggle.querySelector('svg.lucide-lightbulb');
+    // const icon_dark = theme_toggle.querySelector('svg.lucide-lightbulb-off');
 
-    function toggleThemeIcon(is_dark = false) {
-      if (is_dark) {
-        icon_light.classList.remove('hidden');
-        icon_dark.classList.add('hidden');
-      } else {
-        icon_light.classList.add('hidden');
-        icon_dark.classList.remove('hidden');
+    if (toggle_light && toggle_dark) {
+      function toggleThemeIcon(is_dark = false) {
+        if (is_dark) {
+          toggle_light.classList.remove('hidden');
+          toggle_dark.classList.add('hidden');
+        } else {
+          toggle_light.classList.add('hidden');
+          toggle_dark.classList.remove('hidden');
+        }
       }
-    }
 
-    if (theme_toggle && icon_light && icon_dark) {
-      const html = document.querySelector('html');
-      theme_toggle.onclick = () => {
+      function onToggle() {
         html.classList.toggle('dark');
         const is_dark = html.classList.contains('dark');
         window.localStorage.setItem('theme', is_dark ? 'dark' : 'light');
         toggleThemeIcon(is_dark);
-      };
+      }
+
+      const html = document.querySelector('html');
+      toggle_light.addEventListener('click', onToggle);
+      toggle_dark.addEventListener('click', onToggle);
 
       if (window.localStorage.getItem('theme') === 'dark') {
         html.classList.add('dark');
