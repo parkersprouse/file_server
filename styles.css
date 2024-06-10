@@ -36,6 +36,14 @@ html.dark {
   --text-color: #d2d5db;
   --tooltip-bg-color: #3c3c3c;
   --tooltip-text-color: var(--text-color);
+
+
+  /* --bg-color: #2e3440;
+  --border-color: #4c566a;
+  --box-shadow-color: var(--border-color);
+  --link-color: var(--text-color);
+  --link-hover-color: #bf616a;
+  --text-color: #d8dee9; */
 }
 
 * {
@@ -164,6 +172,41 @@ main {
       & .lucide {
         width: 0.7rem;
         height: 0.7rem;
+      }
+    }
+  }
+
+  &#not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    padding: 32px;
+
+    text-align: center;
+
+    & h1 {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+
+      & svg {
+        width: 2rem !important;
+        height: 2rem !important;
+      }
+    }
+
+    & a {
+      & svg {
+        width: 1.15rem !important;
+        height: 1.15rem !important;
+      }
+
+      & span {
+        font-size: 1.25rem !important;
       }
     }
   }
@@ -416,7 +459,7 @@ main {
         scrollbar-color: transparent transparent;
         scrollbar-width: none;
 
-        overflow: scroll clip;
+        overflow: auto clip;
         flex: 0 1 0;
 
         width: 100%;

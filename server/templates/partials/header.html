@@ -12,8 +12,6 @@
     // Theme toggle
     const toggle_light = document.querySelector('.theme-toggle.theme-toggle--light');
     const toggle_dark = document.querySelector('.theme-toggle.theme-toggle--dark');
-    // const icon_light = theme_toggle.querySelector('svg.lucide-lightbulb');
-    // const icon_dark = theme_toggle.querySelector('svg.lucide-lightbulb-off');
 
     if (toggle_light && toggle_dark) {
       function toggleThemeIcon(is_dark = false) {
@@ -49,9 +47,7 @@
       let plyr = null;
 
       preview_dialog.addEventListener('click', (event) => {
-        if (event.target.id === 'preview-dialog') {
-          preview_dialog.close();
-        }
+        if (event?.target?.id === 'preview-dialog') preview_dialog.close();
       });
 
       preview_dialog.querySelector('.dialog-close').addEventListener('click', () => {
@@ -73,7 +69,10 @@
       });
 
       const observer = new MutationObserver(() => {
-        if (preview_dialog.open) document.body.classList.add('dialog-open');
+        if (preview_dialog.open) {
+          document.body.classList.add('dialog-open');
+          document.querySelector('video')?.focus({ preventScroll: true, focusVisible: false });
+        }
         else document.body.classList.remove('dialog-open');
       });
 
@@ -142,10 +141,6 @@
           };
 
           preview_dialog.showModal();
-
-          setTimeout(() => {
-            document.querySelector('video').focus({ preventScroll: true, focusVisible: false });
-          }, 0);
         });
       }
     }

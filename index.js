@@ -71,6 +71,7 @@ async function init() {
   server.route(files_route);
 
   // Respond with any requested assets
+  // Also handles 404s for GET requests outside of the `/f` path prefix
   server.route(assets_route);
 
   // Anything non-GET is immediately a 404

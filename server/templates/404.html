@@ -2,36 +2,26 @@
 <html lang='en'>
   <head>
     {{> header page_title='Not Found'}}
-    <style>
-      html, body {
-        height: 100vh;
-      }
-
-      a i {
-        font-size: 1.15rem !important;
-      }
-
-      a span {
-        font-size: 1.25rem !important;
-      }
-
-      main {
-        align-items: center;
-        display: flex;
-        height: 100vh;
-        justify-content: center;
-        text-align: center;
-        padding: 32px;
-      }
-    </style>
   </head>
 
   <body>
-    <main>
+    {{> theme_toggle}}
+
+    <main id='not-found'>
       <div>
-        <h1>Not Found</h1>
+        <h1>
+          <svg class='lucide lucide-octagon-x' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+            <polygon points='7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2'/>
+            <path d='m15 9-6 6'/>
+            <path d='m9 9 6 6'/>
+          </svg>
+          Not Found
+        </h1>
         <a href='/'>
-          <span class='material-symbols-sharp back_arrow outlined'></span>
+          <svg class='lucide lucide-arrow-left' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+            <path d='m12 19-7-7 7-7'/>
+            <path d='M19 12H5'/>
+          </svg>
           <span>Back</span>
         </a>
       </div>

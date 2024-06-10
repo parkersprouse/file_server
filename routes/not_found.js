@@ -3,6 +3,6 @@ export default {
   path: '/{any*}',
 
   handler(_request, hapi) {
-    return hapi.view('404').code(404);
+    return hapi.view('404').code(200);
   },
 };

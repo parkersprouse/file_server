@@ -80,10 +80,10 @@ export default {
       request.request_path = request_path;
       if (stats.isDirectory()) return handleDirectory(request, hapi);
       if (stats.isFile()) return handleFile(request, hapi);
-      return hapi.view('404').code(404);
+      return hapi.view('404').code(200);
     } catch (error) {
       console.log(error);
-      return hapi.view('404').code(404);
+      return hapi.view('404').code(200);
     }
   },
   method: 'GET',
