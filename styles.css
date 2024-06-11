@@ -212,6 +212,39 @@ main {
   }
 }
 
+#list-view .list-view--entry-cell__name,
+#grid-view .name {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
+
+  overflow: auto clip;
+
+  width: 100%;
+  max-width: 100%;
+
+  text-overflow: ellipsis;
+  word-break: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
+
+  /* stylelint-disable-next-line media-feature-name-no-vendor-prefix */
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    text-overflow: initial;
+  }
+
+  /* stylelint-disable-next-line media-feature-name-no-vendor-prefix, media-feature-name-no-unknown */
+  @media screen and (min--moz-device-pixel-ratio: 0) {
+    text-overflow: ellipsis;
+  }
+}
+
 #breadcrumbs {
   scrollbar-color: transparent transparent;
   scrollbar-width: none;
@@ -362,25 +395,7 @@ main {
         width: 100%;
 
         & .list-view--entry-cell__name {
-          scrollbar-color: transparent transparent;
-          scrollbar-width: none;
-
-          overflow: auto clip;
-
-          width: 100%;
           height: fit-content;
-
-          /* text-overflow: ellipsis; */
-          word-break: normal;
-          word-wrap: normal;
-          white-space: nowrap;
-
-          &::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-            background: transparent;
-          }
         }
       }
 
@@ -466,27 +481,8 @@ main {
       }
 
       & .name {
-        scrollbar-color: transparent transparent;
-        scrollbar-width: none;
-
-        overflow: auto clip;
         flex: 0 1 0;
-
-        width: 100%;
-        max-width: 100%;
         min-height: 1.5rem; /* Must match line-height */
-
-        /* text-overflow: ellipsis; */
-        word-break: normal;
-        word-wrap: normal;
-        white-space: nowrap;
-
-        &::-webkit-scrollbar {
-          display: none;
-          width: 0;
-          height: 0;
-          background: transparent;
-        }
       }
 
       & .grid-meta-wrapper {
