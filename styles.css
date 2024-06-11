@@ -13,11 +13,25 @@
 @custom-media --desktop (width >= 768px);
 
 :root {
+  --font-family:
+    'Inter Variable', /* ----- Primary font ----------- */
+    system-ui,
+    -apple-system, /* -------- Safari on macOS >= 10.11 */
+    'BlinkMacSystemFont', /* - Chrome on macOS >= 10.11 */
+    'Segoe UI', /* ----------- >= Windows Vista ------- */
+    'Noto Sans', /* ---------- >= KDE Plasma 5 -------- */
+    'Helvetica',
+    'Arial',
+    sans-serif, /* ----------- fallback --------------- */
+    'Apple Color Emoji', /* -- macOS emoji ------------ */
+    'Segoe UI Emoji'; /* ----- Windows emoji ---------- */
+
   --bg-color-hover: #e3e8ef; /* 5% darker */
   --bg-color: #f3f5f8;
   --border-color: var(--text-color-muted-hard);
   --breadcrumbs-border-color: var(--text-color);
   --grid-view-card-hover-border-color: var(--text-color);
+  --link-color-hover: rgb(221 34 34);
   --text-color-muted-hard: #c4c6c9;
   --text-color-muted: #898c93;
   --text-color: #181818;
@@ -37,17 +51,18 @@ html.dark {
   --tooltip-bg-color: #3c3c3c;
   --tooltip-text-color: var(--text-color);
 
-
-  /* --bg-color: #2e3440;
+  /*
+  --bg-color: #2e3440;
   --border-color: #4c566a;
   --box-shadow-color: var(--border-color);
   --link-color: var(--text-color);
   --link-hover-color: #bf616a;
-  --text-color: #d8dee9; */
+  --text-color: #d8dee9;
+  */
 }
 
 * {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-family);
   outline: none;
 
   &:active,
@@ -60,7 +75,7 @@ html.dark {
 html,
 body {
   min-height: 100vh;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-family);
   color: var(--text-color);
   background-color: var(--bg-color);
 
@@ -123,10 +138,6 @@ nav {
       display: inline-flex;
     }
 
-    &:hover {
-      color: var(--text-color-muted);
-    }
-
     &.active {
       color: var(--text-color);
     }
@@ -134,6 +145,12 @@ nav {
     & .lucide {
       width: 2.25rem;
       height: 2.25rem;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--text-color-muted);
+      }
     }
   }
 
@@ -208,6 +225,12 @@ main {
       & span {
         font-size: 1.25rem !important;
       }
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--link-color-hover);
+        }
+      }
     }
   }
 }
@@ -236,7 +259,7 @@ main {
 
   /* stylelint-disable-next-line media-feature-name-no-vendor-prefix */
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    text-overflow: initial;
+    text-overflow: unset;
   }
 
   /* stylelint-disable-next-line media-feature-name-no-vendor-prefix, media-feature-name-no-unknown */
@@ -304,11 +327,13 @@ main {
         border-bottom: 1px solid transparent;
       }
 
-      & > a {
+      & > a.breadcrumb-item {
         color: var(--text-color-muted);
 
-        &:hover {
-          border-bottom-color: var(--text-color);
+        @media (hover: hover) {
+          &:hover {
+            border-bottom-color: var(--text-color);
+          }
         }
       }
     }
@@ -367,10 +392,6 @@ main {
 
     border-bottom: 1px solid var(--border-color);
 
-    &:hover {
-      background-color: var(--bg-color-hover);
-    }
-
     &:first-of-type {
       border-top: 1px solid var(--border-color);
     }
@@ -409,6 +430,12 @@ main {
         width: 100%;
       }
     }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--bg-color-hover);
+      }
+    }
   }
 }
 
@@ -433,14 +460,6 @@ main {
     text-align: center;
 
     border: 1px solid var(--text-color-muted-hard);
-
-    &:hover {
-      border-color: var(--grid-view-card-hover-border-color);
-
-      & .meta {
-        color: var(--text-color);
-      }
-    }
 
     & .content-card--inner-wrapper {
       display: flex;
@@ -495,6 +514,16 @@ main {
 
         min-width: 100%;
         max-width: calc(100% + 1rem);
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--grid-view-card-hover-border-color);
+
+        & .meta {
+          color: var(--text-color);
+        }
       }
     }
 
@@ -645,5 +674,14 @@ main {
   &::before {
     top: 125%;
     border-bottom-color: var(--tooltip-bg-color);
+  }
+}
+
+@media not (hover: hover) {
+  [class*='hint--'] {
+    &::after,
+    &::before {
+      display: none !important;
+    }
   }
 }

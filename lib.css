@@ -9,7 +9,8 @@
 @import url('sanitize.css/typography.css');
 @import url('sanitize.css/ui-monospace.css');
 @import url('hint.css/hint.min.css');
-@import url('@fontsource/inter/index.css');
+@import url('@fontsource-variable/inter');
+@import url('@fontsource-variable/inter/slnt.css');
 
 #nprogress {
   --nprogress-color: rgb(221 34 34);
@@ -39,7 +40,7 @@
     --plyr-color-main: rgb(187 36 36);
     --plyr-tooltip-background: #3c3c3c;
     --plyr-tooltip-color: #eceff4;
-    --plyr-font-family: 'Inter', sans-serif;
+    --plyr-font-family: 'Inter Variable', sans-serif;
     --plyr-tooltip-padding: 4px;
 
     max-height: 100%;
