@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url';
+import { copyFile, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
-import { readdir, readFile, rm, writeFile } from 'node:fs/promises';
 
 import autoprefixer from 'autoprefixer';
 import { build } from 'esbuild';
@@ -10,6 +10,7 @@ import { PurgeCSS } from 'purgecss';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const __root_dir = resolve(__dirname, '..');
+const __public_dir = join(__root_dir, 'public');
 const __output_dir = join(__root_dir, 'server');
 
 const source_styles = join(__root_dir, 'styles.css');
@@ -118,3 +119,16 @@ await build({
   platform: 'node',
   write: true,
 });
+
+/**
+ * [Step 6] Copy public files
+ */
+console.log('[Step 6] Copy public files');
+const public_files = await readdir(__public_dir, { withFileTypes: true });
+for (const file of public_files) {
+  if (file.isDirectory() || file.isSymbolicLink()) continue;
+  const src_file_path = join(__public_dir, file.name);
+  const dest_file_path = join(__output_dir, file.name);
+  console.log(`Copying "${src_file_path}" to "${dest_file_path}"`);
+  await copyFile(src_file_path, dest_file_path);
+}
