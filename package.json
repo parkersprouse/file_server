@@ -14,11 +14,11 @@
     "pnpm": "^9"
   },
   "scripts": {
-    "build": "node ./bin/build.js",
     "lint:css": "stylelint \"**/*.{css,html}\"",
     "lint:css:fix": "stylelint --fix \"**/*.{css,html}\"",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint . --fix",
+    "build": "node ./bin/build.js",
     "server": "pnpm run build && node server/index.js",
     "start": "pnpm run server"
   },

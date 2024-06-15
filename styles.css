@@ -148,7 +148,7 @@ nav {
     }
 
     @media (hover: hover) {
-      &:hover {
+      &:not(.active):hover {
         color: var(--text-color-muted);
       }
     }
