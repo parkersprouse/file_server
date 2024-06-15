@@ -2,17 +2,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-import handlebars from 'handlebars';
 import Hapi from '@hapi/hapi';
 import inert from '@hapi/inert';
 import logger from '@hapi/log';
-import qs from 'qs';
 import vision from '@hapi/vision';
+import handlebars from 'handlebars';
+import qs from 'qs';
 
-import assets_route from './routes/assets.js';
 import config from './config.js';
-import files_route from './routes/files.js';
 import { initTemplateEngine } from './lib/init_template_engine.js';
+import assets_route from './routes/assets.js';
+import files_route from './routes/files.js';
 import not_found_route from './routes/not_found.js';
 
 async function init() {

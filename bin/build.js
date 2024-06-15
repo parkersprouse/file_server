@@ -1,6 +1,6 @@
-import { fileURLToPath } from 'node:url';
 import { copyFile, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import autoprefixer from 'autoprefixer';
 import { build } from 'esbuild';

@@ -1,33 +1,43 @@
-import eslint from '@eslint/js';
-import { fileURLToPath } from 'node:url';
-import { FlatCompat } from '@eslint/eslintrc';
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
+
+import { FlatCompat } from '@eslint/eslintrc';
+import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
+const exts = Object.freeze(['.cjs', '.js', '.mjs']);
+
 /**
+ * ------------------------------------------------------------------------------
  * NOTE:
  * Any plugins that were written using the old .eslintrc config format and have
  * not yet been updated to support the new flat config format need to be run
  * through ESLint's `FlatCompat` utility in order to be used:
  * https://eslint.org/docs/latest/use/configure/migration-guide#using-eslintrc-configs-in-flat-config
+ * ------------------------------------------------------------------------------
  */
 export default [
   /**
    * ------------------------------------------------------------------------------
-   * ESLint server configuration:
+   * ESLint tooling configuration:
    * https://eslint.org/docs/latest/use/configure/configuration-files-new
    */
   {
-    ignores: ['node_modules/*', 'server/*'],
+    ignores: ['node_modules/*', 'server/**/*.js'],
   },
   {
-    files: ['**/*.cjs', '**/*.js', '**/*.mjs'],
+    files: exts.map((ext) => `**/*${ext}`),
     languageOptions: {
+      globals: {
+        console: 'readonly',
+        // document: 'readonly',
+        // window: 'readonly',
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -35,15 +45,16 @@ export default [
     },
     settings: {
       'import/parsers': {
-        espree: ['.js', '.cjs', '.mjs'],
+        espree: exts,
       },
       'import/resolver': {
         alias: {
-          extensions: ['.js', '.cjs', '.mjs'],
+          extensions: exts,
           map: [
             ['@', './'],
           ],
         },
+        node: true,
       },
     },
   },
@@ -64,15 +75,21 @@ export default [
 
   /**
    * ------------------------------------------------------------------------------
+   * [Extension] ESLint Import plugin for handling import/export errors
+   * https://github.com/import-js/eslint-plugin-import
+   */
+  ...compat.extends('plugin:import/recommended'),
+
+  /**
+   * ------------------------------------------------------------------------------
    * [Extension] GitHub's official set of recommended and browser-specific rules:
    * https://github.com/github/eslint-plugin-github/tree/main#rules
    */
   ...compat.extends('plugin:github/recommended'),
-  ...compat.extends('plugin:github/browser'),
 
   /**
    * ------------------------------------------------------------------------------
-   * Included ESLint rule customization:
+   * Base ESLint rule customization:
    * https://eslint.org/docs/latest/rules
    */
   {
@@ -117,16 +134,7 @@ export default [
           destructuring: 'any',
         },
       ],
-      'sort-imports': [
-        'error',
-        {
-          allowSeparatedGroups: true,
-          ignoreCase: true,
-          ignoreDeclarationSort: false,
-          ignoreMemberSort: false,
-          memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
-        },
-      ],
+      'sort-imports': 'off',
       'sort-keys': [
         'warn',
         'asc',
@@ -252,16 +260,47 @@ export default [
 
   /**
    * ------------------------------------------------------------------------------
+   * ESLint Import rule customization:
+   * https://github.com/import-js/eslint-plugin-import/tree/main#rules
+   */
+  {
+    rules: {
+      'import/first': 'error',
+      'import/newline-after-import': ['error', {
+        considerComments: true,
+        count: 1,
+      }],
+      'import/no-unresolved': 'error',
+      'import/order': ['error', {
+        alphabetize: {
+          caseInsensitive: true,
+          order: 'asc',
+          orderImportKind: 'asc',
+        },
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        'newlines-between': 'always',
+        pathGroups: [
+          {
+            group: 'builtin',
+            pattern: '{@,.,..}/**/*.css',
+            position: 'before',
+          },
+        ],
+        warnOnUnassignedImports: true,
+      }],
+    },
+  },
+
+  /**
+   * ------------------------------------------------------------------------------
    * GitHub rule customization:
-   * https://eslint.vuejs.org/rules/
+   * https://github.com/github/eslint-plugin-github/tree/main#rules
    */
   {
     rules: {
       'eslint-comments/no-use': 'off',
-      'github/unescaped-html-literal': 'off',
       'i18n-text/no-en': 'off',
       'import/extensions': ['error', 'ignorePackages'],
-      'import/no-nodejs-modules': 'off',
       'prettier/prettier': 'off',
     },
   },
