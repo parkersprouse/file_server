@@ -14,6 +14,7 @@
     "pnpm": "^9"
   },
   "scripts": {
+    "lint": "pnpm run lint:css && pnpm run lint:js",
     "lint:css": "stylelint \"**/*.{css,html}\"",
     "lint:css:fix": "stylelint --fix \"**/*.{css,html}\"",
     "lint:js": "eslint .",
@@ -25,7 +26,7 @@
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^2.1.2",
     "@fontsource-variable/inter": "^5.0.18",
-    "@hapi/hapi": "^21.3.9",
+    "@hapi/hapi": "^21.3.10",
     "@hapi/inert": "^7.1.0",
     "@hapi/log": "^2.0.1",
     "@hapi/vision": "^7.0.3",
@@ -40,20 +41,20 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/eslintrc": "^3.1.0",
     "@stylistic/eslint-plugin": "^1.8.1",
     "@stylistic/stylelint-plugin": "^2.1.2",
     "autoprefixer": "^10.4.19",
-    "esbuild": "0.21.3",
+    "esbuild": "0.21.5",
     "eslint": "^8.57.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-github": "^4.10.2",
     "eslint-plugin-import": "^2.29.1",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "postcss-preset-env": "^9.5.13",
+    "postcss-preset-env": "^9.5.14",
     "purgecss": "6.0.0",
-    "stylelint": "^16.5.0",
+    "stylelint": "^16.6.1",
     "stylelint-config-clean-order": "^5.4.2",
     "stylelint-config-standard": "^36.0.0"
   }

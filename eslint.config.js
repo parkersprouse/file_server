@@ -258,6 +258,7 @@ export default [
   {
     rules: {
       'eslint-comments/no-use': 'off',
+      'github/unescaped-html-literal': 'off',
       'i18n-text/no-en': 'off',
       'import/extensions': ['error', 'ignorePackages'],
       'import/no-nodejs-modules': 'off',
