@@ -30,7 +30,7 @@
     "@hapi/inert": "^7.1.0",
     "@hapi/log": "^2.0.1",
     "@hapi/vision": "^7.0.3",
-    "@picturae/mmmagic": "^0.5.3",
+    "@picturae/mmmagic": "^0.5.5",
     "dotenv": "^16.4.5",
     "execa": "^9.3.0",
     "handlebars": "^4.7.8",
