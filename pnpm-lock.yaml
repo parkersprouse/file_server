@@ -27,8 +27,8 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       '@picturae/mmmagic':
-        specifier: ^0.5.3
-        version: 0.5.3
+        specifier: ^0.5.5
+        version: 0.5.5
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -733,8 +733,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@picturae/mmmagic@0.5.3':
-    resolution: {integrity: sha512-EDccoH7N717ArBJUnW+pXyKM4oiWFV8YYOojxGPO8CpftDN7T7L0ckSDORR7Fm3rrKKum9cgzcxIcvjRDX/bwQ==}
+  '@picturae/mmmagic@0.5.5':
+    resolution: {integrity: sha512-jeh3RWOopUefNMKAMN3S4g/qod+mtk8/DImiTEyCSya/iKshh2vVxfQqMnZzTdGkgsTz5J47D6cynqFD8fckXQ==}
     engines: {node: '>=4.0.0'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -3266,7 +3266,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@picturae/mmmagic@0.5.3':
+  '@picturae/mmmagic@0.5.5':
     dependencies:
       nan: 2.20.0
 
