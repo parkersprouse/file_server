@@ -97,8 +97,8 @@ importers:
         specifier: ^16.7.0
         version: 16.7.0(typescript@5.4.5)
       stylelint-config-clean-order:
-        specifier: ^6.0.0
-        version: 6.0.0(stylelint@16.7.0(typescript@5.4.5))
+        specifier: ^6.1.0
+        version: 6.1.0(stylelint@16.7.0(typescript@5.4.5))
       stylelint-config-standard:
         specifier: ^36.0.1
         version: 36.0.1(stylelint@16.7.0(typescript@5.4.5))
@@ -2411,8 +2411,8 @@ packages:
   style-search@0.1.0:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
 
-  stylelint-config-clean-order@6.0.0:
-    resolution: {integrity: sha512-iY+zJn0nt0V5bTCH4AfG1L4Ds/GR1MrGR77jwJ3pUNFQrdFOXFp6F7zwR05adUZ0g6+7Hsu0R4SlfAYCdqss+w==}
+  stylelint-config-clean-order@6.1.0:
+    resolution: {integrity: sha512-Xe1U0stw57Evdcx+7q7XYAniyE7XAKv/bwfH9LcsFCcKTPZflzTiJLXGkQUsPMlA4cfMyxEebqm5bRN2doTD3w==}
     peerDependencies:
       stylelint: '>=14'
 
@@ -5163,7 +5163,7 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  stylelint-config-clean-order@6.0.0(stylelint@16.7.0(typescript@5.4.5)):
+  stylelint-config-clean-order@6.1.0(stylelint@16.7.0(typescript@5.4.5)):
     dependencies:
       stylelint: 16.7.0(typescript@5.4.5)
       stylelint-order: 6.0.4(stylelint@16.7.0(typescript@5.4.5))
