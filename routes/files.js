@@ -30,7 +30,7 @@ async function handleDirectory(request, hapi) {
   const sort_parameter = valid_sorts.includes(query.sort?.toLowerCase()) ? query.sort.toLowerCase() : 'name';
 
   const files = await opendir(local_path, {
-    bufferSize: 128,
+    bufferSize: 512,
     recursive: false,
   });
   let parsed = await parse(files, request);

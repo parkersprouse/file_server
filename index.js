@@ -51,7 +51,7 @@ async function init() {
   await server.register(logger);
   await server.register(vision);
 
-  server.plugins.log.setLevel('error');
+  server.plugins.log.setLevel('emergency');
 
   server.views({
     engines: {

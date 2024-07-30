@@ -28,7 +28,7 @@ async function handleFile(request, file) {
     output.icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>';
     output.type = 'image';
     output.src = `/f/${strip(request_path)}/${file.name}`;
-  } else if (determined_type?.startsWith('video')) {
+  } else if (determined_type?.startsWith('video') || (determined_type === 'application/octet-stream' && path.extname(file_path).toLowerCase() === '.mp4')) {
     const dur = await getDuration(file_path);
     output.icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-film"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 3v18"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>';
     output.type = 'video';
@@ -57,9 +57,7 @@ async function handleFile(request, file) {
   } else if (isArchive(determined_type)) {
     output.icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-archive"><path d="M16 22h2a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v18"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><circle cx="10" cy="20" r="2"/><path d="M10 7V6"/><path d="M10 12v-1"/><path d="M10 18v-2"/></svg>';
     output.type = 'archive';
-  }
-
-  if (file_path.toLowerCase().endsWith('.url')) {
+  } else if (file_path.toLowerCase().endsWith('.url')) {
     output.icon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-square-arrow-out-up-right'><path d='M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6'/><path d='m21 3-9 9'/><path d='M15 3h6v6'/></svg>";
     const lines = (await fs.readFile(file_path)).toString('utf8').split('\n');
     for (const line of lines) {
