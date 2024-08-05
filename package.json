@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
-    "@stylistic/eslint-plugin": "^2.3.0",
+    "@stylistic/eslint-plugin": "^2.6.1",
     "@stylistic/stylelint-plugin": "^2.1.2",
     "autoprefixer": "^10.4.19",
     "esbuild": "0.23.0",
