@@ -15,8 +15,8 @@ importers:
         specifier: ^5.0.19
         version: 5.0.19
       '@hapi/hapi':
-        specifier: ^21.3.10
-        version: 21.3.10
+        specifier: ^21.3.12
+        version: 21.3.12
       '@hapi/inert':
         specifier: ^7.1.0
         version: 7.1.0
@@ -600,6 +600,9 @@ packages:
   '@hapi/bounce@3.0.1':
     resolution: {integrity: sha512-G+/Pp9c1Ha4FDP+3Sy/Xwg2O4Ahaw3lIZFSX+BL4uWi64CmiETuZPxhKDUD4xBMOUZbBlzvO8HjiK8ePnhBadA==}
 
+  '@hapi/bounce@3.0.2':
+    resolution: {integrity: sha512-d0XmlTi3H9HFDHhQLjg4F4auL1EY3Wqj7j7/hGDhFFe6xAbnm3qiGrXeT93zZnPH8gH+SKAFYiRzu26xkXcH3g==}
+
   '@hapi/bourne@3.0.0':
     resolution: {integrity: sha512-Waj1cwPXJDucOib4a3bAISsKJVb15MKi9IvmTI/7ssVEm6sywXGjVJDhl6/umt1pK1ZS7PacXU3A1PmFKHEZ2w==}
 
@@ -622,8 +625,8 @@ packages:
   '@hapi/file@3.0.0':
     resolution: {integrity: sha512-w+lKW+yRrLhJu620jT3y+5g2mHqnKfepreykvdOcl9/6up8GrQQn+l3FRTsjHTKbkbfQFkuksHpdv2EcpKcJ4Q==}
 
-  '@hapi/hapi@21.3.10':
-    resolution: {integrity: sha512-CmEcmTREW394MaGGKvWpoOK4rG8tKlpZLs30tbaBzhCrhiL2Ti/HARek9w+8Ya4nMBGcd+kDAzvU44OX8Ms0Jg==}
+  '@hapi/hapi@21.3.12':
+    resolution: {integrity: sha512-GCUP12dkb3QMjpFl+wEFO73nqKRmsnD5um/QDOn6lj2GjGBrDXPcT194mNARO+PPNXZOR4KmvIpHt/lceUncfg==}
     engines: {node: '>=14.15.0'}
 
   '@hapi/heavy@8.0.1':
@@ -631,6 +634,9 @@ packages:
 
   '@hapi/hoek@11.0.4':
     resolution: {integrity: sha512-PnsP5d4q7289pS2T2EgGz147BFJ2Jpb4yrEdkpz2IhgEUzos1S7HTl7ezWh1yfYzYlj89KzLdCRkqsP6SIryeQ==}
+
+  '@hapi/hoek@11.0.7':
+    resolution: {integrity: sha512-HV5undWkKzcB4RZUusqOpcgxOaq6VOAH7zhhIr2g3G8NF/MlFO75SjOr2NfuSx0Mh40+1FqCkagKLJRykUWoFQ==}
 
   '@hapi/inert@7.1.0':
     resolution: {integrity: sha512-5X+cl/Ozm0U9uPGGX1dSKhnhTQIf161bH/kkTN9OBVAZKFG+nrj8j/NMj6S1zBBZWmQrkVRNPfCUGrXzB4fCFQ==}
@@ -3099,41 +3105,46 @@ snapshots:
   '@hapi/accept@6.0.3':
     dependencies:
       '@hapi/boom': 10.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/ammo@6.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/b64@6.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/boom@10.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/bounce@3.0.1':
     dependencies:
       '@hapi/boom': 10.0.1
       '@hapi/hoek': 11.0.4
 
+  '@hapi/bounce@3.0.2':
+    dependencies:
+      '@hapi/boom': 10.0.1
+      '@hapi/hoek': 11.0.7
+
   '@hapi/bourne@3.0.0': {}
 
   '@hapi/call@9.0.1':
     dependencies:
       '@hapi/boom': 10.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/catbox-memory@6.0.2':
     dependencies:
       '@hapi/boom': 10.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/catbox@12.1.1':
     dependencies:
       '@hapi/boom': 10.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/podium': 5.0.1
       '@hapi/validate': 2.0.1
 
@@ -3147,17 +3158,17 @@ snapshots:
 
   '@hapi/file@3.0.0': {}
 
-  '@hapi/hapi@21.3.10':
+  '@hapi/hapi@21.3.12':
     dependencies:
       '@hapi/accept': 6.0.3
       '@hapi/ammo': 6.0.1
       '@hapi/boom': 10.0.1
-      '@hapi/bounce': 3.0.1
+      '@hapi/bounce': 3.0.2
       '@hapi/call': 9.0.1
       '@hapi/catbox': 12.1.1
       '@hapi/catbox-memory': 6.0.2
       '@hapi/heavy': 8.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/mimos': 7.0.1
       '@hapi/podium': 5.0.1
       '@hapi/shot': 6.0.1
@@ -3171,10 +3182,12 @@ snapshots:
   '@hapi/heavy@8.0.1':
     dependencies:
       '@hapi/boom': 10.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/validate': 2.0.1
 
   '@hapi/hoek@11.0.4': {}
+
+  '@hapi/hoek@11.0.7': {}
 
   '@hapi/inert@7.1.0':
     dependencies:
@@ -3191,7 +3204,7 @@ snapshots:
       '@hapi/boom': 10.0.1
       '@hapi/bourne': 3.0.0
       '@hapi/cryptiles': 6.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/log@2.0.1':
     dependencies:
@@ -3200,12 +3213,12 @@ snapshots:
 
   '@hapi/mimos@7.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       mime-db: 1.53.0
 
   '@hapi/nigel@5.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/vise': 5.0.1
 
   '@hapi/pez@6.1.0':
@@ -3213,32 +3226,32 @@ snapshots:
       '@hapi/b64': 6.0.1
       '@hapi/boom': 10.0.1
       '@hapi/content': 6.0.0
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/nigel': 5.0.1
 
   '@hapi/podium@5.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/teamwork': 6.0.0
       '@hapi/validate': 2.0.1
 
   '@hapi/shot@6.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/validate': 2.0.1
 
   '@hapi/somever@4.1.1':
     dependencies:
-      '@hapi/bounce': 3.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/bounce': 3.0.2
+      '@hapi/hoek': 11.0.7
 
   '@hapi/statehood@8.1.1':
     dependencies:
       '@hapi/boom': 10.0.1
-      '@hapi/bounce': 3.0.1
+      '@hapi/bounce': 3.0.2
       '@hapi/bourne': 3.0.0
       '@hapi/cryptiles': 6.0.1
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/iron': 7.0.1
       '@hapi/validate': 2.0.1
 
@@ -3248,7 +3261,7 @@ snapshots:
       '@hapi/bourne': 3.0.0
       '@hapi/content': 6.0.0
       '@hapi/file': 3.0.0
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/pez': 6.1.0
       '@hapi/wreck': 18.1.0
 
@@ -3256,16 +3269,16 @@ snapshots:
 
   '@hapi/topo@6.0.2':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/validate@2.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
       '@hapi/topo': 6.0.2
 
   '@hapi/vise@5.0.1':
     dependencies:
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@hapi/vision@7.0.3':
     dependencies:
@@ -3278,7 +3291,7 @@ snapshots:
     dependencies:
       '@hapi/boom': 10.0.1
       '@hapi/bourne': 3.0.0
-      '@hapi/hoek': 11.0.4
+      '@hapi/hoek': 11.0.7
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
