@@ -26,7 +26,7 @@
   "dependencies": {
     "@ffprobe-installer/ffprobe": "^2.1.2",
     "@fontsource-variable/inter": "^5.0.19",
-    "@hapi/hapi": "^21.3.10",
+    "@hapi/hapi": "^21.3.12",
     "@hapi/inert": "^7.1.0",
     "@hapi/log": "^2.0.1",
     "@hapi/vision": "^7.0.3",
