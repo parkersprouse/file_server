@@ -10,23 +10,24 @@
 @import url('sanitize.css/ui-monospace.css');
 @import url('hint.css/hint.min.css');
 @import url('@fontsource-variable/inter');
-@import url('@fontsource-variable/inter/slnt.css');
+@import url('@fontsource-variable/inter/wght-italic.css');
 
 #nprogress {
-  --nprogress-color: rgb(221 34 34);
+  --nprogress-color: var(--accent-color);
 
-  & .bar {
+  /* & .bar {
     display: none;
-  }
+  } */
 
   & .peg {
     box-shadow: 0 0 10px var(--nprogress-color), 0 0 5px var(--nprogress-color);
   }
 
   & .spinner {
-    top: 15px;
+    /* top: 15px;
     right: 0;
-    left: 15px;
+    left: 15px; */
+    display: none;
   }
 
   & .spinner-icon {
@@ -37,10 +38,10 @@
 
 #preview-dialog {
   & .plyr {
-    --plyr-color-main: rgb(187 36 36);
-    --plyr-tooltip-background: #3c3c3c;
-    --plyr-tooltip-color: #eceff4;
-    --plyr-font-family: 'Inter Variable', sans-serif;
+    --plyr-color-main: var(--accent-color);
+    --plyr-tooltip-background: var(--tooltip-bg-color);
+    --plyr-tooltip-color: var(--tooltip-text-color);
+    --plyr-font-family: var(--font-family);
     --plyr-tooltip-padding: 4px;
 
     max-height: 100%;

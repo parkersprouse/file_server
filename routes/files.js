@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { statSync } from 'node:fs';
 import { opendir } from 'node:fs/promises';
 import path from 'node:path';

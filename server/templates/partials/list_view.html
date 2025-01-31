@@ -42,10 +42,8 @@
             {{#if this.last_updated}}
               <div class='list-view--entry-cell list-view--entry-cell__last-updated'>
                 <span class='meta' title='Last Updated {{this.last_updated.absolute}}'>
-                  <svg class='lucide lucide-history' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-                    <path d='M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8'/>
-                    <path d='M3 3v5h5'/>
-                    <path d='M12 7v5l4 2'/>
+                  <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M136,80v43.47l36.12,21.67a8,8,0,0,1-8.24,13.72l-40-24A8,8,0,0,1,120,128V80a8,8,0,0,1,16,0Zm-8-48A95.44,95.44,0,0,0,60.08,60.15C52.81,67.51,46.35,74.59,40,82V64a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H72a8,8,0,0,0,0-16H49c7.15-8.42,14.27-16.35,22.39-24.57a80,80,0,1,1,1.66,114.75,8,8,0,1,0-11,11.64A96,96,0,1,0,128,32Z" />
                   </svg>
                   {{this.last_updated.relative}}
                 </span>
@@ -57,10 +55,8 @@
             {{#if this.duration}}
               <div class='list-view--entry-cell list-view--entry-cell__duration'>
                 <span class='meta' title='{{this.duration.long}}'>
-                  <svg class='lucide lucide-timer' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-                    <line x1='10' x2='14' y1='2' y2='2'/>
-                    <line x1='12' x2='15' y1='14' y2='11'/>
-                    <circle cx='12' cy='14' r='8'/>
+                  <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M128,40a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,40Zm0,176a80,80,0,1,1,80-80A80.09,80.09,0,0,1,128,216ZM173.66,90.34a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32-11.32l40-40A8,8,0,0,1,173.66,90.34ZM96,16a8,8,0,0,1,8-8h48a8,8,0,0,1,0,16H104A8,8,0,0,1,96,16Z" />
                   </svg>
                   {{this.duration.short}}
                 </span>

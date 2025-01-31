@@ -1,49 +1,30 @@
 <nav id='nav-desktop'>
   <a href='{{list_compact_view_url}}' aria-label='List View' class='nav-link hint--bottom hint--no-animate{{#ifEquals view_param 'list_compact'}} active{{/ifEquals}}'>
-    <svg class='lucide lucide-list' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-      <line x1='8' x2='21' y1='6' y2='6' />
-      <line x1='8' x2='21' y1='12' y2='12' />
-      <line x1='8' x2='21' y1='18' y2='18' />
-      <line x1='3' x2='3.01' y1='6' y2='6' />
-      <line x1='3' x2='3.01' y1='12' y2='12' />
-      <line x1='3' x2='3.01' y1='18' y2='18' />
+    <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M88,64a8,8,0,0,1,8-8H216a8,8,0,0,1,0,16H96A8,8,0,0,1,88,64Zm128,56H96a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Zm0,64H96a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16ZM56,56H40a8,8,0,0,0,0,16H56a8,8,0,0,0,0-16Zm0,64H40a8,8,0,0,0,0,16H56a8,8,0,0,0,0-16Zm0,64H40a8,8,0,0,0,0,16H56a8,8,0,0,0,0-16Z" />
     </svg>
   </a>
   <a href='{{grid_view_url}}' aria-label='Grid View' class='nav-link hint--bottom hint--no-animate{{#ifEquals view_param 'grid'}} active{{/ifEquals}}'>
-    <svg class='lucide lucide-grid-2x2' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-      <rect width='18' height='18' x='3' y='3' rx='2'/>
-      <path d='M3 12h18'/>
-      <path d='M12 3v18'/>
+    <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z" />
     </svg>
   </a>
 
   <span class='nav-separator'></span>
 
   <a href='{{name_sort_url}}' aria-label='Sort By Name' class='nav-link hint--bottom hint--no-animate{{#ifEquals sort_param 'name'}} active{{/ifEquals}}'>
-    <svg class='lucide lucide-arrow-down-a-z' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-      <path d='m3 16 4 4 4-4'/>
-      <path d='M7 20V4'/>
-      <path d='M20 8h-5'/>
-      <path d='M15 10V6.5a2.5 2.5 0 0 1 5 0V10'/>
-      <path d='M15 14h5l-5 6h5'/>
+    <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M87.24,52.59a8,8,0,0,0-14.48,0l-64,136a8,8,0,1,0,14.48,6.81L39.9,160h80.2l16.66,35.4a8,8,0,1,0,14.48-6.81ZM47.43,144,80,74.79,112.57,144ZM200,96c-12.76,0-22.73,3.47-29.63,10.32a8,8,0,0,0,11.26,11.36c3.8-3.77,10-5.68,18.37-5.68,13.23,0,24,9,24,20v3.22A42.76,42.76,0,0,0,200,128c-22.06,0-40,16.15-40,36s17.94,36,40,36a42.73,42.73,0,0,0,24-7.25,8,8,0,0,0,16-.75V132C240,112.15,222.06,96,200,96Zm0,88c-13.23,0-24-9-24-20s10.77-20,24-20,24,9,24,20S213.23,184,200,184Z" />
     </svg>
   </a>
   <a href='{{duration_sort_url}}' aria-label='Sort By Duration' class='nav-link hint--bottom hint--no-animate{{#ifEquals sort_param 'duration'}} active{{/ifEquals}}'>
-    <svg class='lucide lucide-arrow-down-1-0' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-      <path d='m3 16 4 4 4-4'/>
-      <path d='M7 20V4'/>
-      <path d='M17 10V4h-2'/>
-      <path d='M15 10h4'/>
-      <rect x='15' y='14' width='4' height='6' ry='2'/>
+    <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M200,75.64V40a16,16,0,0,0-16-16H72A16,16,0,0,0,56,40V76a16.07,16.07,0,0,0,6.4,12.8L114.67,128,62.4,167.2A16.07,16.07,0,0,0,56,180v36a16,16,0,0,0,16,16H184a16,16,0,0,0,16-16V180.36a16.09,16.09,0,0,0-6.35-12.77L141.27,128l52.38-39.59A16.09,16.09,0,0,0,200,75.64ZM184,40V64H72V40Zm0,176H72V180l56-42,56,42.35Z" />
     </svg>
   </a>
   <a href='{{last_updated_sort_url}}' aria-label='Sort By Last Updated' class='nav-link hint--bottom hint--no-animate{{#ifEquals sort_param 'last_updated'}} active{{/ifEquals}}'>
-    <svg class='lucide lucide-arrow-down-wide-narrow' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-      <path d='m3 16 4 4 4-4'/>
-      <path d='M7 20V4'/>
-      <path d='M11 4h10'/>
-      <path d='M11 8h7'/>
-      <path d='M11 12h4'/>
+    <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M224,128A96,96,0,0,1,62.11,197.82a8,8,0,1,1,11-11.64A80,80,0,1,0,71.43,71.43C67.9,75,64.58,78.51,61.35,82L77.66,98.34A8,8,0,0,1,72,112H32a8,8,0,0,1-8-8V64a8,8,0,0,1,13.66-5.66L50,70.7c3.22-3.49,6.54-7,10.06-10.55A96,96,0,0,1,224,128ZM128,72a8,8,0,0,0-8,8v48a8,8,0,0,0,3.88,6.86l40,24a8,8,0,1,0,8.24-13.72L136,123.47V80A8,8,0,0,0,128,72Z" />
     </svg>
   </a>
 </nav>

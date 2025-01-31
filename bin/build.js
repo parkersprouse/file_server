@@ -107,7 +107,6 @@ await build({
     '@hapi/log',
     '@hapi/vision',
     '@picturae/mmmagic',
-    'dotenv',
     'execa',
     'file-type',
     'handlebars',
