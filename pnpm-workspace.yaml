@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@ffprobe-installer/linux-x64'
+  - '@picturae/mmmagic'
+  - esbuild
+  - unrs-resolver

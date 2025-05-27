@@ -82,7 +82,7 @@ export default [
    * [Extension] ESLint Stylistic's set of rules (recommended config)
    * https://eslint.style/guide/config-presets#static-configurations
    */
-  stylistic.configs['recommended-flat'],
+  stylistic.configs.recommended,
 
   /**
    * ------------------------------------------------------------------------------
@@ -103,7 +103,6 @@ export default [
    * [Extension] For linting Node.js environments (recommended config for ESM projects)
    * https://github.com/eslint-community/eslint-plugin-n
    */
-  // n.configs['flat/recommended-module'],
   n.configs['flat/recommended'],
 
   /**
